@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjbybsqsmgx8v"]
+
+[ext_resource type="Script" path="res://Scripts/Palette/PaletteParts.gd" id="1_1qbjg"]
+[ext_resource type="Texture2D" uid="uid://b1o0psioegaou" path="res://Entities/Wolf/WolfBody.png" id="1_5w4ma"]
+[ext_resource type="Shader" path="res://Entities/Wolf/node_2d.gdshader" id="1_lg48l"]
+[ext_resource type="Texture2D" uid="uid://dpvi17ojtom7k" path="res://Entities/Wolf/WolfTail.png" id="2_6sbec"]
+[ext_resource type="Texture2D" uid="uid://c3lq7kgxd6ykl" path="res://Entities/Wolf/WolfHead.png" id="3_gd4ce"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8tol"]
+shader = ExtResource("1_lg48l")
+shader_parameter/color0 = null
+shader_parameter/color1 = null
+shader_parameter/color2 = null
+shader_parameter/color3 = null
+shader_parameter/color4 = null
+shader_parameter/color5 = null
+shader_parameter/color6 = null
+shader_parameter/color7 = null
+shader_parameter/color8 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_476gq"]
+shader = ExtResource("1_lg48l")
+shader_parameter/color0 = null
+shader_parameter/color1 = null
+shader_parameter/color2 = null
+shader_parameter/color3 = null
+shader_parameter/color4 = null
+shader_parameter/color5 = null
+shader_parameter/color6 = null
+shader_parameter/color7 = null
+shader_parameter/color8 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhicm"]
+shader = ExtResource("1_lg48l")
+shader_parameter/color0 = null
+shader_parameter/color1 = null
+shader_parameter/color2 = null
+shader_parameter/color3 = null
+shader_parameter/color4 = null
+shader_parameter/color5 = null
+shader_parameter/color6 = null
+shader_parameter/color7 = null
+shader_parameter/color8 = null
+
+[node name="Wolf" type="Node2D"]
+script = ExtResource("1_1qbjg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_l8tol")
+position = Vector2(32, 32)
+texture = ExtResource("1_5w4ma")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_476gq")
+position = Vector2(32, 32)
+texture = ExtResource("2_6sbec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_hhicm")
+position = Vector2(32, 32)
+texture = ExtResource("3_gd4ce")

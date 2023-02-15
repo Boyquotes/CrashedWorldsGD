@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd5by43qp1c1x"]
+
+[ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
+[ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_1ekhh"]
+[ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hje3m"]
+sky_material = SubResource("ProceduralSkyMaterial_2jg8a")
+
+[sub_resource type="Environment" id="Environment_ookwy"]
+background_mode = 2
+sky = SubResource("Sky_hje3m")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.21
+glow_strength = 0.97
+glow_bloom = 1.0
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.352941, 0.207843, 0.0509804, 1)
+fog_density = 0.0541
+fog_aerial_perspective = 0.059
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w0l0e"]
+viewport_path = NodePath("Wolf/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tptv4"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.508
+alpha_antialiasing_mode = 0
+shading_mode = 2
+albedo_texture = SubResource("ViewportTexture_w0l0e")
+texture_filter = 0
+texture_repeat = false
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na3v1"]
+transparency = 1
+albedo_color = Color(1, 0.0588235, 0.0745098, 1)
+metallic = 1.0
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(0.831373, 0.0470588, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g8a5v"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_rpshw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.71934, 0.694659, 9.75193e-08, -0.387442, -0.401208, 0.830013, 0.576575, 0.597061, 0.557745, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ookwy")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_72tnd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.108631, 1.26695, 0.272184)
+
+[node name="Wolf" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wolf"]
+shape = SubResource("BoxShape3D_57huf")
+
+[node name="Sprite3D" type="Sprite3D" parent="Wolf"]
+material_override = SubResource("StandardMaterial3D_tptv4")
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_w0l0e")
+
+[node name="SubViewport" type="SubViewport" parent="Wolf"]
+transparent_bg = true
+msaa_2d = 3
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
+
+[node name="Node2D" parent="Wolf/SubViewport" instance=ExtResource("2_1ekhh")]
+texture_filter = 1
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh_library = ExtResource("4_38xhp")
+cell_size = Vector3(1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.8, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_na3v1")
+mesh = SubResource("PlaneMesh_g8a5v")
