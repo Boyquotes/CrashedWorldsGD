@@ -1,14 +1,14 @@
 extends RigidBody3D
 
 var Target : Player
-
-
+@onready var nav_agent = $navigationAgent3D
+var speed = 3
 var State:
 	set(val):
 		_on_state_changed(val)
 	get : return State
-
 enum states {IDLE, GUARD, AGGRO, ATTACK}
+#----------------------------------------------------------- BASE
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = states.IDLE
@@ -22,27 +22,11 @@ func _process(delta):
 #		states.ATTACK : print("ATTACK")
 	pass
 
-func _on_state_changed(value):
-	match value :
-		states.IDLE : $Label3D.text = "IDLE"
-		states.GUARD : $Label3D.text = "GUARD"
-		states.AGGRO : $Label3D.text = "AGGRO"
-		states.ATTACK : $Label3D.text = "ATTACK"
+func _physics_process(delta):
+	#Appliquer force vers Target Player * speed
+		pass
 
-func _Idle():
-	pass
-	
-func _Guard():
-	pass
-	
-func _Aggro():
-	pass
-	
-func _Attack():
-	pass
-
-
-
+#----------------------------------------------------------- SIGNAL
 func _on_area_attack_body_entered(Player):
 	State = states.ATTACK
 
@@ -60,3 +44,23 @@ func _on_area_aggro_body_exited(Player):
 
 func _on_area_attack_body_exited(body):
 	State = states.AGGRO
+#----------------------------------------------------------- FUNCTION
+func _on_state_changed(value):
+	match value :
+		states.IDLE : _Idle()
+		states.GUARD : _Guard()
+		states.AGGRO : _Aggro()
+		states.ATTACK : _Attack()
+
+func _Idle():
+	$Label3D.text = "IDLE"
+	
+func _Guard():
+	$Label3D.text = "GUARD"
+	
+func _Aggro():
+	$Label3D.text = "AGGRO"
+	
+func _Attack():
+	$Label3D.text = "ATTACK"
+
