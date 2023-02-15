@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://yib7ain7e5ai"]
+
+[ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
+[ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xc8g1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tptv4"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.508
+alpha_antialiasing_mode = 0
+shading_mode = 2
+albedo_texture = SubResource("ViewportTexture_xc8g1")
+texture_filter = 0
+texture_repeat = false
+disable_receive_shadows = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bw6e8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcp5r"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odu5j"]
+size = Vector3(4, 1, 4)
+
+[node name="Wolf" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)
+script = ExtResource("1_lqg7c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_57huf")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00674438, -0.0217068, 0.0186782)
+material_override = SubResource("StandardMaterial3D_tptv4")
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_xc8g1")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+msaa_2d = 3
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
+
+[node name="Node2D" parent="SubViewport" instance=ExtResource("1_q6onx")]
+texture_filter = 1
+
+[node name="AreaAttack" type="Area3D" parent="."]
+
+[node name="Zone1" type="CollisionShape3D" parent="AreaAttack"]
+shape = SubResource("BoxShape3D_bw6e8")
+
+[node name="AreaAggro" type="Area3D" parent="."]
+
+[node name="Zone2" type="CollisionShape3D" parent="AreaAggro"]
+shape = SubResource("BoxShape3D_hcp5r")
+
+[node name="AreaGuard" type="Area3D" parent="."]
+
+[node name="Zone3" type="CollisionShape3D" parent="AreaGuard"]
+shape = SubResource("BoxShape3D_odu5j")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422507, 0)
+text = "COUCOU"
+
+[connection signal="body_entered" from="AreaAttack" to="." method="_on_area_attack_body_entered"]
+[connection signal="body_exited" from="AreaAttack" to="." method="_on_area_attack_body_exited"]
+[connection signal="body_entered" from="AreaAggro" to="." method="_on_area_aggro_body_entered"]
+[connection signal="body_exited" from="AreaAggro" to="." method="_on_area_aggro_body_exited"]
+[connection signal="body_entered" from="AreaGuard" to="." method="_on_area_guard_body_entered"]
+[connection signal="body_exited" from="AreaGuard" to="." method="_on_area_guard_body_exited"]
