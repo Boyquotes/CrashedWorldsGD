@@ -1,12 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=14 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_1ekhh"]
 [ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://d1mlgir5jlyvt" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_prmvh"]
-[ext_resource type="Texture2D" uid="uid://3ejhihpyy5er" path="res://UI/Icons/Blocs/GrassBloc.png" id="6_f5dok"]
-[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="7_ecb6k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -58,78 +56,6 @@ emission = Color(0.831373, 0.0470588, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g8a5v"]
 
-[sub_resource type="Resource" id="Resource_2id6f"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
-[sub_resource type="Resource" id="Resource_7lvxx"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
-[sub_resource type="Resource" id="Resource_4yq43"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
-[sub_resource type="Resource" id="Resource_hwvpu"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
-[sub_resource type="Resource" id="Resource_aeh8j"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
-[sub_resource type="Resource" id="Resource_ex50u"]
-resource_local_to_scene = true
-script = ExtResource("7_ecb6k")
-itemName = "Bloc"
-type = null
-icon = ExtResource("6_f5dok")
-amount = 1
-stack = 0
-canBeEquiped = true
-canBeUpgraded = false
-description = "A simple Bloc"
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_rpshw")
 
@@ -180,24 +106,18 @@ mesh = SubResource("PlaneMesh_g8a5v")
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 1.96683, 0)
-item = SubResource("Resource_2id6f")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 1.96683, 1.98277)
-item = SubResource("Resource_7lvxx")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 2.78828, -3.98228)
-item = SubResource("Resource_4yq43")
 
 [node name="ItemDrop4" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34916, 1.68194, -2.60941)
-item = SubResource("Resource_hwvpu")
 
 [node name="ItemDrop5" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34916, 1.68194, 1.44367)
-item = SubResource("Resource_aeh8j")
 
 [node name="ItemDrop6" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13384, 1.68194, 1.44367)
-item = SubResource("Resource_ex50u")
