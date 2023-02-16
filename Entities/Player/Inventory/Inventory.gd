@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------ VARIABLES
-@export var recipes : RecipeBook = RecipeBook.new()
+@export var craftRecipes : RecipeBook
+@export var upgradeRecipes : RecipeBook
 
 @onready var bloc = preload("res://Resources/Item/Bloc.tres")
 @onready var inst = preload("res://Entities/Player/Inventory/InvSlot.tscn")
@@ -73,13 +74,21 @@ func add_item(item) -> bool:
 	return false
 
 func craft_item(item):
-	button_hovered.itemHolding = item
-	$Marker.texture = item.icon
-	button_hovered = null
+	if button_hovered:
+		button_hovered.itemHolding = item
+		$Marker.texture = item.icon
+		button_hovered = null
 
 func move_item_to(slot):
+	if slot.itemHolding:
+		if slot.itemHolding.itemName == itemHold.itemName:
+			if slot.itemHolding.amount + 1 > slot.itemHolding.stack:
+				if !add_item(itemHold):
+					return
+			slot.itemHolding.amount += itemHold.amount
+	else:
+		slot.itemHolding = itemHold
 	delete_item(button_hovered)
-	slot.itemHolding = itemHold
 	button_hovered = null
 	itemHold = null; currentItemSlot = null
 
