@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6srr7375uwg7"]
+
+[ext_resource type="PackedScene" uid="uid://cliql53ne8p4t" path="res://UI/Nodes/ItemBox/ItemBox.tscn" id="1_5amw6"]
+[ext_resource type="Script" path="res://UI/Nodes/PinBox/PinBox.gd" id="1_5750g"]
+[ext_resource type="Texture2D" uid="uid://b605dmsimhajq" path="res://UI/Menus/CraftTo.png" id="2_s2b7r"]
+
+[node name="PinBox" type="MarginContainer"]
+theme_override_constants/margin_left = 0
+script = ExtResource("1_5750g")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="Boundings" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Body" type="HBoxContainer" parent="Boundings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Inputs" type="HBoxContainer" parent="Boundings/Body"]
+layout_mode = 2
+
+[node name="ItemBox" parent="Boundings/Body/Inputs" instance=ExtResource("1_5amw6")]
+layout_mode = 2
+
+[node name="ItemBox2" parent="Boundings/Body/Inputs" instance=ExtResource("1_5amw6")]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Boundings/Body"]
+layout_mode = 2
+texture = ExtResource("2_s2b7r")
+stretch_mode = 3
+
+[node name="Output" type="HBoxContainer" parent="Boundings/Body"]
+layout_mode = 2
+
+[node name="OutputBox" parent="Boundings/Body/Output" instance=ExtResource("1_5amw6")]
+layout_mode = 2

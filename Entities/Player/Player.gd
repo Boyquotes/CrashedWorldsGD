@@ -35,10 +35,13 @@ func _physics_process(delta):
 		if velocity.x > 0:
 			$AnimatedSprite3D.flip_h = false
 			$Equiped.position.x = 0.3
+			$Equiped.flip_h = false
 			
 		else:
 			$AnimatedSprite3D.flip_h = true
 			$Equiped.position.x = -0.3
+			$Equiped.flip_h = true
+			
 		$AnimatedSprite3D.play("Run")
 	
 	move_and_slide()

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cdo8luiuo4y1d"]
+
+[ext_resource type="Texture2D" uid="uid://u61bwxtyasox" path="res://UI/Icons/Potions/HealPotion.png" id="1_qifjc"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_prxa8"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_prxa8")
+itemName = "Heal Potion"
+type = 2
+icon = ExtResource("1_qifjc")
+amount = 1
+stack = 4
+canBeEquiped = true
+canBeUpgraded = false
+description = "What an odd look. Somehow, I was waiting for a rounder shape."

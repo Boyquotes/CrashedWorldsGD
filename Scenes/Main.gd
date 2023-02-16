@@ -1,7 +1,7 @@
 extends Node3D
 
 func _input(event):
-	if event.is_action_pressed("Interact"):
+	if event.is_action_pressed("ui_cancel"):
 		$Wolf/SubViewport/Node2D.calculate_hue()
 		random_terrain()
 

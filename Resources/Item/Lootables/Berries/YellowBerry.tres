@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://umhybmauhgc5"]
+
+[ext_resource type="Texture2D" uid="uid://d1e04r5okbga5" path="res://UI/Icons/Lootables/YellowBerries.png" id="1_d5j4k"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_8yjif"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_8yjif")
+itemName = "Yellow Berries"
+type = 4
+icon = ExtResource("1_d5j4k")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Aren't these orange ? "

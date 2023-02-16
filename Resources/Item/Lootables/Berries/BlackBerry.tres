@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bh4qi0qarx8en"]
+
+[ext_resource type="Texture2D" uid="uid://dkymhi8jb5uy7" path="res://UI/Icons/Lootables/BlackBerries.png" id="1_ewbqm"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_quqju"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_quqju")
+itemName = "Black Berries"
+type = 4
+icon = ExtResource("1_ewbqm")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "They seem deadly - maybe they are."

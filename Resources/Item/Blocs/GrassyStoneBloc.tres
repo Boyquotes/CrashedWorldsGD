@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cl251yl8mex30"]
+
+[ext_resource type="Texture2D" uid="uid://wey14280uesx" path="res://UI/Icons/Blocs/GrassStoneBloc.png" id="1_wtfav"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_qtnkx"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_qtnkx")
+itemName = "Grassy Stone Bloc"
+type = 0
+icon = ExtResource("1_wtfav")
+amount = 1
+stack = 64
+canBeEquiped = true
+canBeUpgraded = false
+description = "A stone bloc with some grass on it."

@@ -4,7 +4,9 @@ extends CanvasLayer
 @export var craftRecipes : RecipeBook
 @export var upgradeRecipes : RecipeBook
 
-@onready var bloc = preload("res://Resources/Item/Bloc.tres")
+@onready var inst_recipe = preload("res://UI/Nodes/RecipeNode/RecipeNode.tscn")
+
+@onready var bloc = preload("res://Resources/Item/Lootables/Berries/RedBerry.tres")
 @onready var inst = preload("res://Entities/Player/Inventory/InvSlot.tscn")
 
 var button_hovered = null
@@ -14,28 +16,45 @@ var currentItemSlot = null
 # ------------------------------------------------------------------------------ BASIC METHODS
 
 func _ready():
+	# Inventory Setup (32 slots)
 	for i in range(0,31):
 		var thing = inst.instantiate()
 		$Bag.add_child(thing)
 	
+	# Connecting the slots
 	for i in $Bag.get_children():
 		i.connect("onPressed", _on_button_pressed)
 		i.connect("onMouseHover", _on_slot_mouse_entered)
 		i.connect("onMouseLeft", _on_slot_mouse_exited)
 	
-	
+	# Special connection for the equipment slot
 	$Equipment.connect("onPressed", _on_button_pressed)
 	$Equipment.connect("onMouseHover", _on_slot_mouse_entered)
 	$Equipment.connect("onMouseLeft", _on_slot_mouse_exited)
 	$Equipment.connect("equipedItem", get_parent().equip)
 	
+	# Creation of the recipe list
+	for recipe in craftRecipes.recipes:
+		var ins = inst_recipe.instantiate()
+		$ItemList/MarginContainer/Boundings/Holder.add_child(ins)
+		ins.set_recipe(recipe)
+		ins.connect("recipeClicked", add_to_do_recipe)
 	
+#	for upgrade in upgradeRecipes.recipes:
+#		var ins = inst_recipe.instantiate()
+#		$ItemList/MarginContainer/Boundings/Holder.add_child(ins)
+#		ins.set_recipe(upgrade)
+#		ins.connect("recipeClicked", add_to_do_recipe)
+	
+	# Connection of the ToDoList boxes
+	for todobox in $ToDoList/Body.get_children():
+		todobox.get_node("PinBox").connect("keyPressed", do_recipe)
 
 
 func _unhandled_input(event):
 	if event.is_action_pressed("RMB"):
 		$ItemList.hide()
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("Interact"):
 		button_hovered = null
 		if $Bag.visible:
 			$Bag.hide()
@@ -52,7 +71,6 @@ func _input(event):
 		drag = false
 		if itemHold and currentItemSlot:
 			move_item_to(currentItemSlot)
-			print("moved")
 	
 	if drag and itemHold != null: 
 		if event is InputEventMouseMotion:
@@ -63,22 +81,25 @@ func _input(event):
 
 # ------------------------------------------------------------------------------ CUSTOM METHODS
 
+## Adds the item to the first empty slots. Returns true if successful.
 func add_item(item) -> bool:
+	item = item.duplicate()
 	for i in $Bag.get_children():
+		
+		# Slot is empty
 		if i.itemHolding == null:
 			i.itemHolding = item
 			return true
+		
+		# Slot has the same item
 		elif i.itemHolding.itemName == item.itemName:
-			i.itemHolding.amount += 1
-			return true
+			# if under the stack limit
+			if i.itemHolding.amount + 1 <= i.itemHolding.stack:
+				i.itemHolding.amount += 1
+				return true
 	return false
 
-func craft_item(item):
-	if button_hovered:
-		button_hovered.itemHolding = item
-		$Marker.texture = item.icon
-		button_hovered = null
-
+## Moves an item from a slot to another, by duplicating the first one then deleting the other.
 func move_item_to(slot):
 	if slot.itemHolding:
 		if slot.itemHolding.itemName == itemHold.itemName:
@@ -88,18 +109,58 @@ func move_item_to(slot):
 			slot.itemHolding.amount += itemHold.amount
 	else:
 		slot.itemHolding = itemHold
-	delete_item(button_hovered)
+	delete_item_at(button_hovered)
 	button_hovered = null
 	itemHold = null; currentItemSlot = null
 
-func equip_item(_item):
-	pass
+## Deletes item at selected slot.
+func delete_item_at(slot):
+	slot.itemHolding = null
 
-func unequip_item(_slot):
-	pass
+## Find the first instance of an item to remove the needed quantity. Returns true if successful.
+func buy_item(item : Item, quantity : int, start_child : int = 0) -> bool:
+	# We iterate to find the first instance. If enough, we're done.
+	# else, we try to find another one, using recursivity with what's left.
+	# Then, the function will collapse on the answer, that being true or false.
+	for i in range(start_child, $Bag.get_child_count()):
+		var child = $Bag.get_child(i)
+		if child.itemHolding:
+			if child.itemHolding.itemName == item.itemName:
+				if quantity <= child.itemHolding.amount: 
+					child.itemHolding.amount -= quantity
+					if child.itemHolding.amount == 0 : delete_item_at(child)
+					return true
+				
+				if buy_item(item, quantity - child.itemHolding.amount, i + 1):
+					child.itemHolding.amount -= quantity
+					if child.itemHolding.amount <= 0 : delete_item_at(child)
+					return true
+				else:
+					return false
+		
+	return false
+	# For instance, I have a headache because of this function
 
-func delete_item(slot):
-	button_hovered.itemHolding = null
+func do_recipe(pinbox : Pinbox):
+	for i in pinbox.current_recipe.inputItems:
+		if !buy_item(i, i.amount):
+			return false
+	
+	add_item(pinbox.current_recipe.outputItem)
+	pinbox.get_parent().hide()
+	pinbox.current_recipe = null
+
+func add_to_do_recipe(recipe : Recipe) -> bool:
+	
+	# We're using the visibility as a bool to check if the recipe can be done.
+	for i in $ToDoList/Body.get_children():
+		if !i.visible:
+			i.get_node("PinBox").set_recipe(recipe)
+			i.show()
+			
+			return true
+	return false
+
 # ------------------------------------------------------------------------------ SIGNALS
 
 func _on_button_pressed(button):
@@ -112,10 +173,8 @@ func _on_button_pressed(button):
 		
 	# UPGRADE
 	else:
-		print("true")
+		$Marker.texture = button.itemHolding.icon
 
-func _on_item_list_item_activated(index):
-	craft_item(bloc)
 
 func _on_slot_mouse_entered(slot):
 	if drag and itemHold:

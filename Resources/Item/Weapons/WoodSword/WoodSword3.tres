@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://baxt34ur46jaq"]
+
+[ext_resource type="Texture2D" uid="uid://duwltqey2601m" path="res://UI/Icons/Weapons/WoodSword/WoodSword3.png" id="1_mkaq5"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_hi0o7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_hi0o7")
+itemName = "Vine Sword"
+type = 1
+icon = ExtResource("1_mkaq5")
+amount = 1
+stack = 1
+canBeEquiped = true
+canBeUpgraded = true
+description = "Careful honey, it'll cut"

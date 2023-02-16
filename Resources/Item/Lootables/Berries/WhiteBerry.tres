@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ctlg5fv44ohcc"]
+
+[ext_resource type="Texture2D" uid="uid://bvsnlvih0r448" path="res://UI/Icons/Lootables/WhiteBerries.png" id="1_bcqec"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_0vbh4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_0vbh4")
+itemName = "White Berries"
+type = 4
+icon = ExtResource("1_bcqec")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "White as snow"

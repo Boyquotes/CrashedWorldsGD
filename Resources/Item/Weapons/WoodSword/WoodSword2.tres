@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dkb44hgn3ldco"]
+
+[ext_resource type="Texture2D" uid="uid://d4a1qam5f5y20" path="res://UI/Icons/Weapons/WoodSword/WoodSword2.png" id="1_kkmxg"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_dm8h3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_dm8h3")
+itemName = "Wooder Sword"
+type = 1
+icon = ExtResource("1_kkmxg")
+amount = 1
+stack = 1
+canBeEquiped = true
+canBeUpgraded = true
+description = "Harder. Faster. Wooder. Sworder. "

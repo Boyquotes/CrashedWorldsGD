@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c2su1nlmysub1"]
+
+[ext_resource type="Texture2D" uid="uid://cqjhn0qu722h5" path="res://UI/Icons/Blocs/SandBloc.png" id="1_4302q"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_2e2cm"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_2e2cm")
+itemName = "Sand Bloc"
+type = 0
+icon = ExtResource("1_4302q")
+amount = 1
+stack = 64
+canBeEquiped = true
+canBeUpgraded = false
+description = "A sandy bloc."

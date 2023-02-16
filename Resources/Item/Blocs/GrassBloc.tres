@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cfpdwkx6p3eei"]
+
+[ext_resource type="Texture2D" uid="uid://3ejhihpyy5er" path="res://UI/Icons/Blocs/GrassBloc.png" id="1_loooc"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_c7jls"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_c7jls")
+itemName = "Grass Bloc"
+type = 0
+icon = ExtResource("1_loooc")
+amount = 1
+stack = 64
+canBeEquiped = true
+canBeUpgraded = false
+description = "A grassy square."

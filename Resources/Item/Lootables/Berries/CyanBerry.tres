@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://v22iqmyx5c55"]
+
+[ext_resource type="Texture2D" uid="uid://bt4o6m4e0q7ar" path="res://UI/Icons/Lootables/CyanBerries.png" id="1_mknmn"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_wk1or"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_wk1or")
+itemName = "Cyan Berries"
+type = 4
+icon = ExtResource("1_mknmn")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "The true blueberry."

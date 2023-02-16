@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dxhook7js5aqa"]
+
+[ext_resource type="Texture2D" uid="uid://dqwii7qj65yf" path="res://UI/Icons/Weapons/WoodSword/WoodSword4.png" id="1_5hx0l"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_n7cnk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_n7cnk")
+itemName = "Natural Sword"
+type = 1
+icon = ExtResource("1_5hx0l")
+amount = 1
+stack = 1
+canBeEquiped = true
+canBeUpgraded = true
+description = "At least it's Organic."

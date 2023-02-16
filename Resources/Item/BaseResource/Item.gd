@@ -2,7 +2,7 @@ extends Resource
 class_name Item
 
 enum types {
-	BLOC, WEAPON, SPELL, TOOL
+	BLOC, WEAPON, SPELL, TOOL, LOOT
 }
 
 @export var itemName : String

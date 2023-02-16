@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://bio1d0g04eb4t"]
+
+[ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="1_easoi"]
+[ext_resource type="Resource" uid="uid://brweaxj1dm7fl" path="res://Resources/Item/Lootables/Berries/RedBerry.tres" id="1_iemxf"]
+[ext_resource type="Resource" uid="uid://cdo8luiuo4y1d" path="res://Resources/Item/Potions/HealPotion.tres" id="2_nknjf"]
+
+[resource]
+script = ExtResource("1_easoi")
+inputItems = Array[Resource("res://Resources/Item/BaseResource/Item.gd")]([ExtResource("1_iemxf")])
+outputItem = ExtResource("2_nknjf")
+recipeName = "Heal Potion"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b7h8qv7dkb0x6"]
+
+[ext_resource type="Texture2D" uid="uid://c33yyddrwsyck" path="res://UI/Icons/Blocs/DirtBloc.png" id="1_gneii"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="2_lal7g"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_lal7g")
+itemName = "Dirt Bloc"
+type = 0
+icon = ExtResource("1_gneii")
+amount = 1
+stack = 64
+canBeEquiped = true
+canBeUpgraded = false
+description = "A naught-  *em*  dirty square."
