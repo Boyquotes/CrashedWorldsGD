@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------ VARIABLES
+@export var recipes : RecipeBook = RecipeBook.new()
 
 @onready var bloc = preload("res://Resources/Item/Bloc.tres")
 @onready var inst = preload("res://Entities/Player/Inventory/InvSlot.tscn")
@@ -10,8 +11,6 @@ var drag : bool = false
 var itemHold : Item
 var currentItemSlot = null
 # ------------------------------------------------------------------------------ BASIC METHODS
-
-
 
 func _ready():
 	for i in range(0,31):
@@ -28,6 +27,7 @@ func _ready():
 	$Equipment.connect("onMouseHover", _on_slot_mouse_entered)
 	$Equipment.connect("onMouseLeft", _on_slot_mouse_exited)
 	$Equipment.connect("equipedItem", get_parent().equip)
+	
 	
 
 
