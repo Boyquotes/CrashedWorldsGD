@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3 uid="uid://cwao7b4q7q77g"]
+
+[ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="1_f6alp"]
+
+[resource]
+script = ExtResource("1_f6alp")
+inputItems = Array[Resource("res://Resources/Item/BaseResource/Item.gd")]([])
+recipeName = ""

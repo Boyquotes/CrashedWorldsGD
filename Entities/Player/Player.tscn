@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://htc6djlq12lo" path="res://Entities/Player/PlayerIdle-sheet.png" id="2_eqb5d"]
 [ext_resource type="Texture2D" uid="uid://cnfcobak8gkhn" path="res://Entities/Player/playerRun-sheet.png" id="3_rueil"]
 [ext_resource type="Script" path="res://Entities/Player/Inventory/Inventory.gd" id="4_bored"]
-[ext_resource type="Texture2D" uid="uid://dcok0aso1tqmx" path="res://Entities/Player/Inventory/emptytile.png" id="5_oubqx"]
-[ext_resource type="Script" path="res://Entities/Player/Inventory/InvSlot.gd" id="6_c1v0r"]
+[ext_resource type="PackedScene" uid="uid://28n6gh4fbhu3" path="res://Entities/Player/Inventory/InvSlot.tscn" id="5_7wd1b"]
+[ext_resource type="Texture2D" uid="uid://3ejhihpyy5er" path="res://UI/Icons/Blocs/GrassBloc.png" id="6_g6pn0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhloc"]
 radius = 0.25
@@ -110,6 +110,7 @@ animations = [{
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53517, 0)
+collision_mask = 5
 script = ExtResource("1_ku8ux")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -126,13 +127,14 @@ animation = &"Idle"
 frame_progress = 0.64943
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
+transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 0, 0.8, 3.75)
+v_offset = 0.5
+fov = 80.0
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 script = ExtResource("4_bored")
 
 [node name="Bag" type="GridContainer" parent="Inventory"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -144,295 +146,13 @@ offset_right = 142.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
 columns = 8
 
-[node name="InvSlot" type="TextureButton" parent="Inventory/Bag"]
+[node name="Tile" parent="Inventory/Bag" instance=ExtResource("5_7wd1b")]
 layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot2" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot3" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot4" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot5" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot6" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot7" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot8" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot9" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot10" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot11" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot12" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot13" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot14" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot15" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot16" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot17" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot18" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot19" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot20" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot21" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot22" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot23" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot24" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot25" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot26" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot27" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot28" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot29" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot30" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot31" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
-
-[node name="InvSlot32" type="TextureButton" parent="Inventory/Bag"]
-layout_mode = 2
-texture_normal = ExtResource("5_oubqx")
-texture_pressed = ExtResource("5_oubqx")
-texture_hover = ExtResource("5_oubqx")
-texture_disabled = ExtResource("5_oubqx")
-texture_focused = ExtResource("5_oubqx")
-script = ExtResource("6_c1v0r")
 
 [node name="ItemList" type="ItemList" parent="Inventory"]
 visible = false
@@ -445,35 +165,33 @@ item_0/text = "recipe 1"
 item_1/text = "recipe 2"
 item_2/text = "recipe 3"
 
-[connection signal="pressed" from="Inventory/Bag/InvSlot" to="Inventory/Bag/InvSlot" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot2" to="Inventory/Bag/InvSlot2" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot3" to="Inventory/Bag/InvSlot3" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot4" to="Inventory/Bag/InvSlot4" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot5" to="Inventory/Bag/InvSlot5" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot6" to="Inventory/Bag/InvSlot6" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot7" to="Inventory/Bag/InvSlot7" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot8" to="Inventory/Bag/InvSlot8" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot9" to="Inventory/Bag/InvSlot9" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot10" to="Inventory/Bag/InvSlot10" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot11" to="Inventory/Bag/InvSlot11" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot12" to="Inventory/Bag/InvSlot12" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot13" to="Inventory/Bag/InvSlot13" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot14" to="Inventory/Bag/InvSlot14" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot15" to="Inventory/Bag/InvSlot15" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot16" to="Inventory/Bag/InvSlot16" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot17" to="Inventory/Bag/InvSlot17" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot18" to="Inventory/Bag/InvSlot18" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot19" to="Inventory/Bag/InvSlot19" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot20" to="Inventory/Bag/InvSlot20" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot21" to="Inventory/Bag/InvSlot21" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot22" to="Inventory/Bag/InvSlot22" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot23" to="Inventory/Bag/InvSlot23" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot24" to="Inventory/Bag/InvSlot24" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot25" to="Inventory/Bag/InvSlot25" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot26" to="Inventory/Bag/InvSlot26" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot27" to="Inventory/Bag/InvSlot27" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot28" to="Inventory/Bag/InvSlot28" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot29" to="Inventory/Bag/InvSlot29" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot30" to="Inventory/Bag/InvSlot30" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot31" to="Inventory/Bag/InvSlot31" method="_on_pressed"]
-[connection signal="pressed" from="Inventory/Bag/InvSlot32" to="Inventory/Bag/InvSlot32" method="_on_pressed"]
+[node name="Equipment" parent="Inventory" instance=ExtResource("5_7wd1b")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -71.0
+offset_right = 16.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+isEquipSlot = true
+
+[node name="Marker" type="TextureRect" parent="Inventory"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Equiped" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+visible = false
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("6_g6pn0")
+
+[connection signal="item_activated" from="Inventory/ItemList" to="Inventory" method="_on_item_list_item_activated"]

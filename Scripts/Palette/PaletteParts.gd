@@ -4,6 +4,9 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	calculate_hue()
+	
+	for i in get_children():
+		i.flip_h = true
 
 func calculate_hue() -> void :
 		

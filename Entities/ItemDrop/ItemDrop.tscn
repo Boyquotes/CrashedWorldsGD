@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1mlgir5jlyvt"]
+
+[ext_resource type="Script" path="res://Entities/ItemDrop/ItemDrop.gd" id="1_nscns"]
+[ext_resource type="Resource" uid="uid://cfpdwkx6p3eei" path="res://Resources/Item/Bloc.tres" id="2_pwegp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0phs"]
+size = Vector3(0.1, 0.3, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5bm7q"]
+
+[node name="ItemDrop" type="RigidBody3D"]
+collision_layer = 5
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_nscns")
+item = ExtResource("2_pwegp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_b0phs")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="Detect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detect"]
+shape = SubResource("SphereShape3D_5bm7q")
+
+[connection signal="body_entered" from="Detect" to="." method="_on_detect_body_entered"]

@@ -32,6 +32,10 @@ func random_terrain():
 			elif greyvalue >= 0.75 and greyvalue < 0.95: id = 3 ; y = 3
 			elif greyvalue >= 0.95 : id = 4
 			$GridMap.set_cell_item(Vector3i(i,y,j), id)
+			for x in y:
+				$GridMap.set_cell_item(Vector3i(i,x,j), id)
+				
+				
 			count += 1
 	
 	var endtime = Time.get_ticks_msec() - starttime

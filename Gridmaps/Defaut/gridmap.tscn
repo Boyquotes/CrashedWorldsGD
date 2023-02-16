@@ -44,14 +44,14 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5
 
 [node name="Gridmap" type="Node3D"]
 
-[node name="Bloc" type="MeshInstance3D" parent="."]
+[node name="Grass" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_rbvf7")
 mesh = ExtResource("1_gscm0")
 surface_material_override/0 = SubResource("StandardMaterial3D_rbvf7")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bloc"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bloc/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rbclp")
 
 [node name="Bloc2" type="MeshInstance3D" parent="."]

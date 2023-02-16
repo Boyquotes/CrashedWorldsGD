@@ -1,19 +1,12 @@
 extends CharacterBody3D
 
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if $Inventory/Bag.visible:
-			$Inventory/Bag.hide()
-			$Inventory/ItemList.hide()
-		else:
-			$Inventory/Bag.show()
 
 
 func _physics_process(delta):
@@ -41,8 +34,18 @@ func _physics_process(delta):
 	else:
 		if velocity.x > 0:
 			$AnimatedSprite3D.flip_h = false
+			$Equiped.position.x = 0.3
+			
 		else:
 			$AnimatedSprite3D.flip_h = true
+			$Equiped.position.x = -0.3
 		$AnimatedSprite3D.play("Run")
 	
 	move_and_slide()
+
+func equip(item):
+	if item : 
+		$Equiped.show()
+		$Equiped.texture = item.icon
+	else:
+		$Equiped.hide()

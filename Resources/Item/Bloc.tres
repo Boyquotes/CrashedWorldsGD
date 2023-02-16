@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cfpdwkx6p3eei"]
+
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_4qbme"]
+[ext_resource type="Texture2D" uid="uid://3ejhihpyy5er" path="res://UI/Icons/Blocs/GrassBloc.png" id="1_xjsjk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_4qbme")
+itemName = "Bloc"
+icon = ExtResource("1_xjsjk")
+amount = 1
+canBeEquiped = true
+canBeUpgraded = false
+description = "A simple Bloc"
