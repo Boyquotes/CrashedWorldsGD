@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=16 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
@@ -6,8 +6,8 @@
 [ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.25098, 0.419608, 0.823529, 1)
+ground_bottom_color = Color(0.101961, 0.172549, 0.298039, 1)
 
 [sub_resource type="Sky" id="Sky_hje3m"]
 sky_material = SubResource("ProceduralSkyMaterial_2jg8a")
@@ -24,7 +24,7 @@ glow_strength = 0.97
 glow_bloom = 1.0
 glow_blend_mode = 1
 fog_enabled = true
-fog_light_color = Color(0.352941, 0.207843, 0.0509804, 1)
+fog_light_color = Color(0.211765, 0.207843, 0.458824, 1)
 fog_density = 0.0541
 fog_aerial_perspective = 0.059
 
@@ -45,13 +45,25 @@ texture_filter = 0
 texture_repeat = false
 disable_receive_shadows = true
 
+[sub_resource type="Gradient" id="Gradient_gsjig"]
+offsets = PackedFloat32Array(0.152381, 0.415873, 0.84127, 1)
+colors = PackedColorArray(0.313726, 0.521569, 1, 0.956863, 0.332892, 0.473386, 0.195277, 1, 0.676636, 0.639085, 0.501151, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch0vr"]
+fractal_octaves = 8
+fractal_lacunarity = 1.25
+fractal_gain = 6.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1v6lt"]
+color_ramp = SubResource("Gradient_gsjig")
+noise = SubResource("FastNoiseLite_ch0vr")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na3v1"]
 transparency = 1
-albedo_color = Color(1, 0.0588235, 0.0745098, 1)
+albedo_color = Color(0.176471, 0.686275, 0.839216, 0.827451)
 metallic = 1.0
 metallic_specular = 1.0
 emission_enabled = true
-emission = Color(0.831373, 0.0470588, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g8a5v"]
 
@@ -94,9 +106,9 @@ texture_filter = 1
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
+metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.8, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_na3v1")
 mesh = SubResource("PlaneMesh_g8a5v")
