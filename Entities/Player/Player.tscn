@@ -128,6 +128,10 @@ frame_progress = 0.64943
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
+target_position = Vector3(-2.586, -1.013, 0)
+
 [node name="Inventory" type="CanvasLayer" parent="."]
 script = ExtResource("4_bored")
 

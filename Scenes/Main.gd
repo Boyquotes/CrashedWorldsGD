@@ -12,11 +12,10 @@ func _input(event):
 	if event.is_action_pressed("Interact"):
 		$Wolf/SubViewport/Node2D.calculate_hue()
 		random_terrain()
-	elif event is InputEventMouseMotion:
-		print("Mouse Motion at: ", event.position)
 
 func _ready():
 	random_terrain()
+	$CharacterBody3D.connect("destroyGrid", destroyGrid)
 
 func random_terrain():
 	$GridMap.clear()
@@ -76,3 +75,7 @@ func random_terrain():
 	print("Placed " + str(count) + " blocs in " + str(endtime) + "ms")
 	
 	
+func destroyGrid(pos: Vector3i):
+	print(pos)
+	print($GridMap.get_cell_item(pos))
+	$GridMap.set_cell_item(pos, $GridMap.INVALID_CELL_ITEM)

@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+signal destroyGrid
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -14,9 +15,29 @@ func _input(event):
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
+	elif event.is_action_pressed("LMB"):
+		var mousePosition = get_viewport().get_mouse_position()
+		var rayOrigin = $Camera3D.project_ray_origin(mousePosition)
+		var rayEnd = rayOrigin + $Camera3D.project_ray_normal(mousePosition) * 2000
+		var space = get_world_3d().direct_space_state
+		var ray_query = PhysicsRayQueryParameters3D.new()
+		ray_query.from = rayOrigin
+		ray_query.to = rayEnd
+		ray_query.collide_with_areas = true
+		var intersection = space.intersect_ray(ray_query)
+		
+		if not intersection.is_empty():
+			var pos = intersection.position
+			print(pos)
+			var posI = Vector3i(pos)
+			destroyGrid.emit(posI)
+		
+		
 
 
 func _physics_process(delta):
+
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
