@@ -6,4 +6,4 @@ func _ready():
 	texture = item.icon
 
 func use():
-	pass
+	item.amount -= 1

@@ -21,7 +21,8 @@ func dig(cam):
 	
 	if not intersection.is_empty():
 		var pos = intersection.position
-		var posI = Vector3(pos.x, round(pos.y-0.000001), pos.z - 0.00001)
+		var normalizedDir = (ray_query.to - ray_query.from).normalized() / 1000
+		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
 		destroyGrid.emit(posI)
 
 func placebloc(cam, itemName : String):
@@ -32,7 +33,6 @@ func placebloc(cam, itemName : String):
 		"Stone Bloc" : id = 2
 		"Grassy Stone Bloc" : id = 3
 		"Sand Bloc" : id = 4
-	
 	
 	var mousePosition = get_viewport().get_mouse_position()
 	var rayOrigin = cam.project_ray_origin(mousePosition)
@@ -46,5 +46,6 @@ func placebloc(cam, itemName : String):
 	
 	if not intersection.is_empty():
 		var pos = intersection.position
-		var posI = Vector3(pos.x, round(pos.y-0.000001), pos.z - 0.00001)
+		var normalizedDir = (ray_query.from - ray_query.to).normalized() / 1000
+		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
 		placeGrid.emit(posI,id)

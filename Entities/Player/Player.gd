@@ -27,6 +27,8 @@ func _unhandled_input(event):
 			if not $Equiped.get_child(0) is Sprite3D:
 				$Equiped.get_child(0).use()
 			useItem.emit($Equiped.get_child(0).item, $Camera3D)
+			if $Equiped.get_child(0).item.amount <= 0:
+				$Equiped.get_child(0).queue_free()
 
 
 
@@ -69,6 +71,9 @@ func _physics_process(delta):
 	
 
 func equip(item):
+	if $Equiped.get_child_count() > 0:
+		for i in $Equiped.get_children():
+			i.queue_free()
 	if item : 
 		$Equiped.show()
 		var inst

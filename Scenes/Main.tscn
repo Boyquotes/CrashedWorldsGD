@@ -108,13 +108,12 @@ size_2d_override = Vector2i(64, 64)
 texture_filter = 1
 
 [node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 mesh = SubResource("PlaneMesh_g8a5v")
 surface_material_override/0 = SubResource("StandardMaterial3D_toowe")
 
