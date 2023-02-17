@@ -7,9 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_pnqsd")
 itemName = "Red Berries"
+type = ""
 icon = ExtResource("1_w4bnj")
 amount = 5
 stack = 16
 canBeEquiped = true
 canBeUpgraded = false
 description = "Seem to have some healing properties."
+objectScenePath = ""
