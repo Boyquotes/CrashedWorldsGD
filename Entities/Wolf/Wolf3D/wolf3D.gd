@@ -1,20 +1,11 @@
 extends CharacterBody3D
 
 var Target : Player
-var speed = 3
-var guardSpeed = 1
+var speed = 2
+var guardSpeed = 0.5
 var seePlayer
 var target_pos : Vector3 = Vector3(0,1,0)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
-#var xlocation = randf_range(-360, 360)
-#var zlocation = randf_range(-360, 360)
-#@onready var partol_pos = $PartolPos
-#var rng = RandomNumberGenerator.new()
-#var partol_pos_max = 10	
-#var partol_pos_min = 0
-#var on_the_way = true
-#var move_or_not = [true, false]
-#var start_move = move_or_not[randi()% move_or_not.size()]
 
 enum states {IDLE, GUARD, AGGRO, ATTACK, BITE}
 
@@ -31,11 +22,12 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	# Raycast vision of the AI
-	$RayCast3D.target_position = target_pos - $RayCast3D.global_position
-	if $RayCast3D.is_colliding() and $RayCast3D.get_collider() is Player:
-		seePlayer = true
-	else:
-		seePlayer = false
+	if Target != null:
+		$RayCast3D.target_position = Target.global_position - $RayCast3D.global_position
+		if $RayCast3D.is_colliding() and $RayCast3D.get_collider() is Player:
+			seePlayer = true
+		else:
+			seePlayer = false
 	# Switch states
 	match State :
 		states.IDLE : _Idle()
@@ -44,12 +36,12 @@ func _physics_process(delta) -> void:
 		states.ATTACK : _Attack()
 		states.BITE : _Bite()
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity
 
-		if velocity.x > 0:
-			$SubViewport/Node2D.flip(true)
-		else:
-			$SubViewport/Node2D.flip(false)
+	if velocity.x > 0:
+		$SubViewport/Node2D.flip(true)
+	else:
+		$SubViewport/Node2D.flip(false)
 	move_and_slide()
 
 #----------------------------------------------------------- CUSTOM
