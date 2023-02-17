@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://yib7ain7e5ai"]
+[gd_scene load_steps=10 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
 [ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xc8g1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3juk3"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tptv4"]
@@ -15,10 +15,13 @@ transparency = 2
 alpha_scissor_threshold = 0.508
 alpha_antialiasing_mode = 0
 shading_mode = 2
-albedo_texture = SubResource("ViewportTexture_xc8g1")
+albedo_texture = SubResource("ViewportTexture_3juk3")
 texture_filter = 0
 texture_repeat = false
 disable_receive_shadows = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xc8g1"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bw6e8"]
 
