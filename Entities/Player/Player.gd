@@ -1,4 +1,5 @@
 extends CharacterBody3D
+
 class_name Player
 
 const SPEED = 5.0
@@ -30,7 +31,6 @@ func _unhandled_input(event):
 			if $Equiped.get_child(0).item.amount <= 0:
 				$Equiped.get_child(0).queue_free()
 
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,7 +50,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+
 	if velocity == Vector3.ZERO:
 		$AnimatedSprite3D.play("Idle")
 	else:

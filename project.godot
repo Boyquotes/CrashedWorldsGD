@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 UseEffect="*res://Scripts/Global/UseEffect.gd"
 
+
 [input]
 
 Interact={
