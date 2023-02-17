@@ -78,6 +78,8 @@ collide_with_areas = true
 [node name="Patrol_pos" type="Node3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="AttackPrep" type="Timer" parent="."]
 
