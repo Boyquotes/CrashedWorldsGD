@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_1ekhh"]
-[ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
+[ext_resource type="MeshLibrary" uid="uid://c1teo1xnbt7wd" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
 
@@ -83,7 +83,7 @@ shadow_enabled = true
 environment = SubResource("Environment_ookwy")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_72tnd")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.109, 6, 0.272)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 10, 6, 10)
 
 [node name="Wolf" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)

@@ -7,7 +7,8 @@ enum Block {
 	Dirt,
 	Stone,
 	StoneGrass,
-	Sand
+	Sand,
+	Berries
 }
 
 #func _input(event):
@@ -78,7 +79,7 @@ func random_terrain():
 	#randomize()
 	grounds.shuffle()
 	for i in range(grounds.size() * 0.2):
-		$GridMap.set_cell_item(grounds[i] + Vector3i.UP, Block.Sand)
+		$GridMap.set_cell_item(grounds[i] + Vector3i.UP, Block.Berries)
 	
 	
 	var endtime = Time.get_ticks_msec() - starttime
@@ -95,6 +96,7 @@ func destroyGrid(pos: Vector3i):
 		2: blocitem = load("res://Resources/Item/Blocs/StoneBloc.tres")
 		3: blocitem = load("res://Resources/Item/Blocs/GrassyStoneBloc.tres")
 		4: blocitem = load("res://Resources/Item/Blocs/SandBloc.tres")
+		5: blocitem = load("res://Resources/Item/Lootables/Berries/RedBerry.tres")
 	
 	inst.item = blocitem
 	$Items.add_child(inst)
