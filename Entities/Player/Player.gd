@@ -24,13 +24,14 @@ func _input(event):
 		var ray_query = PhysicsRayQueryParameters3D.new()
 		ray_query.from = rayOrigin
 		ray_query.to = rayEnd
-		ray_query.collide_with_areas = true
+		ray_query.collide_with_bodies = true
 		var intersection = space.intersect_ray(ray_query)
 		
 		if not intersection.is_empty():
 			var pos = intersection.position
 			print(pos)
-			var posI = Vector3i(pos)
+			var posI = Vector3(pos.x, round(pos.y-0.000001), pos.z - 0.00001)
+#			var posI = Vector3(pos.x, round(pos.y), pos.z)
 			destroyGrid.emit(posI)
 
 

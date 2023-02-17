@@ -1,14 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=31 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_1ekhh"]
 [ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
-[ext_resource type="Resource" uid="uid://brweaxj1dm7fl" path="res://Resources/Item/Lootables/Berries/RedBerry.tres" id="6_ty4we"]
+[ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_v3wf7"]
+[ext_resource type="Texture2D" uid="uid://blp580fyc3780" path="res://UI/Icons/Lootables/RedBerries.png" id="6_j31du"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="7_ydep3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
 sky_top_color = Color(0.25098, 0.419608, 0.823529, 1)
+sky_curve = 0.332871
 ground_bottom_color = Color(0.101961, 0.172549, 0.298039, 1)
 
 [sub_resource type="Sky" id="Sky_hje3m"]
@@ -18,17 +21,21 @@ sky_material = SubResource("ProceduralSkyMaterial_2jg8a")
 background_mode = 2
 sky = SubResource("Sky_hje3m")
 tonemap_mode = 2
+tonemap_white = 0.85
 sdfgi_enabled = true
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 0.21
+glow_intensity = 0.5
 glow_strength = 0.97
 glow_bloom = 1.0
-glow_blend_mode = 1
-fog_enabled = true
-fog_light_color = Color(0.211765, 0.207843, 0.458824, 1)
-fog_density = 0.0541
-fog_aerial_perspective = 0.059
+fog_light_color = Color(0.239216, 0.560784, 0.909804, 1)
+fog_density = 0.0115
+fog_aerial_perspective = 0.5
+volumetric_fog_albedo = Color(0, 0.831373, 0.835294, 1)
+volumetric_fog_emission = Color(0.168627, 0.168627, 0.54902, 1)
+volumetric_fog_anisotropy = -0.22
+volumetric_fog_detail_spread = 1.78381
+volumetric_fog_ambient_inject = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -60,20 +67,127 @@ fractal_gain = 6.0
 color_ramp = SubResource("Gradient_gsjig")
 noise = SubResource("FastNoiseLite_ch0vr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na3v1"]
-transparency = 1
-albedo_color = Color(0.176471, 0.686275, 0.839216, 0.827451)
-metallic = 1.0
-metallic_specular = 1.0
-emission_enabled = true
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_g8a5v"]
+size = Vector2(500, 500)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y6uhr"]
+noise_type = 0
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0l27f"]
+seamless = true
+noise = SubResource("FastNoiseLite_y6uhr")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8wntp"]
+seamless = true
+noise = SubResource("FastNoiseLite_y6uhr")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ojkev"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_y6uhr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7bo6"]
+render_priority = 0
+shader = ExtResource("5_v3wf7")
+shader_parameter/speed = 0.0
+shader_parameter/color = Color(0.172549, 0.403922, 1, 1)
+shader_parameter/deep_water = Color(0, 0, 0.352941, 1)
+shader_parameter/beer_law_factor = 2.0
+shader_parameter/_distance = 0.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/edge_scale = 0.25
+shader_parameter/near = 0.1
+shader_parameter/far = 100.0
+shader_parameter/wave_strength = Vector2(0.5, 0.15)
+shader_parameter/wave_frequ = Vector2(12, 12)
+shader_parameter/time_factor = Vector2(1, 2)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_0l27f")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_8wntp")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_ojkev")
+
+[sub_resource type="Resource" id="Resource_gq70e"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_hph6m"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_3gfry"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_8lwxd"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_1te4u"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_wji7c"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_mv46m"]
+resource_local_to_scene = true
+script = ExtResource("7_ydep3")
+itemName = "Red Berries"
+icon = ExtResource("6_j31du")
+amount = 5
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_rpshw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.71934, 0.694659, 9.75193e-08, -0.387442, -0.401208, 0.830013, 0.576575, 0.597061, 0.557745, 0, 0, 0)
+transform = Transform3D(0.996977, 0.0178127, -0.075624, 0, 0.973363, 0.229268, 0.0776935, -0.228575, 0.970421, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -111,36 +225,36 @@ cell_size = Vector3(1, 1, 1)
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.8, 0)
-material_override = SubResource("StandardMaterial3D_na3v1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("PlaneMesh_g8a5v")
+surface_material_override/0 = SubResource("ShaderMaterial_w7bo6")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50726, 6.60558, 7.52938)
 
 [node name="ItemDrop" parent="Node3D" instance=ExtResource("5_8il38")]
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_gq70e")
 
 [node name="ItemDrop2" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_hph6m")
 
 [node name="ItemDrop3" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_3gfry")
 
 [node name="ItemDrop4" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_8lwxd")
 
 [node name="ItemDrop5" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_1te4u")
 
 [node name="ItemDrop6" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_wji7c")
 
 [node name="ItemDrop7" parent="Node3D" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
-item = ExtResource("6_ty4we")
+item = SubResource("Resource_mv46m")
