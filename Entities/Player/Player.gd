@@ -13,17 +13,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	connect("useItem", UseEffect.useItemType)
 
-func _input(event):
+
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $Inventory/Bag.visible:
 			$Inventory/Bag.hide()
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
+			
 	elif event.is_action_pressed("LMB"):
 		if $Equiped.get_child_count() > 0:
 			$Equiped.get_child(0).use()
 			useItem.emit($Equiped.get_child(0).item.type, $Camera3D)
+
 
 
 func _physics_process(delta):
