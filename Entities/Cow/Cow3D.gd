@@ -3,6 +3,7 @@ extends CharacterBody3D
 var Target : Player
 var speed = 1
 var walkSpeed = 0.25
+var isFlee
 #var seePlayer
 var target_pos : Vector3 = Vector3(0,1,0)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
@@ -18,6 +19,7 @@ enum states {IDLE, WALK, FLEE}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	isFlee = false
 	_on_state_changed(State)
 
 func _physics_process(delta) -> void:
@@ -74,9 +76,17 @@ func _Idle():
 func _Walk():
 	$Label3D.text = "GUARD"
 	if Target:
-		var movement = (Target.global_position - global_position).normalized() * walkSpeed
-		velocity = -movement
-		velocity.y = 0.0
+		if isFlee == false:
+			var movement = (Target.global_position - global_position).normalized() * walkSpeed
+			velocity = -movement
+			velocity.y = 0.0
+			$isFleeing.wait_time = randf_range(2.0, 3.0)
+			$isFleeing.start()
+			isFlee = true
+		else:
+				await $isFleeing.timeout
+				isFlee = false
+
 		#INSERT ANIMATIONS
 	
 
