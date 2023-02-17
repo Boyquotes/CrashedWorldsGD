@@ -9,13 +9,13 @@ enum Block {
 }
 
 func _input(event):
-	if event.is_action_pressed("Interact"):
+	if event.is_action_pressed("ui_accept"):
 		$Wolf/SubViewport/Node2D.calculate_hue()
 		random_terrain()
 
 func _ready():
 	random_terrain()
-	$CharacterBody3D.connect("destroyGrid", destroyGrid)
+	UseEffect.connect("destroyGrid", destroyGrid)
 
 func random_terrain():
 	$GridMap.clear()

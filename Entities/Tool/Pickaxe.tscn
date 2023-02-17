@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://df8ekfo75nkk2"]
+
+[ext_resource type="Script" path="res://Entities/Tool/Pickaxe.gd" id="1_aptin"]
+[ext_resource type="Texture2D" uid="uid://wpdpfio65pl4" path="res://UI/Icons/Weapons/WoodPickaxe/WoodPickaxe.png" id="1_omgbn"]
+[ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="2_1bt4e"]
+
+[sub_resource type="Animation" id="Animation_b4q20"]
+resource_name = "Dig"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1.31951, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.174533), Vector3(0, 0, -1.39626), Vector3(0, 0, 0.174533)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_obtxu"]
+_data = {
+"Dig": SubResource("Animation_b4q20")
+}
+
+[node name="Pickaxe" type="Node3D"]
+script = ExtResource("1_aptin")
+item = ExtResource("2_1bt4e")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)
+offset = Vector2(10, 10)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_omgbn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_obtxu")
+}

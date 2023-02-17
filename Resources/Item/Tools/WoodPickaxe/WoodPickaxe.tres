@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://celm4ww0pyl5g"]
+
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_ry3lk"]
+[ext_resource type="Texture2D" uid="uid://wpdpfio65pl4" path="res://UI/Icons/Weapons/WoodPickaxe/WoodPickaxe.png" id="1_uo1aa"]
+
+[resource]
+script = ExtResource("1_ry3lk")
+itemName = "Wood Pickaxe"
+type = "Dig"
+icon = ExtResource("1_uo1aa")
+amount = 1
+stack = 1
+canBeEquiped = true
+canBeUpgraded = false
+description = "A wood pickaxe. What else ?"
+objectScenePath = "res://Entities/Tool/Pickaxe.tscn"

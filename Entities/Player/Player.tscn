@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://wske2llx6gm2"]
+[gd_scene load_steps=31 format=3 uid="uid://wske2llx6gm2"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_ku8ux"]
 [ext_resource type="Texture2D" uid="uid://htc6djlq12lo" path="res://Entities/Player/PlayerIdle-sheet.png" id="2_eqb5d"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://28n6gh4fbhu3" path="res://Entities/Player/Inventory/InvSlot.tscn" id="5_7wd1b"]
 [ext_resource type="Resource" uid="uid://bio1d0g04eb4t" path="res://Resources/Recipes/Potions/HealPotion.tres" id="5_p65ry"]
 [ext_resource type="Script" path="res://Resources/Recipes/RecipeBook/RecipeBook.gd" id="6_8wuxk"]
-[ext_resource type="Texture2D" uid="uid://3ejhihpyy5er" path="res://UI/Icons/Blocs/GrassBloc.png" id="6_g6pn0"]
 [ext_resource type="FontFile" uid="uid://yxdextfie0cw" path="res://Fonts/digitalix.ttf" id="8_oco0k"]
 [ext_resource type="FontFile" uid="uid://dg7sn1woyt4ah" path="res://Fonts/visitor1.ttf" id="9_s5cnm"]
 [ext_resource type="Texture2D" uid="uid://de27udxc8j5r1" path="res://UI/Menus/Key1.png" id="10_t3vro"]
@@ -146,8 +145,9 @@ animation = &"Idle"
 frame_progress = 0.64943
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0.8, 3.75)
-v_offset = 1.0
+transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 0, 0.8, 3.75)
+v_offset = 0.5
+current = true
 fov = 80.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -164,9 +164,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -142.0
+offset_left = -374.0
 offset_top = -70.0
-offset_right = 142.0
+offset_right = -90.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -326,11 +326,6 @@ stretch_mode = 3
 layout_mode = 2
 key = "Four"
 
-[node name="Equiped" type="Sprite3D" parent="."]
+[node name="Equiped" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
 visible = false
-billboard = 1
-shaded = true
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("6_g6pn0")
