@@ -8,4 +8,3 @@
 script = ExtResource("1_easoi")
 inputItems = Array[Resource("res://Resources/Item/BaseResource/Item.gd")]([ExtResource("1_iemxf")])
 outputItem = ExtResource("2_nknjf")
-recipeName = "Heal Potion"

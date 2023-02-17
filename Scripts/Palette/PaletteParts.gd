@@ -8,6 +8,8 @@ func _ready():
 	for i in get_children():
 		i.flip_h = true
 
+
+
 func calculate_hue() -> void :
 		
 	# HSV generation.

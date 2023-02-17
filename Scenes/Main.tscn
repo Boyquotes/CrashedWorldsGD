@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=22 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
@@ -60,11 +60,65 @@ emission = Color(0.831373, 0.0470588, 0, 1)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lq6da"]
 load_path = "res://.godot/imported/RedBerries.png-947d625eb555ca9efc986ac51938a61d.ctex"
 
-[sub_resource type="Resource" id="Resource_3pb8f"]
+[sub_resource type="Resource" id="Resource_0bp2j"]
 resource_local_to_scene = true
 script = ExtResource("7_3e06o")
 itemName = "Red Berries"
-type = 4
+icon = SubResource("CompressedTexture2D_lq6da")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_a5j1l"]
+resource_local_to_scene = true
+script = ExtResource("7_3e06o")
+itemName = "Red Berries"
+icon = SubResource("CompressedTexture2D_lq6da")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_ukfrd"]
+resource_local_to_scene = true
+script = ExtResource("7_3e06o")
+itemName = "Red Berries"
+icon = SubResource("CompressedTexture2D_lq6da")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_vbiuw"]
+resource_local_to_scene = true
+script = ExtResource("7_3e06o")
+itemName = "Red Berries"
+icon = SubResource("CompressedTexture2D_lq6da")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_ov8u2"]
+resource_local_to_scene = true
+script = ExtResource("7_3e06o")
+itemName = "Red Berries"
+icon = SubResource("CompressedTexture2D_lq6da")
+amount = 1
+stack = 16
+canBeEquiped = true
+canBeUpgraded = false
+description = "Seem to have some healing properties."
+
+[sub_resource type="Resource" id="Resource_egx2r"]
+resource_local_to_scene = true
+script = ExtResource("7_3e06o")
+itemName = "Red Berries"
 icon = SubResource("CompressedTexture2D_lq6da")
 amount = 1
 stack = 16
@@ -122,24 +176,24 @@ mesh = SubResource("PlaneMesh_g8a5v")
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 1.96683, 0)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_0bp2j")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 1.96683, 1.98277)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_a5j1l")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38933, 2.78828, -3.98228)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_ukfrd")
 
 [node name="ItemDrop4" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34916, 1.68194, -2.60941)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_vbiuw")
 
 [node name="ItemDrop5" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34916, 1.68194, 1.44367)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_ov8u2")
 
 [node name="ItemDrop6" parent="Items" instance=ExtResource("5_prmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13384, 1.68194, 1.44367)
-item = SubResource("Resource_3pb8f")
+item = SubResource("Resource_egx2r")

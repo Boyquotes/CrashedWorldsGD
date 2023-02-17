@@ -45,6 +45,8 @@ func _physics_process(delta):
 		$AnimatedSprite3D.play("Run")
 	
 	move_and_slide()
+	
+	
 
 func equip(item):
 	if item : 

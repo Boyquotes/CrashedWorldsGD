@@ -7,7 +7,6 @@
 resource_local_to_scene = true
 script = ExtResource("2_pnqsd")
 itemName = "Red Berries"
-type = 4
 icon = ExtResource("1_w4bnj")
 amount = 5
 stack = 16
