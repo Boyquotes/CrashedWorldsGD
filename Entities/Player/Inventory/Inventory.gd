@@ -69,6 +69,8 @@ func _input(event):
 			itemHold = button_hovered.itemHolding
 	if event.is_action_released("LMB") : 
 		drag = false
+		if button_hovered == currentItemSlot:return # trying to place item on same slot
+			
 		if itemHold and currentItemSlot:
 			move_item_to(currentItemSlot)
 	
@@ -106,7 +108,19 @@ func move_item_to(slot):
 			if slot.itemHolding.amount + 1 > slot.itemHolding.stack:
 				if !add_item(itemHold):
 					return
-			slot.itemHolding.amount += itemHold.amount
+			else:
+				slot.itemHolding.amount += itemHold.amount
+		else:
+			var temp = slot.itemHolding
+			slot.itemHolding = itemHold
+			button_hovered.itemHolding = temp
+			if slot.name == "Equipment":
+				print("oui")
+				get_parent().equip(itemHold)
+			button_hovered = null
+			itemHold = null; currentItemSlot = null
+
+			return
 	else:
 		slot.itemHolding = itemHold
 	delete_item_at(button_hovered)
@@ -179,8 +193,9 @@ func _on_button_pressed(button):
 func _on_slot_mouse_entered(slot):
 	if drag and itemHold:
 		slot.get_node("InvSlot").show()
-		slot.update_icons(itemHold.icon)
-		slot.self_modulate = Color.GRAY
+		if slot.itemHolding == null:
+			slot.update_icons(itemHold.icon)
+			slot.self_modulate = Color.GRAY
 		currentItemSlot = slot
 
 func _on_slot_mouse_exited(slot):

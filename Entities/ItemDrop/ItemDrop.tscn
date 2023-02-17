@@ -19,6 +19,9 @@ item = ExtResource("2_feq08")
 shape = SubResource("BoxShape3D_b0phs")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shaded = true
+alpha_cut = 1
 
 [node name="Detect" type="Area3D" parent="."]
 

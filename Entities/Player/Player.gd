@@ -24,8 +24,11 @@ func _unhandled_input(event):
 			
 	elif event.is_action_pressed("LMB"):
 		if $Equiped.get_child_count() > 0:
-			$Equiped.get_child(0).use()
-			useItem.emit($Equiped.get_child(0).item.type, $Camera3D)
+			if not $Equiped.get_child(0) is Sprite3D:
+				$Equiped.get_child(0).use()
+			useItem.emit($Equiped.get_child(0).item, $Camera3D)
+			if $Equiped.get_child(0).item.amount <= 0:
+				$Equiped.get_child(0).queue_free()
 
 
 func _physics_process(delta):
@@ -67,9 +70,16 @@ func _physics_process(delta):
 	
 
 func equip(item):
+	if $Equiped.get_child_count() > 0:
+		for i in $Equiped.get_children():
+			i.queue_free()
 	if item : 
 		$Equiped.show()
-		var inst = load(item.objectScenePath).instantiate()
+		var inst
+		if item.objectScenePath:
+			inst = load(item.objectScenePath).instantiate()
+			if inst.item == null:
+				inst.item = item
 		$Equiped.add_child(inst)
 		
 	else:

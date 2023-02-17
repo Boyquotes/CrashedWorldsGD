@@ -108,42 +108,41 @@ size_2d_override = Vector2i(64, 64)
 texture_filter = 1
 
 [node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 mesh = SubResource("PlaneMesh_g8a5v")
 surface_material_override/0 = SubResource("StandardMaterial3D_toowe")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Items" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50726, 6.60558, 7.52938)
 
-[node name="ItemDrop" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop2" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop2" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop3" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop4" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop4" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop5" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop5" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop6" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop6" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
 item = ExtResource("6_iul0k")
 
-[node name="ItemDrop7" parent="Node3D" instance=ExtResource("5_8il38")]
+[node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
 item = ExtResource("6_iul0k")

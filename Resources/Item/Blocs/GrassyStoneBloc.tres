@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_qtnkx")
 itemName = "Grassy Stone Bloc"
-type = 0
+type = "Bloc"
 icon = ExtResource("1_wtfav")
 amount = 1
 stack = 64
 canBeEquiped = true
 canBeUpgraded = false
 description = "A stone bloc with some grass on it."
+objectScenePath = "res://Entities/Bloc/BlocHolder.tscn"
