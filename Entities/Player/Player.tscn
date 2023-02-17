@@ -16,9 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://babidltcl55p5" path="res://UI/Menus/Key3.png" id="14_atvqu"]
 [ext_resource type="Texture2D" uid="uid://bhhqpaysqveyi" path="res://UI/Menus/Key4.png" id="15_13f7p"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhloc"]
-radius = 0.25
-height = 1.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf6lr"]
+radius = 0.19
+height = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agyqk"]
 atlas = ExtResource("2_eqb5d")
@@ -133,8 +133,7 @@ collision_mask = 5
 script = ExtResource("1_ku8ux")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.252411, 0)
-shape = SubResource("CapsuleShape3D_nhloc")
+shape = SubResource("CapsuleShape3D_hf6lr")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.908974, 0.416852, 0, -0.416852, 0.908974, -0.0158501, 0, 0.0683136)

@@ -9,13 +9,14 @@ signal destroyGrid
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $Inventory/Bag.visible:
 			$Inventory/Bag.hide()
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
+			
 	elif event.is_action_pressed("LMB"):
 		var mousePosition = get_viewport().get_mouse_position()
 		var rayOrigin = $Camera3D.project_ray_origin(mousePosition)
@@ -29,15 +30,11 @@ func _input(event):
 		
 		if not intersection.is_empty():
 			var pos = intersection.position
-			print(pos)
-			var posI = Vector3(pos.x, round(pos.y-0.000001), pos.z - 0.00001)
-#			var posI = Vector3(pos.x, round(pos.y), pos.z)
+			var posI = Vector3i(pos.x, round(pos.y-0.000001), pos.z - 0.00001)
 			destroyGrid.emit(posI)
 
 
 func _physics_process(delta):
-
-		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

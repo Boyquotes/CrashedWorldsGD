@@ -77,5 +77,4 @@ func random_terrain():
 	
 func destroyGrid(pos: Vector3i):
 	print(pos)
-	print($GridMap.get_cell_item(pos))
 	$GridMap.set_cell_item(pos, $GridMap.INVALID_CELL_ITEM)
