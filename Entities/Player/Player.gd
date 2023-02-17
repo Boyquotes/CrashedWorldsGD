@@ -28,7 +28,6 @@ func _unhandled_input(event):
 			useItem.emit($Equiped.get_child(0).item.type, $Camera3D)
 
 
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():

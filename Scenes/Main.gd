@@ -70,6 +70,13 @@ func random_terrain():
 					if $GridMap.get_cell_item(neighborCell) == $GridMap.INVALID_CELL_ITEM:
 						$GridMap.set_cell_item(cellCoord, Block.Sand)
 						break
+						
+	var grounds = $GridMap.get_used_cells_by_item(Block.Grass)
+	#randomize()
+	grounds.shuffle()
+	for i in range(grounds.size() * 0.2):
+		$GridMap.set_cell_item(grounds[i] + Vector3i.UP, Block.Sand)
+	
 	
 	var endtime = Time.get_ticks_msec() - starttime
 	print("Placed " + str(count) + " blocs in " + str(endtime) + "ms")
