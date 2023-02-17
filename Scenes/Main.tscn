@@ -64,3 +64,4 @@ mesh = SubResource("PlaneMesh_g8a5v")
 
 [node name="Wolf" parent="." instance=ExtResource("4_mrs1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66945, 3.22969, 0)
+State = 0

@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 class_name Player
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -15,7 +14,6 @@ func _input(event):
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
-
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -36,7 +34,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+
 	if velocity == Vector3.ZERO:
 		$AnimatedSprite3D.play("Idle")
 	else:

@@ -75,6 +75,14 @@ text = "COUCOU"
 target_position = Vector3(-3, 0, 0)
 collide_with_areas = true
 
+[node name="Patrol_pos" type="Node3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AttackPrep" type="Timer" parent="."]
+
+[node name="Detect" type="Timer" parent="."]
+
 [connection signal="body_entered" from="AreaAttack" to="." method="_on_area_attack_body_entered"]
 [connection signal="body_exited" from="AreaAttack" to="." method="_on_area_attack_body_exited"]
 [connection signal="body_entered" from="AreaAggro" to="." method="_on_area_aggro_body_entered"]
