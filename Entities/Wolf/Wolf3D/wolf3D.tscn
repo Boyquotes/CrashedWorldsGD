@@ -26,10 +26,10 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="BoxShape3D" id="BoxShape3D_bw6e8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hcp5r"]
-size = Vector3(4, 1, 3)
+size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odu5j"]
-size = Vector3(6, 1, 5)
+size = Vector3(5, 1, 5)
 
 [node name="Wolf" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)

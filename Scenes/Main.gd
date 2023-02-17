@@ -77,8 +77,8 @@ func random_terrain():
 	var grounds = $GridMap.get_used_cells_by_item(Block.Grass)
 	#randomize()
 	grounds.shuffle()
-	for i in range(grounds.size() * 0.2):
-		$GridMap.set_cell_item(grounds[i] + Vector3i.UP, Block.Sand)
+#	for i in range(grounds.size() * 0.2):
+#		$GridMap.set_cell_item(grounds[i] + Vector3i.UP, Block.Sand)
 	
 	
 	var endtime = Time.get_ticks_msec() - starttime

@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 var Target : Player
-var speed = 2
-var guardSpeed = 0.5
+var speed = 4
+var guardSpeed = 2
 var seePlayer
 var target_pos : Vector3 = Vector3(0,1,0)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
