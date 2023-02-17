@@ -7,7 +7,6 @@
 resource_local_to_scene = true
 script = ExtResource("2_c7jls")
 itemName = "Grass Bloc"
-type = 0
 icon = ExtResource("1_loooc")
 amount = 1
 stack = 64
