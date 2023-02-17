@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_lal7g")
 itemName = "Dirt Bloc"
-type = 0
+type = "Bloc"
 icon = ExtResource("1_gneii")
 amount = 1
 stack = 64
 canBeEquiped = true
 canBeUpgraded = false
 description = "A naught-  *em*  dirty square."
+objectScenePath = "res://Entities/Bloc/BlocHolder.tscn"

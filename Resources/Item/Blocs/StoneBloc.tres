@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_04p1i")
 itemName = "Stone Bloc"
-type = 0
+type = "Bloc"
 icon = ExtResource("1_1eiof")
 amount = 1
 stack = 64
 canBeEquiped = true
 canBeUpgraded = false
 description = "The True Stoner."
+objectScenePath = "res://Entities/Bloc/BlocHolder.tscn"

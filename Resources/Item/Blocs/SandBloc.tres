@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_2e2cm")
 itemName = "Sand Bloc"
-type = 0
+type = "Bloc"
 icon = ExtResource("1_4302q")
 amount = 1
 stack = 64
 canBeEquiped = true
 canBeUpgraded = false
 description = "A sandy bloc."
+objectScenePath = "res://Entities/Bloc/BlocHolder.tscn"
