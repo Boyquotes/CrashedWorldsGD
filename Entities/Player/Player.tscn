@@ -144,9 +144,8 @@ animation = &"Idle"
 frame_progress = 0.64943
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 0, 0.8, 3.75)
-v_offset = 0.5
-current = true
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0.8, 3.75)
+v_offset = 1.0
 fov = 80.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -163,9 +162,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -374.0
+offset_left = -142.0
 offset_top = -70.0
-offset_right = -90.0
+offset_right = 142.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
