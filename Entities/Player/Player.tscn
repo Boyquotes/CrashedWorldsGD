@@ -150,6 +150,10 @@ transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 
 v_offset = 0.5
 fov = 80.0
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
+target_position = Vector3(-2.586, -1.013, 0)
+
 [node name="Inventory" type="CanvasLayer" parent="."]
 script = ExtResource("4_bored")
 craftRecipes = SubResource("Resource_i2kl7")
