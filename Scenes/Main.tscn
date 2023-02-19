@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=16 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
-[ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_1ekhh"]
-[ext_resource type="MeshLibrary" uid="uid://c1teo1xnbt7wd" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
+[ext_resource type="Script" path="res://Scenes/DirectionalLight3D.gd" id="2_8hjl4"]
+[ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
+[ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
 sky_top_color = Color(0.25098, 0.419608, 0.823529, 1)
@@ -29,28 +30,13 @@ glow_bloom = 1.0
 fog_light_color = Color(0.239216, 0.560784, 0.909804, 1)
 fog_density = 0.0115
 fog_aerial_perspective = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
 volumetric_fog_albedo = Color(0, 0.831373, 0.835294, 1)
 volumetric_fog_emission = Color(0.168627, 0.168627, 0.54902, 1)
 volumetric_fog_anisotropy = -0.22
 volumetric_fog_detail_spread = 1.78381
 volumetric_fog_ambient_inject = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_w0l0e"]
-viewport_path = NodePath("Wolf/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tptv4"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.508
-alpha_antialiasing_mode = 0
-shading_mode = 2
-albedo_texture = SubResource("ViewportTexture_w0l0e")
-texture_filter = 0
-texture_repeat = false
-disable_receive_shadows = true
 
 [sub_resource type="Gradient" id="Gradient_gsjig"]
 offsets = PackedFloat32Array(0.152381, 0.415873, 0.84127, 1)
@@ -76,36 +62,17 @@ albedo_color = Color(0.0666667, 0.247059, 0.470588, 0.698039)
 script = ExtResource("1_rpshw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.996977, 0.0178127, -0.075624, 0, 0.973363, 0.229268, 0.0776935, -0.228575, 0.970421, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+light_color = Color(0.964706, 0.764706, 0.6, 1)
+light_energy = 0.9
 shadow_enabled = true
+script = ExtResource("2_8hjl4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ookwy")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_72tnd")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 10, 6, 10)
-
-[node name="Wolf" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wolf"]
-shape = SubResource("BoxShape3D_57huf")
-
-[node name="Sprite3D" type="Sprite3D" parent="Wolf"]
-material_override = SubResource("StandardMaterial3D_tptv4")
-shaded = true
-alpha_cut = 1
-texture_filter = 0
-texture = SubResource("ViewportTexture_w0l0e")
-
-[node name="SubViewport" type="SubViewport" parent="Wolf"]
-transparent_bg = true
-msaa_2d = 3
-size = Vector2i(64, 64)
-size_2d_override = Vector2i(64, 64)
-
-[node name="Node2D" parent="Wolf/SubViewport" instance=ExtResource("2_1ekhh")]
-texture_filter = 1
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 125, 6, 125)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_38xhp")
@@ -113,12 +80,12 @@ cell_size = Vector3(1, 1, 1)
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
 mesh = SubResource("PlaneMesh_g8a5v")
 surface_material_override/0 = SubResource("StandardMaterial3D_toowe")
 
 [node name="Items" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50726, 6.60558, 7.52938)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
 item = ExtResource("6_iul0k")
@@ -146,3 +113,6 @@ item = ExtResource("6_iul0k")
 [node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
 item = ExtResource("6_iul0k")
+
+[node name="Wolf" parent="." instance=ExtResource("6_u8d2a")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 100, 3, 100)

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://btnu1ct6ct83h"]
+
+[ext_resource type="Texture2D" uid="uid://cvh1isxt26vsh" path="res://UI/Icons/Lootables/Craft/Wood.png" id="1_jgt2f"]
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_ulx73"]
+
+[resource]
+script = ExtResource("1_ulx73")
+itemName = "Wood"
+type = ""
+icon = ExtResource("1_jgt2f")
+amount = 1
+stack = 64
+canBeEquiped = false
+canBeUpgraded = false
+description = "Wood, Indeed."
+objectScenePath = ""

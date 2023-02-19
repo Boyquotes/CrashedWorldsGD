@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://bgju6am7x380y"]
+
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_cgf1e"]
+[ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="1_vc6q1"]
+[ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="2_g12us"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jgsn0"]
+load_path = "res://.godot/imported/Wood.png-57918e4eddf783f12abb7e19e1810e37.ctex"
+
+[sub_resource type="Resource" id="Resource_0lxtn"]
+script = ExtResource("1_cgf1e")
+itemName = "Wood"
+type = ""
+icon = SubResource("CompressedTexture2D_jgsn0")
+amount = 5
+stack = 64
+canBeEquiped = false
+canBeUpgraded = false
+description = "Wood, Indeed."
+objectScenePath = ""
+
+[resource]
+script = ExtResource("1_vc6q1")
+inputItems = Array[ExtResource("1_cgf1e")]([SubResource("Resource_0lxtn")])
+outputItem = ExtResource("2_g12us")
