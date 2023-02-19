@@ -89,21 +89,10 @@ func random_terrain():
 	
 	
 func destroyGrid(pos: Vector3i):
-	var inst = itemdrop.instantiate()
-	var blocID = $GridMap.get_cell_item(pos)
-	var blocitem = null
-	match blocID:
-		Block.Grass: blocitem = load("res://Resources/Item/Blocs/GrassBloc.tres")
-		Block.Dirt: blocitem = load("res://Resources/Item/Blocs/DirtBloc.tres")
-		Block.Stone: blocitem = load("res://Resources/Item/Blocs/StoneBloc.tres")
-		Block.StoneGrass: blocitem = load("res://Resources/Item/Blocs/GrassyStoneBloc.tres")
-		Block.Sand: blocitem = load("res://Resources/Item/Blocs/SandBloc.tres")
-		Block.Berries: blocitem = load("res://Resources/Item/Lootables/Berries/RedBerry.tres")
-	
 	var blocID = $GridMap.get_cell_item(pos)
 	var blocitem = []
 	match blocID:
-		0: blocitem.appends(load("res://Resources/Item/Blocs/GrassBloc.tres"))
+		0: blocitem.append(load("res://Resources/Item/Blocs/GrassBloc.tres"))
 		1: blocitem.append(load("res://Resources/Item/Blocs/DirtBloc.tres"))
 		2: blocitem.append(load("res://Resources/Item/Blocs/StoneBloc.tres"))
 		3: blocitem.append(load("res://Resources/Item/Blocs/GrassyStoneBloc.tres"))
