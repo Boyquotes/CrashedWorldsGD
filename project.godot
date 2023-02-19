@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 UseEffect="*res://Scripts/Global/UseEffect.gd"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
-
 [input]
 
 Interact={

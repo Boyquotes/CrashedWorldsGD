@@ -92,12 +92,12 @@ func destroyGrid(pos: Vector3i):
 	var blocID = $GridMap.get_cell_item(pos)
 	var blocitem = null
 	match blocID:
-		0: blocitem = load("res://Resources/Item/Blocs/GrassBloc.tres")
-		1: blocitem = load("res://Resources/Item/Blocs/DirtBloc.tres")
-		2: blocitem = load("res://Resources/Item/Blocs/StoneBloc.tres")
-		3: blocitem = load("res://Resources/Item/Blocs/GrassyStoneBloc.tres")
-		4: blocitem = load("res://Resources/Item/Blocs/SandBloc.tres")
-		5: blocitem = load("res://Resources/Item/Lootables/Berries/RedBerry.tres")
+		Block.Grass: blocitem = load("res://Resources/Item/Blocs/GrassBloc.tres")
+		Block.Dirt: blocitem = load("res://Resources/Item/Blocs/DirtBloc.tres")
+		Block.Stone: blocitem = load("res://Resources/Item/Blocs/StoneBloc.tres")
+		Block.StoneGrass: blocitem = load("res://Resources/Item/Blocs/GrassyStoneBloc.tres")
+		Block.Sand: blocitem = load("res://Resources/Item/Blocs/SandBloc.tres")
+		Block.Berries: blocitem = load("res://Resources/Item/Lootables/Berries/RedBerry.tres")
 	
 	inst.item = blocitem
 	$Items.add_child(inst)
