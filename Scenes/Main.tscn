@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=23 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="Script" path="res://Scenes/DirectionalLight3D.gd" id="2_8hjl4"]
 [ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
+[ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
 
@@ -51,12 +52,66 @@ fractal_gain = 6.0
 color_ramp = SubResource("Gradient_gsjig")
 noise = SubResource("FastNoiseLite_ch0vr")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_g8a5v"]
+[sub_resource type="QuadMesh" id="QuadMesh_8eu0e"]
 size = Vector2(500, 500)
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_toowe"]
-transparency = 1
-albedo_color = Color(0.0666667, 0.247059, 0.470588, 0.698039)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fsw6o"]
+noise_type = 3
+frequency = 0.001
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qiju0"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_fsw6o")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vnrfb"]
+noise_type = 3
+seed = 43
+frequency = 0.001
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8k7gc"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_vnrfb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gesl5"]
+noise_type = 0
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fwfjg"]
+seamless = true
+noise = SubResource("FastNoiseLite_gesl5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvuv8"]
+render_priority = 0
+shader = ExtResource("5_la4yr")
+shader_parameter/albedo = Color(0.14902, 0.670588, 0.690196, 1)
+shader_parameter/albedo_fresnel = Color(0.996078, 0.54902, 0.858824, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.11
+shader_parameter/wave_dir = Vector2(2, 0)
+shader_parameter/wave_dir2 = Vector2(2, 1)
+shader_parameter/time_scale = 0.06
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.25
+shader_parameter/color_deep = Color(0.0509804, 0, 0.458824, 1)
+shader_parameter/color_shallow = Color(0.345098, 0.898039, 0.811765, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.792
+shader_parameter/near = 0.5
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0.937255, 0.937255, 1, 1)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_qiju0")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_8k7gc")
+shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_rpshw")
@@ -76,12 +131,14 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 125, 6, 125)
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
+cell_octant_size = 16
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
-mesh = SubResource("PlaneMesh_g8a5v")
-surface_material_override/0 = SubResource("StandardMaterial3D_toowe")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8eu0e")
+surface_material_override/0 = SubResource("ShaderMaterial_hvuv8")
 
 [node name="Items" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)

@@ -68,7 +68,6 @@ func _Idle():
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
-		print("TRUE")
 		#INSERT ANIMATION
 	velocity.y = 0
 

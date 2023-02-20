@@ -329,3 +329,9 @@ key = "Four"
 [node name="Equiped" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
 visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.912413, 0.40927, 0, -0.40927, 0.912413, 0, 0.270459, 0.0404194)
+visible = false
+omni_range = 6.217
+omni_attenuation = 0.435275
