@@ -2,10 +2,9 @@ extends CharacterBody3D
 
 class_name Player
 
-const SPEED = 5.0
+const SPEED = 6.0
 const JUMP_VELOCITY = 4.5
 
-signal destroyGrid
 signal useItem
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
