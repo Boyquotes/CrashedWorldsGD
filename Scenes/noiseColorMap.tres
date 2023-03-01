@@ -1,0 +1,13 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://btpy5ftpofebb"]
+
+[sub_resource type="Gradient" id="Gradient_gsjig"]
+offsets = PackedFloat32Array(0.152381, 0.415873, 0.84127, 1)
+colors = PackedColorArray(0.313726, 0.521569, 1, 0.956863, 0.332892, 0.473386, 0.195277, 1, 0.676636, 0.639085, 0.501151, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch0vr"]
+frequency = 0.02
+fractal_octaves = 4
+
+[resource]
+color_ramp = SubResource("Gradient_gsjig")
+noise = SubResource("FastNoiseLite_ch0vr")

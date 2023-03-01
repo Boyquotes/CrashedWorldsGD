@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=23 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://Scenes/GridMapScript.gd" id="5_d2vqj"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
+[ext_resource type="Texture2D" uid="uid://btpy5ftpofebb" path="res://Scenes/noiseColorMap.tres" id="6_ntu05"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
+[ext_resource type="PackedScene" uid="uid://cb2lbd7m0fq3p" path="res://Scenes/control.tscn" id="11_3tl18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
 sky_top_color = Color(0.25098, 0.419608, 0.823529, 1)
@@ -39,18 +41,6 @@ volumetric_fog_emission = Color(0.168627, 0.168627, 0.54902, 1)
 volumetric_fog_anisotropy = -0.22
 volumetric_fog_detail_spread = 1.78381
 volumetric_fog_ambient_inject = 1.0
-
-[sub_resource type="Gradient" id="Gradient_gsjig"]
-offsets = PackedFloat32Array(0.152381, 0.415873, 0.84127, 1)
-colors = PackedColorArray(0.313726, 0.521569, 1, 0.956863, 0.332892, 0.473386, 0.195277, 1, 0.676636, 0.639085, 0.501151, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch0vr"]
-frequency = 0.02
-fractal_octaves = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1v6lt"]
-color_ramp = SubResource("Gradient_gsjig")
-noise = SubResource("FastNoiseLite_ch0vr")
 
 [sub_resource type="QuadMesh" id="QuadMesh_8eu0e"]
 size = Vector2(500, 500)
@@ -133,7 +123,7 @@ mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 cell_octant_size = 16
 script = ExtResource("5_d2vqj")
-metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
+metadata/NoiseColorMap = ExtResource("6_ntu05")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
@@ -173,3 +163,15 @@ item = ExtResource("6_iul0k")
 
 [node name="Wolf" parent="." instance=ExtResource("6_u8d2a")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 100, 3, 100)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 512.0
+offset_bottom = 512.0
+size_flags_horizontal = 0
+texture = ExtResource("6_ntu05")
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("11_3tl18")]
