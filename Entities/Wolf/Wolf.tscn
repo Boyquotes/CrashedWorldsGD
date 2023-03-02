@@ -1,22 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjbybsqsmgx8v"]
+[gd_scene load_steps=21 format=3 uid="uid://bemusdriw3e4o"]
 
 [ext_resource type="Script" path="res://Scripts/Palette/PaletteParts.gd" id="1_1qbjg"]
-[ext_resource type="Texture2D" uid="uid://b1o0psioegaou" path="res://Entities/Wolf/WolfBody.png" id="1_5w4ma"]
 [ext_resource type="Shader" path="res://Entities/Wolf/node_2d.gdshader" id="1_lg48l"]
-[ext_resource type="Texture2D" uid="uid://dpvi17ojtom7k" path="res://Entities/Wolf/WolfTail.png" id="2_6sbec"]
-[ext_resource type="Texture2D" uid="uid://c3lq7kgxd6ykl" path="res://Entities/Wolf/WolfHead.png" id="3_gd4ce"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8tol"]
-shader = ExtResource("1_lg48l")
-shader_parameter/color0 = null
-shader_parameter/color1 = null
-shader_parameter/color2 = null
-shader_parameter/color3 = null
-shader_parameter/color4 = null
-shader_parameter/color5 = null
-shader_parameter/color6 = null
-shader_parameter/color7 = null
-shader_parameter/color8 = null
+[ext_resource type="Texture2D" uid="uid://c3lq7kgxd6ykl" path="res://Entities/Wolf/WolfHeadIdle.png" id="3_oqn34"]
+[ext_resource type="Texture2D" uid="uid://b1o0psioegaou" path="res://Entities/Wolf/WolfBodyIdle.png" id="4_ildu0"]
+[ext_resource type="Texture2D" uid="uid://buu8jtgw5n1hm" path="res://Entities/Wolf/WolfTailIdle.png" id="5_722bj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_476gq"]
 shader = ExtResource("1_lg48l")
@@ -30,6 +18,21 @@ shader_parameter/color6 = null
 shader_parameter/color7 = null
 shader_parameter/color8 = null
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2205p"]
+atlas = ExtResource("4_ildu0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lnj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2205p")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hhicm"]
 shader = ExtResource("1_lg48l")
 shader_parameter/color0 = null
@@ -42,23 +45,113 @@ shader_parameter/color6 = null
 shader_parameter/color7 = null
 shader_parameter/color8 = null
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e31gs"]
+atlas = ExtResource("5_722bj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjsxc"]
+atlas = ExtResource("5_722bj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptane"]
+atlas = ExtResource("5_722bj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj4m0"]
+atlas = ExtResource("5_722bj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dj35"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e31gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjsxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj4m0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8tol"]
+shader = ExtResource("1_lg48l")
+shader_parameter/color0 = null
+shader_parameter/color1 = null
+shader_parameter/color2 = null
+shader_parameter/color3 = null
+shader_parameter/color4 = null
+shader_parameter/color5 = null
+shader_parameter/color6 = null
+shader_parameter/color7 = null
+shader_parameter/color8 = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmn82"]
+atlas = ExtResource("3_oqn34")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw788"]
+atlas = ExtResource("3_oqn34")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5nw1"]
+atlas = ExtResource("3_oqn34")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bo2m"]
+atlas = ExtResource("3_oqn34")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvf8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmn82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw788")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5nw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bo2m")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
 [node name="Wolf" type="Node2D"]
 script = ExtResource("1_1qbjg")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_l8tol")
-position = Vector2(32, 32)
-texture = ExtResource("1_5w4ma")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Body" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_476gq")
 position = Vector2(32, 32)
-texture = ExtResource("2_6sbec")
+sprite_frames = SubResource("SpriteFrames_6lnj0")
+animation = &"Idle"
+frame_progress = 0.145194
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Tail" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_hhicm")
 position = Vector2(32, 32)
-texture = ExtResource("3_gd4ce")
+sprite_frames = SubResource("SpriteFrames_0dj35")
+animation = &"Idle"
+frame_progress = 0.872705
+
+[node name="Head" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_l8tol")
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_lvf8q")
+animation = &"Idle"
+frame_progress = 0.273548

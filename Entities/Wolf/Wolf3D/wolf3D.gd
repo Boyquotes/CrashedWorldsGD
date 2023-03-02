@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
 var Target : Player
-var speed = 4
-var guardSpeed = 2
+var speed = 0
+var guardSpeed = 0
 var seePlayer
 var target_pos : Vector3 = Vector3(0,1,0)
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 enum states {IDLE, GUARD, AGGRO, ATTACK, BITE}
 
@@ -39,9 +39,9 @@ func _physics_process(delta) -> void:
 		velocity.y -= gravity
 
 	if velocity.x > 0:
-		$SubViewport/Node2D.flip(true)
+		$SubViewport/Wolf.flip(true)
 	else:
-		$SubViewport/Node2D.flip(false)
+		$SubViewport/Wolf.flip(false)
 	move_and_slide()
 
 #----------------------------------------------------------- CUSTOM

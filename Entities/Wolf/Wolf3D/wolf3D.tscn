@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
-[ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
+[ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -51,9 +51,9 @@ transparent_bg = true
 msaa_2d = 3
 size = Vector2i(64, 64)
 size_2d_override = Vector2i(64, 64)
+render_target_update_mode = 4
 
-[node name="Node2D" parent="SubViewport" instance=ExtResource("1_q6onx")]
-texture_filter = 1
+[node name="Wolf" parent="SubViewport" instance=ExtResource("1_q6onx")]
 
 [node name="AreaAttack" type="Area3D" parent="."]
 

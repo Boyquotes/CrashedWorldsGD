@@ -1,21 +1,32 @@
-[gd_scene load_steps=23 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=24 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="Script" path="res://Scenes/DirectionalLight3D.gd" id="2_8hjl4"]
+[ext_resource type="Shader" path="res://Shaders/Clouds.gdshader" id="3_hts0i"]
 [ext_resource type="MeshLibrary" uid="uid://cheuwan7tfji4" path="res://Gridmaps/Defaut/GridmapDefault.tres" id="4_38xhp"]
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2jg8a"]
-sky_top_color = Color(0.25098, 0.419608, 0.823529, 1)
-sky_curve = 0.332871
-ground_bottom_color = Color(0.101961, 0.172549, 0.298039, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_doxnt"]
+shader = ExtResource("3_hts0i")
+shader_parameter/color0 = Color(0.137255, 0.447059, 0.607843, 1)
+shader_parameter/color1 = Color(0.145098, 0.478431, 0.654902, 1)
+shader_parameter/color2 = Color(0.984314, 1, 1, 1)
+shader_parameter/color3 = Color(0.286275, 0.345098, 0.352941, 1)
+shader_parameter/skyvalue = 0.2
+shader_parameter/rotation_speed = 0.001
+shader_parameter/size = 100.0
+shader_parameter/prob = 0.9
+shader_parameter/cell_amount = 0.947
+shader_parameter/period = Vector2(-0.913, 1.03)
+shader_parameter/amount = 4401
+shader_parameter/seed = 20.016
 
 [sub_resource type="Sky" id="Sky_hje3m"]
-sky_material = SubResource("ProceduralSkyMaterial_2jg8a")
+sky_material = SubResource("ShaderMaterial_doxnt")
 
 [sub_resource type="Environment" id="Environment_ookwy"]
 background_mode = 2
@@ -31,7 +42,6 @@ glow_bloom = 1.0
 fog_light_color = Color(0.239216, 0.560784, 0.909804, 1)
 fog_density = 0.0115
 fog_aerial_perspective = 0.5
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.02
 volumetric_fog_albedo = Color(0, 0.831373, 0.835294, 1)
 volumetric_fog_emission = Color(0.168627, 0.168627, 0.54902, 1)
@@ -117,10 +127,12 @@ shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 script = ExtResource("1_rpshw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.306591, 0.951841, 0, -0.951841, 0.306591, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
 script = ExtResource("2_8hjl4")
+speed = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ookwy")
@@ -172,3 +184,12 @@ item = ExtResource("6_iul0k")
 
 [node name="Wolf" parent="." instance=ExtResource("6_u8d2a")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 100, 3, 100)
+
+[node name="Wolf2" parent="." instance=ExtResource("6_u8d2a")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 102.043, 3, 100)
+
+[node name="Wolf3" parent="." instance=ExtResource("6_u8d2a")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 95.5034, 3, 100)
+
+[node name="Wolf4" parent="." instance=ExtResource("6_u8d2a")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 97.8542, 3, 100)

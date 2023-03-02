@@ -4,6 +4,9 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	calculate_hue()
+	$Body.play("Idle")
+	$Tail.play("Idle")
+	$Head.play("Idle")
 
 func flip(isFlip:bool):
 	for i in get_children():

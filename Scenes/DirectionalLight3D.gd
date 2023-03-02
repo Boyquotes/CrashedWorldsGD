@@ -1,11 +1,8 @@
+@tool
 extends DirectionalLight3D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+@export var speed : float = 0.005
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotation.x += 0.005
+	rotation.x += speed * 0.1
