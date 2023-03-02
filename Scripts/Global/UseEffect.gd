@@ -22,6 +22,7 @@ func dig(cam):
 	if not intersection.is_empty():
 		var pos = intersection.position
 		var normalizedDir = (ray_query.to - ray_query.from).normalized() / 1000
+		if floor(pos.y + normalizedDir.y) <= 0: return
 		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
 		destroyGrid.emit(posI)
 
