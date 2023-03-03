@@ -14,13 +14,20 @@ enum states {IDLE, GUARD, AGGRO, ATTACK, BITE}
 		State = val
 		_on_state_changed(val)
 	get : return State
-#----------------------------------------------------------- BASE
+
+@export var Stats : EntityStats
+
+#------------------------------------------------------------------------------- BASE METHODS
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	_on_state_changed(State)
+	Stats = Stats.duplicate()
+	Stats.connect("death", on_death)
+	Stats.connect("update", on_life_update)
+	Stats.update.emit()
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	# Raycast vision of the AI
 	if Target != null:
 		$RayCast3D.target_position = Target.global_position - $RayCast3D.global_position
@@ -44,7 +51,7 @@ func _physics_process(delta) -> void:
 		$SubViewport/Wolf.flip(false)
 	move_and_slide()
 
-#----------------------------------------------------------- CUSTOM
+# ------------------------------------------------------------------------------ CUSTOM METHODS
 func _Idle():
 	
 	$Label3D.text = "IDLE"
@@ -96,7 +103,15 @@ func _Bite():#C'est drôle hein
 #	#INSERT ANIMATIONS
 	pass
 
-#----------------------------------------------------------- SIGNAL
+func on_death():
+	queue_free()
+
+func on_life_update():
+	$SubViewport/EntityStats.max_value = Stats.maxLife
+	$SubViewport/EntityStats.value = Stats.life
+	print($SubViewport/EntityStats.value)
+
+#------------------------------------------------------------------------------- SIGNALS
 func _on_state_changed(value):
 	match value :
 		states.IDLE : _Idle()

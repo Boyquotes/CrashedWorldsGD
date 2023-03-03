@@ -2,7 +2,6 @@ extends Resource
 class_name Item
 
 
-
 @export var itemName : String
 @export var type : String
 @export var icon : Texture2D

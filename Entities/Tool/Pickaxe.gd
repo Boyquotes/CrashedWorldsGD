@@ -4,4 +4,3 @@ extends Node3D
 
 func use():
 	$AnimationPlayer.play("Dig")
-

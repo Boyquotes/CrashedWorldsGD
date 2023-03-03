@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_s7byf")
 itemName = "Wood Sword"
-type = 1
+type = "Weapon"
 icon = ExtResource("1_ms00s")
 amount = 1
 stack = 1
 canBeEquiped = true
 canBeUpgraded = false
 description = "At least now you can fight back."
+objectScenePath = "res://Entities/Weapons/WoodSword.tscn"

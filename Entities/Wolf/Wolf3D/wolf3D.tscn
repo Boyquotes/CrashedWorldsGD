@@ -1,7 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://yib7ain7e5ai"]
+[gd_scene load_steps=13 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
 [ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
+[ext_resource type="Script" path="res://Resources/EntityStats/EntityStats.gd" id="2_3vm3p"]
+[ext_resource type="PackedScene" uid="uid://c8muusfrhdpa6" path="res://Resources/EntityStats/EntityStats.tscn" id="4_dnx8f"]
+
+[sub_resource type="Resource" id="Resource_o48om"]
+script = ExtResource("2_3vm3p")
+life = 5
+maxLife = 5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -34,6 +41,7 @@ size = Vector3(5, 1, 5)
 [node name="Wolf" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)
 script = ExtResource("1_lqg7c")
+Stats = SubResource("Resource_o48om")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_57huf")
@@ -52,6 +60,8 @@ msaa_2d = 3
 size = Vector2i(64, 64)
 size_2d_override = Vector2i(64, 64)
 render_target_update_mode = 4
+
+[node name="EntityStats" parent="SubViewport" instance=ExtResource("4_dnx8f")]
 
 [node name="Wolf" parent="SubViewport" instance=ExtResource("1_q6onx")]
 

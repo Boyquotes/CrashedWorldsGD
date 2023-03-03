@@ -1,13 +1,16 @@
-[gd_scene load_steps=32 format=3 uid="uid://wske2llx6gm2"]
+[gd_scene load_steps=37 format=3 uid="uid://dfdnvghpp5kx2"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_ku8ux"]
 [ext_resource type="Texture2D" uid="uid://htc6djlq12lo" path="res://Entities/Player/PlayerIdle-sheet.png" id="2_eqb5d"]
+[ext_resource type="Script" path="res://Resources/EntityStats/EntityStats.gd" id="2_rpjfo"]
 [ext_resource type="Texture2D" uid="uid://cnfcobak8gkhn" path="res://Entities/Player/playerRun-sheet.png" id="3_rueil"]
+[ext_resource type="PackedScene" uid="uid://c8muusfrhdpa6" path="res://Resources/EntityStats/EntityStats.tscn" id="4_27sjq"]
 [ext_resource type="Script" path="res://Entities/Player/Inventory/Inventory.gd" id="4_bored"]
 [ext_resource type="PackedScene" uid="uid://28n6gh4fbhu3" path="res://Entities/Player/Inventory/InvSlot.tscn" id="5_7wd1b"]
 [ext_resource type="Resource" uid="uid://bio1d0g04eb4t" path="res://Resources/Recipes/Potions/HealPotion.tres" id="5_p65ry"]
+[ext_resource type="Resource" uid="uid://bgju6am7x380y" path="res://Resources/Recipes/Tools/WoodPickaxe.tres" id="6_4v04b"]
 [ext_resource type="Script" path="res://Resources/Recipes/RecipeBook/RecipeBook.gd" id="6_8wuxk"]
-[ext_resource type="Resource" uid="uid://bgju6am7x380y" path="res://Resources/Recipes/Weapon/WoodPickaxe.tres" id="6_87pyb"]
+[ext_resource type="Resource" uid="uid://daqcbyufhs6p" path="res://Resources/Recipes/Weapons/WoodSword.tres" id="7_v0b0k"]
 [ext_resource type="FontFile" uid="uid://yxdextfie0cw" path="res://Fonts/digitalix.ttf" id="8_oco0k"]
 [ext_resource type="FontFile" uid="uid://dg7sn1woyt4ah" path="res://Fonts/visitor1.ttf" id="9_s5cnm"]
 [ext_resource type="Texture2D" uid="uid://de27udxc8j5r1" path="res://UI/Menus/Key1.png" id="10_t3vro"]
@@ -15,6 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://d01uaxpi15cyh" path="res://UI/Menus/Key2.png" id="13_s2qme"]
 [ext_resource type="Texture2D" uid="uid://babidltcl55p5" path="res://UI/Menus/Key3.png" id="14_atvqu"]
 [ext_resource type="Texture2D" uid="uid://bhhqpaysqveyi" path="res://UI/Menus/Key4.png" id="15_13f7p"]
+
+[sub_resource type="Resource" id="Resource_5fhkh"]
+script = ExtResource("2_rpjfo")
+life = 10
+maxLife = 10
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf6lr"]
 radius = 0.19
@@ -117,9 +125,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_egohb"]
+viewport_path = NodePath("Life/SubViewport")
+
 [sub_resource type="Resource" id="Resource_i2kl7"]
 script = ExtResource("6_8wuxk")
-recipes = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([ExtResource("5_p65ry"), ExtResource("6_87pyb")])
+recipes = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([ExtResource("5_p65ry"), ExtResource("6_4v04b"), ExtResource("7_v0b0k")])
 
 [sub_resource type="Theme" id="Theme_adyfc"]
 default_font = ExtResource("9_s5cnm")
@@ -131,6 +142,7 @@ Fonts/fonts/normal = ExtResource("8_oco0k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53517, 0)
 collision_mask = 5
 script = ExtResource("1_ku8ux")
+Stats = SubResource("Resource_5fhkh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_hf6lr")
@@ -153,6 +165,22 @@ fov = 80.0
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
 target_position = Vector3(-2.586, -1.013, 0)
+
+[node name="Life" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0473238, 0)
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_egohb")
+
+[node name="SubViewport" type="SubViewport" parent="Life"]
+transparent_bg = true
+msaa_2d = 3
+canvas_item_default_texture_filter = 0
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="EntityStats" parent="Life/SubViewport" instance=ExtResource("4_27sjq")]
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 script = ExtResource("4_bored")

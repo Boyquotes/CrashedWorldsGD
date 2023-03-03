@@ -10,8 +10,14 @@ signal useItem
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@export var Stats : EntityStats
+
 func _ready():
 	connect("useItem", UseEffect.useItemType)
+	Stats.duplicate()
+	Stats.connect("update", _on_life_changed)
+	Stats.connect("death", _on_death)
+	Stats.update.emit()
 
 
 func _unhandled_input(event):
@@ -22,13 +28,14 @@ func _unhandled_input(event):
 		else:
 			$Inventory/Bag.show()
 			
+	# ITEM USAGE
 	elif event.is_action_pressed("LMB"):
-		if $Equiped.get_child_count() > 0:
-			if not $Equiped.get_child(0) is Sprite3D:
-				$Equiped.get_child(0).use()
-			useItem.emit($Equiped.get_child(0).item, $Camera3D)
-			if $Equiped.get_child(0).item.amount <= 0:
-				$Equiped.get_child(0).queue_free()
+		if $Equiped.get_child_count() > 0:                     # If item is equiped
+			if not $Equiped.get_child(0) is Sprite3D:          # And it's not a bloc
+				$Equiped.get_child(0).use()                    # use it.
+			useItem.emit($Equiped.get_child(0).item, $Camera3D)# pass the info to singleton
+			if $Equiped.get_child(0).item.amount <= 0:         # if there is no more item after that
+				$Equiped.get_child(0).queue_free()             # delete the item
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -84,3 +91,12 @@ func equip(item):
 	else:
 		$Equiped.hide()
 		$Equiped.get_child(0).queue_free()
+
+# ------------------------------------------------------------------------------ SIGNALS
+
+func _on_life_changed():
+	$Life/SubViewport/EntityStats.max_value = Stats.life
+	$Life/SubViewport/EntityStats.value = Stats.maxLife
+
+func _on_death():
+	pass

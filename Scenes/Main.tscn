@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bd5by43qp1c1x"]
 
-[ext_resource type="PackedScene" uid="uid://wske2llx6gm2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
+[ext_resource type="PackedScene" uid="uid://dfdnvghpp5kx2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
 [ext_resource type="Script" path="res://Scenes/DirectionalLight3D.gd" id="2_8hjl4"]
 [ext_resource type="Shader" path="res://Shaders/Clouds.gdshader" id="3_hts0i"]
@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
 [ext_resource type="Script" path="res://Scenes/GridMapScript.gd" id="5_d2vqj"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
-[ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="6_iul0k"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
+[ext_resource type="Resource" uid="uid://ca26mur8j6c3d" path="res://Resources/Item/Weapons/WoodSword/WoodSword.tres" id="9_vl7ch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_doxnt"]
 shader = ExtResource("3_hts0i")
@@ -127,7 +127,7 @@ shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 script = ExtResource("1_rpshw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.682394, -0.730984, 0, 0.730984, -0.682394, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.883925, 0.467628, 0, -0.467628, 0.883925, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
@@ -157,31 +157,31 @@ surface_material_override/0 = SubResource("ShaderMaterial_hvuv8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop4" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop5" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop6" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
-item = ExtResource("6_iul0k")
+item = ExtResource("9_vl7ch")
 
 [node name="Wolf" parent="." instance=ExtResource("6_u8d2a")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 100, 3, 100)

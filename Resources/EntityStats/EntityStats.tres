@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=2 format=3 uid="uid://c11v86whkyxfh"]
+
+[ext_resource type="Script" path="res://Resources/EntityStats/EntityStats.gd" id="1_gr62p"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gr62p")
+life = 1
+maxLife = 1
