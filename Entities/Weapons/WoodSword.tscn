@@ -9,6 +9,7 @@ size = Vector3(1.52575, 1, 0.726034)
 
 [sub_resource type="Animation" id="Animation_w7gbr"]
 resource_name = "Attack"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

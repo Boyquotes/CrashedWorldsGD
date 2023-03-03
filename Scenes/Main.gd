@@ -8,6 +8,7 @@ extends Node3D
 #		random_terrain()
 
 func _ready():
+	randomize()
 	$GridMap.random_terrain()
 	UseEffect.connect("destroyGrid", destroyGrid)
 	UseEffect.connect("placeGrid", placeGrid)

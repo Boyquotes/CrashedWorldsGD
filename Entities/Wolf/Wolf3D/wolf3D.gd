@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 var Target : Player
-var speed = 0
-var guardSpeed = 0
+var speed = 4
+var guardSpeed = 4
 var seePlayer
 var target_pos : Vector3 = Vector3(0,1,0)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -27,7 +27,7 @@ func _ready():
 	Stats.connect("update", on_life_update)
 	Stats.update.emit()
 
-func _physics_process(_delta) -> void:
+func _physics_process(delta):
 	# Raycast vision of the AI
 	if Target != null:
 		$RayCast3D.target_position = Target.global_position - $RayCast3D.global_position
