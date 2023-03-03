@@ -109,7 +109,6 @@ func on_death():
 func on_life_update():
 	$SubViewport/EntityStats.max_value = Stats.maxLife
 	$SubViewport/EntityStats.value = Stats.life
-	print($SubViewport/EntityStats.value)
 
 #------------------------------------------------------------------------------- SIGNALS
 func _on_state_changed(value):
