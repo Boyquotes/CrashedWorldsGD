@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
 [ext_resource type="Texture2D" uid="uid://d2xnuea0drh02" path="res://UI/Icons/Weapons/WoodSword/WoodSword1.png" id="9_gapn7"]
+[ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="9_h80yc"]
 [ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="10_kpryk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_doxnt"]
@@ -124,7 +125,7 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_qiju0")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_8k7gc")
 shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 
-[sub_resource type="Resource" id="Resource_737da"]
+[sub_resource type="Resource" id="Resource_q6fa1"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -137,7 +138,7 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
-[sub_resource type="Resource" id="Resource_2lvxg"]
+[sub_resource type="Resource" id="Resource_dop4e"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -150,7 +151,7 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
-[sub_resource type="Resource" id="Resource_dhqe8"]
+[sub_resource type="Resource" id="Resource_6146t"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -163,7 +164,7 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
-[sub_resource type="Resource" id="Resource_ymfvw"]
+[sub_resource type="Resource" id="Resource_xjle7"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -176,7 +177,7 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
-[sub_resource type="Resource" id="Resource_ufmer"]
+[sub_resource type="Resource" id="Resource_vwjin"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -189,20 +190,7 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
-[sub_resource type="Resource" id="Resource_ba31b"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_irkof"]
+[sub_resource type="Resource" id="Resource_pvcx6"]
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -217,28 +205,30 @@ objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_rpshw")
+wolf_scene = ExtResource("6_u8d2a")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.950505, 0.310708, 0, -0.310708, -0.950505, 0, 0, 0)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.993485, 0.113955, 0, -0.113955, -0.993485, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
 script = ExtResource("2_8hjl4")
 speed = 0.01
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Skybox" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ookwy")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_72tnd")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 125, 6, 125)
+[node name="Player" parent="." instance=ExtResource("1_72tnd")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 50, 6, 50)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 script = ExtResource("5_d2vqj")
+wolf_scene = ExtResource("6_u8d2a")
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_8eu0e")
@@ -248,40 +238,31 @@ surface_material_override/0 = SubResource("ShaderMaterial_hvuv8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
-item = SubResource("Resource_737da")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
-item = SubResource("Resource_2lvxg")
+item = SubResource("Resource_q6fa1")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
-item = SubResource("Resource_dhqe8")
+item = SubResource("Resource_dop4e")
 
 [node name="ItemDrop4" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
-item = SubResource("Resource_ymfvw")
+item = SubResource("Resource_6146t")
 
 [node name="ItemDrop5" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
-item = SubResource("Resource_ufmer")
+item = SubResource("Resource_xjle7")
 
 [node name="ItemDrop6" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
-item = SubResource("Resource_ba31b")
+item = SubResource("Resource_vwjin")
 
 [node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
-item = SubResource("Resource_irkof")
+item = SubResource("Resource_pvcx6")
 
 [node name="Wolf" parent="." instance=ExtResource("6_u8d2a")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 100, 3, 100)
-
-[node name="Wolf2" parent="." instance=ExtResource("6_u8d2a")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 102.043, 3, 100)
-
-[node name="Wolf3" parent="." instance=ExtResource("6_u8d2a")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 95.5034, 3, 100)
-
-[node name="Wolf4" parent="." instance=ExtResource("6_u8d2a")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 97.8542, 3, 100)
