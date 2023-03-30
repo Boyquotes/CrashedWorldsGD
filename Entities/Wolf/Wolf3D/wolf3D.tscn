@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://yib7ain7e5ai"]
+[gd_scene load_steps=12 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
 [ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
@@ -13,22 +13,19 @@ maxLife = 5
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3juk3"]
-viewport_path = NodePath("SubViewport")
+[sub_resource type="QuadMesh" id="QuadMesh_7goh1"]
+resource_local_to_scene = true
+size = Vector2(0.64, 0.64)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tptv4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rf1c0"]
 resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.508
 alpha_antialiasing_mode = 0
 shading_mode = 2
-albedo_texture = SubResource("ViewportTexture_3juk3")
 texture_filter = 0
 texture_repeat = false
 disable_receive_shadows = true
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_xc8g1"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bw6e8"]
 
@@ -40,48 +37,53 @@ size = Vector3(5, 1, 5)
 
 [node name="Wolf" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13541, 1.07097, 0)
+input_ray_pickable = false
 script = ExtResource("1_lqg7c")
 Stats = SubResource("Resource_o48om")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_57huf")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00674438, -0.0217068, 0.0186782)
-material_override = SubResource("StandardMaterial3D_tptv4")
-shaded = true
-alpha_cut = 1
-texture_filter = 0
-texture = SubResource("ViewportTexture_xc8g1")
+[node name="Sprite3D" type="CSGMesh3D" parent="."]
+calculate_tangents = false
+mesh = SubResource("QuadMesh_7goh1")
+material = SubResource("StandardMaterial3D_rf1c0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
 transparent_bg = true
-msaa_2d = 3
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4293918721
 size = Vector2i(64, 64)
 size_2d_override = Vector2i(64, 64)
-render_target_update_mode = 4
 
 [node name="EntityStats" parent="SubViewport" instance=ExtResource("4_dnx8f")]
 
 [node name="Wolf" parent="SubViewport" instance=ExtResource("1_q6onx")]
 
 [node name="AreaAttack" type="Area3D" parent="."]
+input_ray_pickable = false
+monitorable = false
 
 [node name="Zone1" type="CollisionShape3D" parent="AreaAttack"]
 shape = SubResource("BoxShape3D_bw6e8")
 
 [node name="AreaAggro" type="Area3D" parent="."]
+input_ray_pickable = false
+monitorable = false
 
 [node name="Zone2" type="CollisionShape3D" parent="AreaAggro"]
 shape = SubResource("BoxShape3D_hcp5r")
 
 [node name="AreaGuard" type="Area3D" parent="."]
+input_ray_pickable = false
+monitorable = false
 
 [node name="Zone3" type="CollisionShape3D" parent="AreaGuard"]
 shape = SubResource("BoxShape3D_odu5j")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422507, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613343, 0)
 text = "COUCOU"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -97,6 +99,9 @@ autostart = true
 [node name="AttackPrep" type="Timer" parent="."]
 
 [node name="Detect" type="Timer" parent="."]
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+aabb = AABB(-0.531976, -0.528005, -0.0551476, 1.06395, 1.05601, 0.110295)
 
 [connection signal="body_entered" from="AreaAttack" to="." method="_on_area_attack_body_entered"]
 [connection signal="body_exited" from="AreaAttack" to="." method="_on_area_attack_body_exited"]

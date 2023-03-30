@@ -1,7 +1,7 @@
 extends Node3D
+class_name MainGame
 
-@export var wolf_scene: PackedScene
-
+var wolf_scene = preload("res://Entities/Wolf/Wolf3D/wolf3D.tscn")
 @onready var itemdrop = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 
 #func _input(event):
@@ -17,7 +17,7 @@ func _ready():
 
 func spawnCreatures(map_size: int, amount: int = 200) -> void:
 	for i in range(amount):
-		var wolf: CharacterBody3D = wolf_scene.instantiate()
+		var wolf : CharacterBody3D = wolf_scene.instantiate()
 		wolf.position = Vector3(randf_range(0, map_size), 5, randf_range(0,map_size))
 		wolf.scale = Vector3(2.5,2.5,2.5)
 		add_child(wolf)
@@ -45,3 +45,6 @@ func destroyGrid(pos: Vector3i):
 func placeGrid(pos: Vector3i, id:int):
 	if $GridMap.get_cell_item(pos) == $GridMap.INVALID_CELL_ITEM:
 		$GridMap.set_cell_item(pos, id)
+
+
+

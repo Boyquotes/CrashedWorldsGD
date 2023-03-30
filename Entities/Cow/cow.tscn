@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bsd2yvy8gcnwq"]
 
 [ext_resource type="Script" path="res://Entities/Cow/Cow3D.gd" id="1_fwyro"]
-[ext_resource type="PackedScene" uid="uid://bjbybsqsmgx8v" path="res://Entities/Wolf/Wolf.tscn" id="2_e7vjq"]
+[ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="2_e7vjq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yv7mv"]
 size = Vector3(0.5, 0.5, 0.5)

@@ -17,24 +17,44 @@ enum states {IDLE, GUARD, AGGRO, ATTACK, BITE}
 
 @export var Stats : EntityStats
 
+var viewportworkaround : ViewportTexture 
+var workaroundDone : bool = false
+
 #------------------------------------------------------------------------------- BASE METHODS
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	viewportworkaround = $SubViewport.get_texture()
 	randomize()
 	_on_state_changed(State)
 	Stats = Stats.duplicate()
 	Stats.connect("death", on_death)
 	Stats.connect("update", on_life_update)
 	Stats.update.emit()
+	
+	_hide()
+	
+	set_process(false)
+	set_physics_process(false)
 
-func _physics_process(delta):
+func _process(_delta):
+	if not workaroundDone : 
+		$Sprite3D.material.albedo_texture = viewportworkaround
+		workaroundDone = true
+	
+	
+func _physics_process(_delta):
 	# Raycast vision of the AI
 	if Target != null:
+		$RayCast3D.enabled = true
 		$RayCast3D.target_position = Target.global_position - $RayCast3D.global_position
 		if $RayCast3D.is_colliding() and $RayCast3D.get_collider() is Player:
 			seePlayer = true
 		else:
 			seePlayer = false
+	else :
+		$RayCast3D.enabled = false
+	
 	# Switch states
 	match State :
 		states.IDLE : _Idle()
@@ -42,8 +62,8 @@ func _physics_process(delta):
 		states.AGGRO : _Aggro()
 		states.ATTACK : _Attack()
 		states.BITE : _Bite()
-	if not is_on_floor():
-		velocity.y -= gravity
+	
+	velocity.y -= gravity
 
 	if velocity.x > 0:
 		$SubViewport/Wolf.flip(true)
@@ -112,11 +132,22 @@ func on_life_update():
 
 #------------------------------------------------------------------------------- SIGNALS
 func _on_state_changed(value):
+	
+	$AreaAttack/Zone1.set_deferred("disabled", true)
+	$AreaAggro/Zone2.set_deferred("disabled", true)
+	$AreaGuard/Zone3.set_deferred("disabled", true)
+	
 	match value :
-		states.IDLE : _Idle()
-		states.GUARD : _Guard()
-		states.AGGRO : _Aggro()
-		states.ATTACK : _Attack()
+		states.IDLE : 
+			$AreaGuard/Zone3.set_deferred("disabled", false)
+		states.GUARD : 
+			$AreaGuard/Zone3.set_deferred("disabled", false)
+			$AreaAggro/Zone2.set_deferred("disabled", false)
+		states.AGGRO : 
+			$AreaAggro/Zone2.set_deferred("disabled", false)
+			$AreaAttack/Zone1.set_deferred("disabled", false)
+		states.ATTACK : 
+			$AreaAttack/Zone1.set_deferred("disabled", false)
 	
 func _on_animated_sprite_3d_animation_finished():
 	var anim_finished = $AnimatedSprite3D.animation
@@ -167,3 +198,10 @@ func _on_area_attack_body_exited(body):
 	if body is Player:
 		State = states.AGGRO
 		Target = body
+
+func _hide():
+	$Sprite3D.hide()
+	$Label3D.hide()
+func _show():
+	$Label3D.show()
+	$Sprite3D.show()

@@ -100,3 +100,7 @@ func _on_life_changed():
 
 func _on_death():
 	pass
+
+func _hide(): $AnimatedSprite3D.hide()
+
+func _show(): $AnimatedSprite3D.show()

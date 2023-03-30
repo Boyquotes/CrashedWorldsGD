@@ -14,7 +14,7 @@ var itemHolding = null :
 		
 	get : return itemHolding
 
-func _process(delta):
+func _process(_delta):
 	if itemHolding != null:
 		%Quantity.text = str(itemHolding.amount)
 	else:
