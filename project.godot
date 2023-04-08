@@ -21,10 +21,9 @@ UseEffect="*res://Scripts/Global/UseEffect.gd"
 
 [display]
 
-window/size/mode=3
 window/size/initial_position_type=2
-window/per_pixel_transparency/allowed=true
 window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
 
 [input]
 
@@ -95,6 +94,5 @@ Four={
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
-driver/threads/thread_model=2
-occlusion_culling/use_occlusion_culling=true
 textures/canvas_textures/default_texture_filter=0
+occlusion_culling/use_occlusion_culling=true
