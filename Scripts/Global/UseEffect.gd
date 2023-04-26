@@ -18,7 +18,7 @@ func dig(cam):
 	ray_query.to = rayEnd
 	ray_query.collide_with_bodies = true
 	var intersection = space.intersect_ray(ray_query)
-	
+
 	if not intersection.is_empty():
 		var pos = intersection.position
 		var normalizedDir = (ray_query.to - ray_query.from).normalized() / 1000
@@ -34,7 +34,7 @@ func placebloc(cam, itemName : String):
 		"Stone Bloc" : id = 2
 		"Grassy Stone Bloc" : id = 3
 		"Sand Bloc" : id = 4
-	
+
 	var mousePosition = get_viewport().get_mouse_position()
 	var rayOrigin = cam.project_ray_origin(mousePosition)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePosition) * 2000
@@ -44,7 +44,7 @@ func placebloc(cam, itemName : String):
 	ray_query.to = rayEnd
 	ray_query.collide_with_bodies = true
 	var intersection = space.intersect_ray(ray_query)
-	
+
 	if not intersection.is_empty():
 		var pos = intersection.position
 		var normalizedDir = (ray_query.from - ray_query.to).normalized() / 1000

@@ -13,16 +13,9 @@ func _ready():
 	randomize()
 	UseEffect.connect("destroyGrid", destroyGrid)
 	UseEffect.connect("placeGrid", placeGrid)
-	spawnCreatures(256)
-
-func spawnCreatures(map_size: int, amount: int = 200) -> void:
-	for i in range(amount):
-		var wolf : CharacterBody3D = wolf_scene.instantiate()
-		wolf.position = Vector3(randf_range(0, map_size), 5, randf_range(0,map_size))
-		wolf.scale = Vector3(2.5,2.5,2.5)
-		add_child(wolf)
 
 func destroyGrid(pos: Vector3i):
+	print(pos)
 	var blocID = $GridMap.get_cell_item(pos)
 	var blocitem = []
 	match blocID:

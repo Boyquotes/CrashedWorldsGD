@@ -8,10 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://c5i2tqrb6vp5k" path="res://Entities/ItemDrop/ItemDrop.tscn" id="5_8il38"]
 [ext_resource type="Script" path="res://Scenes/GridMapScript.gd" id="5_d2vqj"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
-[ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
 [ext_resource type="Texture2D" uid="uid://d2xnuea0drh02" path="res://UI/Icons/Weapons/WoodSword/WoodSword1.png" id="9_gapn7"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="9_h80yc"]
 [ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="10_kpryk"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://frneucsl7hc4" path="res://Entities/Spaceship/spaceship_glb.tscn" id="13_287rg"]
+[ext_resource type="Script" path="res://Scenes/Spawner.gd" id="13_hf44o"]
+[ext_resource type="PackedScene" uid="uid://peceeft110xh" path="res://Entities/Weapons/WoodSword.tscn" id="15_pemob"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_doxnt"]
 shader = ExtResource("3_hts0i")
@@ -125,7 +130,11 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_qiju0")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_8k7gc")
 shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_tejcq"]
+=======
+[sub_resource type="Resource" id="Resource_vm4wl"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -138,7 +147,11 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_43bq1"]
+=======
+[sub_resource type="Resource" id="Resource_4xq8b"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -151,7 +164,11 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_kkjlj"]
+=======
+[sub_resource type="Resource" id="Resource_rvrol"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -164,7 +181,11 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_1ssxg"]
+=======
+[sub_resource type="Resource" id="Resource_2c33s"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -177,7 +198,11 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_akq0q"]
+=======
+[sub_resource type="Resource" id="Resource_vd1s0"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -190,7 +215,11 @@ canBeUpgraded = false
 description = "At least now you can fight back."
 objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 
+<<<<<<< Updated upstream
 [sub_resource type="Resource" id="Resource_inkkv"]
+=======
+[sub_resource type="Resource" id="Resource_4xeh5"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 script = ExtResource("10_kpryk")
 itemName = "Wood Sword"
@@ -207,7 +236,11 @@ objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 script = ExtResource("1_rpshw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
+<<<<<<< Updated upstream
 transform = Transform3D(1, 0, 0, 0, -0.441729, -0.897147, 0, 0.897147, -0.441729, 0, 0, 0)
+=======
+transform = Transform3D(1, 0, 0, 0, -0.99994, -0.0108687, 0, 0.0108687, -0.99994, 0, 0, 0)
+>>>>>>> Stashed changes
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
@@ -218,14 +251,17 @@ speed = 0.01
 environment = SubResource("Environment_ookwy")
 
 [node name="Player" parent="." instance=ExtResource("1_72tnd")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 50, 6, 50)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 51, 4, 60)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 script = ExtResource("5_d2vqj")
-wolf_scene = ExtResource("6_u8d2a")
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
+
+[node name="Spawner" type="Node3D" parent="GridMap"]
+script = ExtResource("13_hf44o")
+spawned_scenes = Array[PackedScene]([ExtResource("15_pemob")])
 
 [node name="WaterPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
@@ -237,10 +273,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_hvuv8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.3376, 4, -64.3395)
 item = ExtResource("9_h80yc")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
+<<<<<<< Updated upstream
 item = SubResource("Resource_tejcq")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
@@ -262,3 +300,142 @@ item = SubResource("Resource_akq0q")
 [node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
 item = SubResource("Resource_inkkv")
+=======
+item = SubResource("Resource_vm4wl")
+
+[node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
+item = SubResource("Resource_4xq8b")
+
+[node name="ItemDrop4" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
+item = SubResource("Resource_rvrol")
+
+[node name="ItemDrop5" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
+item = SubResource("Resource_2c33s")
+
+[node name="ItemDrop6" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
+item = SubResource("Resource_vd1s0")
+
+[node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
+item = SubResource("Resource_4xeh5")
+
+[node name="CrashedSpaceship" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.4702, 1.6198, 55.486)
+
+[node name="Spaceship" parent="CrashedSpaceship" instance=ExtResource("13_287rg")]
+transform = Transform3D(0.814288, -0.580461, 0, 0.580461, 0.814288, 0, 0, 0, 1, -2.07478, 0.845786, 3.55238)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.412895, 1.29615, 5.25912)
+transparency = 0.06
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+draw_order = 2
+mesh = SubResource("QuadMesh_6xl5u")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.75
+initial_velocity_max = 1.25
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_173al")
+color_ramp = SubResource("Gradient_5cx25")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84394, -0.37347, 5.25912)
+transparency = 0.06
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+draw_order = 2
+mesh = SubResource("QuadMesh_6xl5u")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.75
+initial_velocity_max = 1.25
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_173al")
+color_ramp = SubResource("Gradient_5cx25")
+
+[node name="CPUParticles3D3" type="CPUParticles3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59904, 0.291973, 5.32467)
+transparency = 0.06
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+draw_order = 2
+mesh = SubResource("QuadMesh_6xl5u")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.75
+initial_velocity_max = 1.25
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_173al")
+color_ramp = SubResource("Gradient_5cx25")
+
+[node name="CPUParticles3D4" type="CPUParticles3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84094, 3.76858, 5.03529)
+transparency = 0.06
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+draw_order = 2
+mesh = SubResource("QuadMesh_6xl5u")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.75
+initial_velocity_max = 1.25
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_173al")
+color_ramp = SubResource("Gradient_5cx25")
+
+[node name="CPUParticles3D5" type="CPUParticles3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31755, 7.47331, 5.03529)
+transparency = 0.06
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+draw_order = 2
+mesh = SubResource("QuadMesh_6xl5u")
+direction = Vector3(0, 1, 0)
+spread = 33.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.75
+initial_velocity_max = 1.25
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_173al")
+color_ramp = SubResource("Gradient_5cx25")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48171, 4.0772, 5.37626)
+light_color = Color(1, 0.607843, 0.2, 1)
+omni_range = 1.79222
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49956, 1.17678, 5.37626)
+light_color = Color(1, 0.607843, 0.2, 1)
+omni_range = 1.79222
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.623051, 1.25655, 5.37626)
+light_color = Color(1, 0.607843, 0.2, 1)
+omni_range = 1.79222
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="CrashedSpaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.28419, 7.65606, 4.90202)
+light_color = Color(1, 0.607843, 0.2, 1)
+omni_range = 1.57195
+>>>>>>> Stashed changes
