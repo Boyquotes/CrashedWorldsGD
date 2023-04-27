@@ -91,6 +91,10 @@ Four={
 ]
 }
 
+[physics]
+
+3d/run_on_separate_thread=true
+
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
