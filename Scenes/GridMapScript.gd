@@ -63,6 +63,7 @@ func getNoiseMap(size: int):
 	var noiseMap = []
 	#self.set_meta("NoiseColorMap.seed", randi())
 	var noise = self.get_meta("NoiseColorMap").noise
+	noise.seed = randi()
 	var maxNoiseHeight:float = -1
 	var minNoiseHeight:float = 1
 

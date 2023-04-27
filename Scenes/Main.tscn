@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=30 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://dfdnvghpp5kx2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
@@ -9,9 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/GridMapScript.gd" id="5_d2vqj"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
-[ext_resource type="Texture2D" uid="uid://d2xnuea0drh02" path="res://UI/Icons/Weapons/WoodSword/WoodSword1.png" id="9_gapn7"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="9_h80yc"]
-[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="10_kpryk"]
 [ext_resource type="PackedScene" uid="uid://frneucsl7hc4" path="res://Entities/Spaceship/spaceship_glb.tscn" id="13_287rg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_doxnt"]
@@ -131,84 +129,6 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_qiju0")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_8k7gc")
 shader_parameter/wave = SubResource("NoiseTexture2D_fwfjg")
 
-[sub_resource type="Resource" id="Resource_mgeq5"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_knimj"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_g0isd"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_yn8j0"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_ww6io"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
-[sub_resource type="Resource" id="Resource_vxlwf"]
-resource_local_to_scene = true
-script = ExtResource("10_kpryk")
-itemName = "Wood Sword"
-type = "Weapon"
-icon = ExtResource("9_gapn7")
-amount = 1
-stack = 1
-canBeEquiped = true
-canBeUpgraded = false
-description = "At least now you can fight back."
-objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hosq"]
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -236,7 +156,7 @@ colors = PackedColorArray(0.7, 0.455, 0, 1, 0.728571, 0.0961304, 0.0308007, 1, 0
 script = ExtResource("1_rpshw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0866769, -0.996235, 0, 0.996235, -0.0866769, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.965061, 0.262018, 0, -0.262018, -0.965061, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
@@ -262,34 +182,34 @@ mesh = SubResource("QuadMesh_8eu0e")
 surface_material_override/0 = SubResource("ShaderMaterial_hvuv8")
 
 [node name="Items" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 6.606, 125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 6, 62.4982)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("5_8il38")]
 item = ExtResource("9_h80yc")
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56166, 4.20962, 0)
-item = SubResource("Resource_mgeq5")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 0)
-item = SubResource("Resource_knimj")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop4" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 0, 3.01111)
-item = SubResource("Resource_g0isd")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop5" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94764, 1.95206, 3.01111)
-item = SubResource("Resource_yn8j0")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop6" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28712, 1.95206, 3.01111)
-item = SubResource("Resource_ww6io")
+item = ExtResource("9_h80yc")
 
 [node name="ItemDrop7" parent="Items" instance=ExtResource("5_8il38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85458, 4.14119, 3.01111)
-item = SubResource("Resource_vxlwf")
+item = ExtResource("9_h80yc")
 
 [node name="CrashedSpaceship" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.4702, 1.6198, 55.486)
@@ -338,7 +258,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59904, 0.291973, 5.32467)
 transparency = 0.06
 cast_shadow = 0
 amount = 20
-lifetime = 1.5
+lifetime = 3.5
 draw_order = 2
 mesh = SubResource("QuadMesh_6xl5u")
 direction = Vector3(0, 1, 0)
@@ -347,20 +267,21 @@ gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.75
 initial_velocity_max = 1.25
 angle_max = 180.0
-scale_amount_min = 0.5
+scale_amount_min = 1.25
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_173al")
 color_ramp = SubResource("Gradient_5cx25")
 
 [node name="CPUParticles3D4" type="CPUParticles3D" parent="CrashedSpaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84094, 3.76858, 5.03529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84094, 4.6144, 4.77042)
 transparency = 0.06
 cast_shadow = 0
 amount = 20
-lifetime = 1.5
+lifetime = 2.5
 draw_order = 2
 mesh = SubResource("QuadMesh_6xl5u")
 direction = Vector3(0, 1, 0)
-spread = 33.0
+spread = 20.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.75
 initial_velocity_max = 1.25
@@ -388,7 +309,7 @@ scale_amount_curve = SubResource("Curve_173al")
 color_ramp = SubResource("Gradient_5cx25")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CrashedSpaceship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48171, 4.0772, 5.37626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48171, 4.92302, 5.11139)
 light_color = Color(1, 0.607843, 0.2, 1)
 omni_range = 1.79222
 

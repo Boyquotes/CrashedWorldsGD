@@ -25,6 +25,10 @@ window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
 
+[editor]
+
+import/use_multiple_threads=false
+
 [input]
 
 Interact={
@@ -87,12 +91,12 @@ Four={
 ]
 }
 
-[physics]
-
-3d/run_on_separate_thread=true
-
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
 textures/canvas_textures/default_texture_filter=0
 occlusion_culling/use_occlusion_culling=true
+
+[threading]
+
+worker_pool/use_system_threads_for_low_priority_tasks=false

@@ -25,6 +25,7 @@ func dig(cam):
 		if floor(pos.y + normalizedDir.y) <= 0: return
 		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
 		destroyGrid.emit(posI)
+	
 
 func placebloc(cam, itemName : String):
 	var id
