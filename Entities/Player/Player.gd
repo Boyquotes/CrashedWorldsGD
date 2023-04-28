@@ -27,7 +27,7 @@ func _unhandled_input(event):
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
-			
+
 	# ITEM USAGE
 	elif event.is_action_pressed("LMB"):
 		if $Equiped.get_child_count() > 0:                     # If item is equiped
@@ -68,18 +68,18 @@ func _physics_process(delta):
 			$AnimatedSprite3D.flip_h = true
 			$Equiped.position.x = -0.3
 			$Equiped.scale.x = -1
-			
+
 		$AnimatedSprite3D.play("Run")
-	
+
 	move_and_slide()
-	
-	
+
+
 
 func equip(item):
 	if $Equiped.get_child_count() > 0:
 		for i in $Equiped.get_children():
 			i.queue_free()
-	if item : 
+	if item :
 		$Equiped.show()
 		var inst
 		if item.objectScenePath:
@@ -87,7 +87,7 @@ func equip(item):
 			if inst.item == null:
 				inst.item = item
 		$Equiped.add_child(inst)
-		
+
 	else:
 		$Equiped.hide()
 		$Equiped.get_child(0).queue_free()
