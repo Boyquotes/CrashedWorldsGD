@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bd5by43qp1c1x"]
+[gd_scene load_steps=32 format=3 uid="uid://bd5by43qp1c1x"]
 
 [ext_resource type="PackedScene" uid="uid://dfdnvghpp5kx2" path="res://Entities/Player/Player.tscn" id="1_72tnd"]
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_rpshw"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scenes/GridMapScript.gd" id="5_d2vqj"]
 [ext_resource type="Shader" path="res://Shaders/Water.gdshader" id="5_la4yr"]
 [ext_resource type="PackedScene" uid="uid://yib7ain7e5ai" path="res://Entities/Wolf/Wolf3D/wolf3D.tscn" id="6_u8d2a"]
+[ext_resource type="Script" path="res://Scenes/Spawner.gd" id="7_lw36x"]
+[ext_resource type="PackedScene" uid="uid://df8ekfo75nkk2" path="res://Entities/Tool/Pickaxe.tscn" id="8_1e6si"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="9_h80yc"]
 [ext_resource type="PackedScene" uid="uid://frneucsl7hc4" path="res://Entities/Spaceship/spaceship_glb.tscn" id="13_287rg"]
 
@@ -156,7 +158,7 @@ colors = PackedColorArray(0.7, 0.455, 0, 1, 0.728571, 0.0961304, 0.0308007, 1, 0
 script = ExtResource("1_rpshw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.567321, -0.823495, 0, 0.823495, -0.567321, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999457, -0.0329093, 0, 0.0329093, 0.999457, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
@@ -166,14 +168,18 @@ script = ExtResource("2_8hjl4")
 environment = SubResource("Environment_ookwy")
 
 [node name="Player" parent="." instance=ExtResource("1_72tnd")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 50, 6, 50)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 60, 6, 60)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_38xhp")
 cell_size = Vector3(1, 1, 1)
 script = ExtResource("5_d2vqj")
-wolf_scene = ExtResource("6_u8d2a")
 metadata/NoiseColorMap = SubResource("NoiseTexture2D_1v6lt")
+
+[node name="Spawner" type="Node3D" parent="GridMap"]
+script = ExtResource("7_lw36x")
+spawned_items = Array[PackedScene]([ExtResource("8_1e6si"), ExtResource("5_8il38")])
+spawned_ai = Array[PackedScene]([ExtResource("6_u8d2a")])
 
 [node name="WaterPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)

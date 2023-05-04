@@ -1,7 +1,5 @@
 extends GridMap
 
-@export var wolf_scene: PackedScene
-
 enum Block {
 	Grass = 0,
 	Dirt,
@@ -12,27 +10,17 @@ enum Block {
 }
 
 func _ready() -> void:
-	randomize()
+	#randomize()
 	random_terrain()
 
 func random_terrain():
 	self.clear()
-
 	var size: int = 256
-
 	setGridMapCells(size)
 	generateBerryBushes(0.05)
-# 	spawnCreatures(size)
 
 
-# func spawnCreatures(map_size: int, amount: int = 200) -> void:
-# 	for i in range(amount):
-# 		var wolf: CharacterBody3D = wolf_scene.instantiate()
-# 		wolf.position = Vector3(randf_range(0, map_size), 5, randf_range(0,map_size))
-# 		wolf.scale = Vector3(2.5,2.5,2.5)
-# 		get_parent().add_child(wolf)
-
-#set the blocks for the grid map (getNoiseMap +
+#set the blocks for the grid map
 func setGridMapCells(size: int):
 	var count : int = 0
 	var starttime = Time.get_ticks_msec()
@@ -43,15 +31,15 @@ func setGridMapCells(size: int):
 		for y in range(size):
 			count+=1
 			var noiseHeight = noiseMap[x][y]
-			self.set_cell_item(Vector3i(x,0,y), Block.Sand)
+			set_cell_item(Vector3i(x,0,y), Block.Sand)
 			if noiseHeight >= 1.6:
-				self.set_cell_item(Vector3i(x,1,y), Block.Grass)
+				set_cell_item(Vector3i(x,1,y), Block.Grass)
 				count+=1
 			if noiseHeight >= 2.8:
-				self.set_cell_item(Vector3i(x,2,y), Block.Stone)
+				set_cell_item(Vector3i(x,2,y), Block.Stone)
 				count+=1
 			if noiseHeight >= 3.6:
-				self.set_cell_item(Vector3i(x,3,y), Block.StoneGrass)
+				set_cell_item(Vector3i(x,3,y), Block.StoneGrass)
 				count+=1
 	setOuterSand()
 
@@ -92,22 +80,25 @@ func setOuterSand():
 			for i in range(cellCoord.x - 1, cellCoord.x + 2):
 				for j in range(cellCoord.z - 1, cellCoord.z + 2):
 					var neighborCell = Vector3i(i, cellCoord.y, j)
-					if self.get_cell_item(neighborCell) == self.INVALID_CELL_ITEM:
-						self.set_cell_item(cellCoord, Block.Sand)
+					if get_cell_item(neighborCell) == self.INVALID_CELL_ITEM:
+						set_cell_item(cellCoord, Block.Sand)
 						break
 
 #generate berry bushes
-func generateBerryBushes(percentage: float = 0.1):
+func generateBerryBushes(percentage: float):
 	var grounds = self.get_used_cells_by_item(Block.Grass)
-	grounds = grounds.filter(checkUpperStoneBlock)
-
+	grounds = grounds.filter(upperIsNotStoneBlock)
 	grounds.shuffle()
 	for i in range(grounds.size() * percentage):
-		self.set_cell_item(grounds[i] + Vector3i.UP, Block.Berries)
+		set_cell_item(grounds[i] + Vector3i.UP, Block.Berries)
 
-func checkUpperStoneBlock(grassCoord):
+func upperIsNotStoneBlock(grassCoord) -> bool:
 	var upperStoneCell = grassCoord + Vector3i.UP
-	return self.get_cell_item(upperStoneCell) == self.INVALID_CELL_ITEM
+	return get_cell_item(upperStoneCell) == INVALID_CELL_ITEM
 
-
+func get_heighest_cell(x: int, z: int) -> int:
+	for y in range(3, -1, -1):
+		if get_cell_item(Vector3i(x,y,z)) != INVALID_CELL_ITEM:
+			return y
+	return 3
 
