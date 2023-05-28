@@ -2,7 +2,6 @@ extends CanvasLayer
 
 # ------------------------------------------------------------------------------ VARIABLES
 @export var craftRecipes : RecipeBook
-@export var upgradeRecipes : RecipeBook
 
 @onready var inst_recipe = preload("res://UI/Nodes/RecipeNode/RecipeNode.tscn")
 
@@ -36,15 +35,9 @@ func _ready():
 	# Creation of the recipe list
 	for recipe in craftRecipes.recipes:
 		var ins = inst_recipe.instantiate()
-		$ItemList/MarginContainer/Boundings/Holder.add_child(ins)
+		%ItemList/MarginContainer/Boundings/Holder.add_child(ins)
 		ins.set_recipe(recipe)
 		ins.connect("recipeClicked", add_to_do_recipe)
-	
-#	for upgrade in upgradeRecipes.recipes:
-#		var ins = inst_recipe.instantiate()
-#		$ItemList/MarginContainer/Boundings/Holder.add_child(ins)
-#		ins.set_recipe(upgrade)
-#		ins.connect("recipeClicked", add_to_do_recipe)
 	
 	# Connection of the ToDoList boxes
 	for todobox in $ToDoList/Body.get_children():
@@ -52,13 +45,15 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("RMB"):
-		$ItemList.hide()
-	if event.is_action_pressed("Interact"):
+	if event.is_action_pressed("RMB"): # Hide recipe list
+		%ItemList.hide()
+		%UpgradeList.hide()
+	if event.is_action_pressed("Interact"): # Open / close inventory
 		button_hovered = null
 		if $Bag.visible:
 			$Bag.hide()
-			$ItemList.hide()
+			%ItemList.hide()
+			%UpgradeList.hide()
 		else:
 			$Bag.show()
 
@@ -67,16 +62,20 @@ func _input(event):
 		if button_hovered.itemHolding:
 			drag = true
 			itemHold = button_hovered.itemHolding
+		
 	if event.is_action_released("LMB") : 
 		drag = false
-		if button_hovered == currentItemSlot:return # trying to place item on same slot
+		
+		if button_hovered == currentItemSlot : return # trying to place item on same slot
 			
 		if itemHold and currentItemSlot:
 			move_item_to(currentItemSlot)
+		
+		itemHold = null
 	
 	if drag and itemHold != null: 
 		if event is InputEventMouseMotion:
-			$Marker.show()
+			if $Marker.visible == false : $Marker.show()
 			$Marker.global_position = event.position - Vector2(16.0,16.0)
 	else:
 		$Marker.hide()
@@ -115,7 +114,6 @@ func move_item_to(slot):
 			slot.itemHolding = itemHold
 			button_hovered.itemHolding = temp
 			if slot.name == "Equipment":
-				print("oui")
 				get_parent().equip(itemHold)
 			button_hovered = null
 			itemHold = null; currentItemSlot = null
@@ -182,24 +180,35 @@ func _on_button_pressed(button):
 	
 	# CRAFT BEHAVIOUR
 	if button.itemHolding == null:
-		$ItemList.show()
-		$ItemList.global_position = button.global_position + Vector2(55,0)
+		%ItemList.show()
 		
 	# UPGRADE
 	else:
 		$Marker.texture = button.itemHolding.icon
+		for i in %UpgradeList/MarginContainer/Boundings/Holder.get_children():
+			i.queue_free()
+		
+		if button.itemHolding.upgrades != null:
+			for upgrade in button.itemHolding.upgrades:
+				var ins = inst_recipe.instantiate()
+				%UpgradeList/MarginContainer/Boundings/Holder.add_child(ins)
+				ins.set_recipe(upgrade)
+				ins.connect("recipeClicked", add_to_do_recipe)
+			%UpgradeList.show()
 
 
-func _on_slot_mouse_entered(slot):
+func _on_slot_mouse_entered(slot : InventorySlot):
 	if drag and itemHold:
-		slot.get_node("InvSlot").show()
 		if slot.itemHolding == null:
+			slot.get_node("InvSlot").show()
 			slot.update_icons(itemHold.icon)
 			slot.self_modulate = Color.GRAY
-		currentItemSlot = slot
+	
+	currentItemSlot = slot
+	
 
 func _on_slot_mouse_exited(slot):
-	if drag and itemHold: 
-		slot.get_node("InvSlot").hide()
-		slot.self_modulate = Color.WHITE
-		
+	if slot.itemHolding == null:
+		if drag and itemHold:
+			slot.update_icons(null)
+			slot.self_modulate = Color.WHITE

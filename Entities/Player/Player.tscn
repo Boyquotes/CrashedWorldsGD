@@ -188,6 +188,7 @@ script = ExtResource("4_bored")
 craftRecipes = SubResource("Resource_i2kl7")
 
 [node name="Bag" type="GridContainer" parent="Inventory"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -226,68 +227,7 @@ isEquipSlot = true
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-
-[node name="ItemList" type="ScrollContainer" parent="Inventory"]
-visible = false
-custom_minimum_size = Vector2(324, 126)
-offset_left = 697.0
-offset_top = 189.0
-offset_right = 737.0
-offset_bottom = 229.0
-theme = SubResource("Theme_adyfc")
-
-[node name="MarginContainer" type="MarginContainer" parent="Inventory/ItemList"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="Inventory/ItemList/MarginContainer"]
-modulate = Color(1, 1, 1, 0.588235)
-layout_mode = 2
-
-[node name="Boundings" type="MarginContainer" parent="Inventory/ItemList/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="Holder" type="VBoxContainer" parent="Inventory/ItemList/MarginContainer/Boundings"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="UpgradeList" type="ScrollContainer" parent="Inventory"]
-visible = false
-custom_minimum_size = Vector2(324, 126)
-offset_left = 697.0
-offset_top = 189.0
-offset_right = 737.0
-offset_bottom = 229.0
-theme = SubResource("Theme_adyfc")
-
-[node name="MarginContainer" type="MarginContainer" parent="Inventory/UpgradeList"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="Inventory/UpgradeList/MarginContainer"]
-modulate = Color(1, 1, 1, 0.588235)
-layout_mode = 2
-
-[node name="Boundings" type="MarginContainer" parent="Inventory/UpgradeList/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="Holder" type="VBoxContainer" parent="Inventory/UpgradeList/MarginContainer/Boundings"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+mouse_default_cursor_shape = 6
 
 [node name="ToDoList" type="MarginContainer" parent="Inventory"]
 custom_minimum_size = Vector2(172, 172)
@@ -354,6 +294,82 @@ stretch_mode = 3
 [node name="PinBox" parent="Inventory/ToDoList/Body/TODO4" instance=ExtResource("11_yk0t8")]
 layout_mode = 2
 key = "Four"
+
+[node name="Crafts" type="MarginContainer" parent="Inventory"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -453.0
+offset_right = -129.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Body" type="VBoxContainer" parent="Inventory/Crafts"]
+layout_mode = 2
+
+[node name="ItemList" type="ScrollContainer" parent="Inventory/Crafts/Body"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(324, 126)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_adyfc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/Crafts/Body/ItemList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Inventory/Crafts/Body/ItemList/MarginContainer"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 2
+
+[node name="Boundings" type="MarginContainer" parent="Inventory/Crafts/Body/ItemList/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Holder" type="VBoxContainer" parent="Inventory/Crafts/Body/ItemList/MarginContainer/Boundings"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UpgradeList" type="ScrollContainer" parent="Inventory/Crafts/Body"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(324, 126)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_adyfc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/Crafts/Body/UpgradeList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Inventory/Crafts/Body/UpgradeList/MarginContainer"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 2
+
+[node name="Boundings" type="MarginContainer" parent="Inventory/Crafts/Body/UpgradeList/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Holder" type="VBoxContainer" parent="Inventory/Crafts/Body/UpgradeList/MarginContainer/Boundings"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Equiped" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)

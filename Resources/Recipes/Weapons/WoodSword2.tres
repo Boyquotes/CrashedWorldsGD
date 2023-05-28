@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=8 format=3 uid="uid://2ci2fmvu6yql"]
+
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_fq134"]
+[ext_resource type="Resource" uid="uid://dkb44hgn3ldco" path="res://Resources/Item/Weapons/WoodSword/WoodSword2.tres" id="3_eityg"]
+[ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="3_ypjfv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0p4vh"]
+load_path = "res://.godot/imported/Wood.png-57918e4eddf783f12abb7e19e1810e37.ctex"
+
+[sub_resource type="Resource" id="Resource_mo2tr"]
+script = ExtResource("1_fq134")
+itemName = "Wood"
+type = ""
+icon = SubResource("CompressedTexture2D_0p4vh")
+amount = 10
+stack = 64
+canBeEquiped = false
+description = "Wood, Indeed."
+objectScenePath = ""
+upgrades = Array[ExtResource("3_ypjfv")]([])
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v7bg4"]
+load_path = "res://.godot/imported/RedBerries.png-947d625eb555ca9efc986ac51938a61d.ctex"
+
+[sub_resource type="Resource" id="Resource_6nccl"]
+resource_local_to_scene = true
+script = ExtResource("1_fq134")
+itemName = "Red Berries"
+type = ""
+icon = SubResource("CompressedTexture2D_v7bg4")
+amount = 6
+stack = 16
+canBeEquiped = true
+description = "Seem to have some healing properties."
+objectScenePath = ""
+upgrades = Array[ExtResource("3_ypjfv")]([])
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_ypjfv")
+inputItems = Array[ExtResource("1_fq134")]([SubResource("Resource_mo2tr"), SubResource("Resource_6nccl")])
+outputItem = ExtResource("3_eityg")

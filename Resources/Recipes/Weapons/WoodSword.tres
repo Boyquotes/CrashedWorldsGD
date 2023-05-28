@@ -15,9 +15,9 @@ icon = SubResource("CompressedTexture2D_bj1e0")
 amount = 10
 stack = 64
 canBeEquiped = false
-canBeUpgraded = false
 description = "Wood, Indeed."
 objectScenePath = ""
+upgrades = Array[ExtResource("1_gdrgs")]([])
 
 [resource]
 script = ExtResource("1_gdrgs")

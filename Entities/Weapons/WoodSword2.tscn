@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://8drj6jjixg4c"]
+
+[ext_resource type="Script" path="res://Entities/Weapons/WoodSword.gd" id="1_yackb"]
+[ext_resource type="Resource" uid="uid://dkb44hgn3ldco" path="res://Resources/Item/Weapons/WoodSword/WoodSword2.tres" id="2_v585u"]
+[ext_resource type="Texture2D" uid="uid://d4a1qam5f5y20" path="res://UI/Icons/Weapons/WoodSword/WoodSword2.png" id="3_dfmj3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsdsh"]
+size = Vector3(1.52575, 1, 0.726034)
+
+[sub_resource type="Animation" id="Animation_w7gbr"]
+resource_name = "Attack"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 0.420448, 1, 2.2974),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0767767, 0.00903273, 0), Vector3(0.695801, 0.00903273, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.35, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 0.420448, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.00444), Vector3(0, 0, 3.14159), Vector3(0, 0, 0.872665), Vector3(0, 0, -0.690225), Vector3(0, 0, 0.75333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 0.420448, 1, 1, 2.2974),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.5, 1.5, 1.5), Vector3(1.33733, 1.33733, 1.33733), Vector3(1, 1, 1), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite3D/Area3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_h453s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpjyx"]
+_data = {
+"Attack": SubResource("Animation_w7gbr"),
+"RESET": SubResource("Animation_h453s")
+}
+
+[node name="Sword" type="Node3D"]
+script = ExtResource("1_yackb")
+item = ExtResource("2_v585u")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(6, 6)
+shaded = true
+texture_filter = 0
+texture = ExtResource("3_dfmj3")
+
+[node name="Area3D" type="Area3D" parent="Sprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219017, 0, 0)
+shape = SubResource("BoxShape3D_xsdsh")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fpjyx")
+}
+
+[connection signal="body_entered" from="Sprite3D/Area3D" to="." method="_on_area_3d_body_entered"]

@@ -43,7 +43,7 @@ func getIntersectionAndRay(cam) -> Array:
 	var mousePosition = get_viewport().get_mouse_position()
 	var rayOrigin = cam.project_ray_origin(mousePosition)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePosition) * 2000
-
+	
 	await get_tree().physics_frame
 	var space = cam.get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()

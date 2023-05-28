@@ -12,12 +12,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var Stats : EntityStats
 
+var screen_x_size : float # Used to flip character based on mouse pos
+
 func _ready():
 	connect("useItem", UseEffect.useItemType)
 	Stats.duplicate()
 	Stats.connect("update", _on_life_changed)
 	Stats.connect("death", _on_death)
 	Stats.update.emit()
+	
+	screen_x_size = get_viewport().size.x
 
 
 func _unhandled_input(event):
@@ -27,15 +31,24 @@ func _unhandled_input(event):
 			$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
-
+			
 	# ITEM USAGE
 	elif event.is_action_pressed("LMB"):
 		if $Equiped.get_child_count() > 0:                     # If item is equiped
-			if not $Equiped.get_child(0) is Sprite3D:          # And it's not a bloc
-				$Equiped.get_child(0).use()                    # use it.
+			$Equiped.get_child(0).use()                    # use it.
 			useItem.emit($Equiped.get_child(0).item, $Camera3D)# pass the info to singleton
 			if $Equiped.get_child(0).item.amount <= 0:         # if there is no more item after that
 				$Equiped.get_child(0).queue_free()             # delete the item
+	
+	if event is InputEventMouseMotion:
+		if event.position.x >= screen_x_size/2:
+			$AnimatedSprite3D.flip_h = false
+			$Equiped.position.x = 0.3
+			$Equiped.scale.x = 1
+		else:
+			$AnimatedSprite3D.flip_h = true
+			$Equiped.position.x = -0.3
+			$Equiped.scale.x = -1
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -60,26 +73,15 @@ func _physics_process(delta):
 	if velocity == Vector3.ZERO:
 		$AnimatedSprite3D.play("Idle")
 	else:
-		if velocity.x > 0:
-			$AnimatedSprite3D.flip_h = false
-			$Equiped.position.x = 0.3
-			$Equiped.scale.x = 1
-		else:
-			$AnimatedSprite3D.flip_h = true
-			$Equiped.position.x = -0.3
-			$Equiped.scale.x = -1
-
 		$AnimatedSprite3D.play("Run")
-
+	
 	move_and_slide()
-
-
 
 func equip(item):
 	if $Equiped.get_child_count() > 0:
 		for i in $Equiped.get_children():
 			i.queue_free()
-	if item :
+	if item : 
 		$Equiped.show()
 		var inst
 		if item.objectScenePath:
@@ -87,7 +89,7 @@ func equip(item):
 			if inst.item == null:
 				inst.item = item
 		$Equiped.add_child(inst)
-
+		
 	else:
 		$Equiped.hide()
 		$Equiped.get_child(0).queue_free()
