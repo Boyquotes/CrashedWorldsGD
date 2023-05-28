@@ -12,6 +12,8 @@ func dig(cam):
 	var mousePosition = get_viewport().get_mouse_position()
 	var rayOrigin = cam.project_ray_origin(mousePosition)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePosition) * 2000
+	
+	await get_tree().physics_frame
 	var space = cam.get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()
 	ray_query.from = rayOrigin
@@ -25,6 +27,7 @@ func dig(cam):
 		if floor(pos.y + normalizedDir.y) <= 0: return
 		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
 		destroyGrid.emit(posI)
+	
 
 func placebloc(cam, itemName : String):
 	var id

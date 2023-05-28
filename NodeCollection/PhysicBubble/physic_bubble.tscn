@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://NodeCollection/PhysicBubble/physic_bubble.gd" id="1_5oo1w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3yvl2"]
-size = Vector3(10, 10, 10)
 
 [node name="PhysicBubble" type="Area3D"]
 script = ExtResource("1_5oo1w")
