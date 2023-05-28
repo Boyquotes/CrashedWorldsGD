@@ -207,7 +207,7 @@ objectScenePath = "res://Entities/Weapons/WoodSword.tscn"
 script = ExtResource("1_rpshw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.441729, -0.897147, 0, 0.897147, -0.441729, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.792385, 0.610018, 0, -0.610018, -0.792385, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true

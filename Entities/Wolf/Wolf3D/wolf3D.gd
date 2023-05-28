@@ -24,6 +24,7 @@ var workaroundDone : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await RenderingServer.frame_post_draw
 	viewportworkaround = $SubViewport.get_texture()
 	randomize()
 	_on_state_changed(State)
@@ -39,7 +40,11 @@ func _ready():
 
 func _process(_delta):
 	if not workaroundDone : 
-		$Sprite3D.material.albedo_texture = viewportworkaround
+		var mat : StandardMaterial3D = StandardMaterial3D.new()
+		mat.albedo_texture = viewportworkaround
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		$Mesh.set_surface_override_material(0, mat)
+
 		workaroundDone = true
 	
 	
@@ -200,8 +205,8 @@ func _on_area_attack_body_exited(body):
 		Target = body
 
 func _hide():
-	$Sprite3D.hide()
+	$Mesh.hide()
 	$Label3D.hide()
 func _show():
 	$Label3D.show()
-	$Sprite3D.show()
+	$Mesh.show()

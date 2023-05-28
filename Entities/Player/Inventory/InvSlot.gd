@@ -1,4 +1,5 @@
 extends TextureRect
+class_name InventorySlot
 
 signal onPressed
 signal onMouseHover
@@ -19,7 +20,6 @@ func _process(_delta):
 		%Quantity.text = str(itemHolding.amount)
 	else:
 		%Quantity.text = ""
-		
 
 func _on_item_changed(item):
 	$InvSlot.show()
@@ -38,7 +38,7 @@ func _on_item_changed(item):
 	if isEquipSlot:
 		equipedItem.emit(item)
 
-func update_icons(tex):
+func update_icons(tex : Texture):
 	%InvSlot.texture_normal = tex
 	%InvSlot.texture_pressed = tex
 	%InvSlot.texture_hover = tex
@@ -53,4 +53,8 @@ func _on_mouse_exited():
 	onMouseLeft.emit(self)
 
 func _on_inv_slot_gui_input(_event):
+#	onMouseHover.emit(self)
+	pass
+
+func _on_inv_slot_mouse_entered():
 	onMouseHover.emit(self)

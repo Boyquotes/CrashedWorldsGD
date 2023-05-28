@@ -52,9 +52,9 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("RMB"):
+	if event.is_action_pressed("RMB"): # Hide recipe list
 		$ItemList.hide()
-	if event.is_action_pressed("Interact"):
+	if event.is_action_pressed("Interact"): # Open / close inventory
 		button_hovered = null
 		if $Bag.visible:
 			$Bag.hide()
@@ -67,16 +67,20 @@ func _input(event):
 		if button_hovered.itemHolding:
 			drag = true
 			itemHold = button_hovered.itemHolding
+		
 	if event.is_action_released("LMB") : 
 		drag = false
-		if button_hovered == currentItemSlot:return # trying to place item on same slot
+		
+		if button_hovered == currentItemSlot : return # trying to place item on same slot
 			
 		if itemHold and currentItemSlot:
 			move_item_to(currentItemSlot)
+		
+		itemHold = null
 	
 	if drag and itemHold != null: 
 		if event is InputEventMouseMotion:
-			$Marker.show()
+			if $Marker.visible == false : $Marker.show()
 			$Marker.global_position = event.position - Vector2(16.0,16.0)
 	else:
 		$Marker.hide()
@@ -190,16 +194,18 @@ func _on_button_pressed(button):
 		$Marker.texture = button.itemHolding.icon
 
 
-func _on_slot_mouse_entered(slot):
+func _on_slot_mouse_entered(slot : InventorySlot):
 	if drag and itemHold:
-		slot.get_node("InvSlot").show()
 		if slot.itemHolding == null:
+			slot.get_node("InvSlot").show()
 			slot.update_icons(itemHold.icon)
 			slot.self_modulate = Color.GRAY
-		currentItemSlot = slot
+	
+	currentItemSlot = slot
+	
 
 func _on_slot_mouse_exited(slot):
-	if drag and itemHold: 
-		slot.get_node("InvSlot").hide()
-		slot.self_modulate = Color.WHITE
-		
+	if slot.itemHolding == null:
+		if drag and itemHold:
+			slot.update_icons(null)
+			slot.self_modulate = Color.WHITE

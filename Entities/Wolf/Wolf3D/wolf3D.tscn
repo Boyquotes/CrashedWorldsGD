@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yib7ain7e5ai"]
+[gd_scene load_steps=13 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
 [ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
@@ -13,19 +13,17 @@ maxLife = 5
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3g1y2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ojro"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_3g1y2")
+
 [sub_resource type="QuadMesh" id="QuadMesh_7goh1"]
 resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_1ojro")
 size = Vector2(0.64, 0.64)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rf1c0"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.508
-alpha_antialiasing_mode = 0
-shading_mode = 2
-texture_filter = 0
-texture_repeat = false
-disable_receive_shadows = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bw6e8"]
 
@@ -44,14 +42,13 @@ Stats = SubResource("Resource_o48om")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_57huf")
 
-[node name="Sprite3D" type="CSGMesh3D" parent="."]
-calculate_tangents = false
+[node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_7goh1")
-material = SubResource("StandardMaterial3D_rf1c0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
 transparent_bg = true
+msaa_2d = 3
+mesh_lod_threshold = 0.0
 canvas_item_default_texture_filter = 0
 canvas_cull_mask = 4293918721
 size = Vector2i(64, 64)

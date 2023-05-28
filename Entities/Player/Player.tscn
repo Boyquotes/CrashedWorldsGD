@@ -139,7 +139,7 @@ default_font_size = 16
 Fonts/fonts/large = ExtResource("8_oco0k")
 Fonts/fonts/normal = ExtResource("8_oco0k")
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53517, 0)
 collision_mask = 5
 script = ExtResource("1_ku8ux")
@@ -160,7 +160,6 @@ frame_progress = 0.64943
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 0, 0.8, 3.75)
 v_offset = 0.5
-current = true
 fov = 80.0
 far = 500.0
 
@@ -227,6 +226,7 @@ isEquipSlot = true
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+mouse_default_cursor_shape = 6
 
 [node name="ItemList" type="ScrollContainer" parent="Inventory"]
 visible = false
