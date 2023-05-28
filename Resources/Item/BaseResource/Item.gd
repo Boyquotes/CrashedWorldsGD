@@ -8,20 +8,21 @@ class_name Item
 @export var amount : int
 @export var stack : int
 @export var canBeEquiped : bool
-@export var canBeUpgraded : bool
 @export var description : String
 @export var objectScenePath : String
 
+@export var upgrades : Array[Recipe]
 
-func _init(item_name : String = "", itemType : String = "",new_icon : Texture2D = load("res://icon.svg") , quantity : int = 1, stackSize : int = 64, isEquipment : bool = false, isUpgradable : bool = false, itemDescription : String = "a cool item", objectscene : String = ""):
+
+func _init(item_name : String = "", itemType : String = "",new_icon : Texture2D = load("res://icon.svg") , quantity : int = 1, stackSize : int = 64, isEquipment : bool = false, itemDescription : String = "a cool item", objectscene : String = "", upgradelist : Array[Recipe] = []):
 	itemName = item_name
 	icon = new_icon
 	amount = quantity
 	stack = stackSize
 	canBeEquiped = isEquipment
-	canBeUpgraded = isUpgradable
 	description = itemDescription
 	objectScenePath = objectscene
 	type = itemType
+	upgrades = upgradelist
 
 
