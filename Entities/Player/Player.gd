@@ -20,7 +20,7 @@ func _ready():
 	Stats.connect("update", _on_life_changed)
 	Stats.connect("death", _on_death)
 	Stats.update.emit()
-	
+
 	screen_x_size = get_viewport().size.x
 
 
@@ -28,10 +28,12 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $Inventory/Bag.visible:
 			$Inventory/Bag.hide()
-			$Inventory/ItemList.hide()
+			#if $Inventory/ItemList is not null
+			if $Inventory/ItemList:
+				$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
-			
+
 	# ITEM USAGE
 	elif event.is_action_pressed("LMB"):
 		if $Equiped.get_child_count() > 0:                     # If item is equiped
@@ -39,7 +41,7 @@ func _unhandled_input(event):
 			useItem.emit($Equiped.get_child(0).item, $Camera3D)# pass the info to singleton
 			if $Equiped.get_child(0).item.amount <= 0:         # if there is no more item after that
 				$Equiped.get_child(0).queue_free()             # delete the item
-	
+
 	if event is InputEventMouseMotion:
 		if event.position.x >= screen_x_size/2:
 			$AnimatedSprite3D.flip_h = false
@@ -74,14 +76,14 @@ func _physics_process(delta):
 		$AnimatedSprite3D.play("Idle")
 	else:
 		$AnimatedSprite3D.play("Run")
-	
+
 	move_and_slide()
 
 func equip(item):
 	if $Equiped.get_child_count() > 0:
 		for i in $Equiped.get_children():
 			i.queue_free()
-	if item : 
+	if item :
 		$Equiped.show()
 		var inst
 		if item.objectScenePath:
@@ -89,7 +91,7 @@ func equip(item):
 			if inst.item == null:
 				inst.item = item
 		$Equiped.add_child(inst)
-		
+
 	else:
 		$Equiped.hide()
 		$Equiped.get_child(0).queue_free()
