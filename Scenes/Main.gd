@@ -31,7 +31,6 @@ func destroyGrid(pos: Vector3i):
 	for i in blocitem:
 		var inst = itemdrop.instantiate()
 		inst.item = i
-		$Items.add_child(inst)
 		inst.global_position = Vector3(pos.x + 0.5, pos.y + 0.5, pos.z+0.5)
 		$GridMap.set_cell_item(pos, $GridMap.INVALID_CELL_ITEM)
 
