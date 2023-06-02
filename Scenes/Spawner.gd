@@ -46,4 +46,4 @@ func create_random_position(min_range: int = 0, max_range: int = 256) -> Vector3
 	var x = randi_range(min_range, max_range)
 	var z = randi_range(min_range, max_range)
 	var y: int = get_parent().get_heighest_cell(x, z)
-	return Vector3(x, y + 1, z)
+	return Vector3(x, y + 1.1, z)
