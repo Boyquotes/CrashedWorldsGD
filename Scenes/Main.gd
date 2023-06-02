@@ -1,7 +1,6 @@
 extends Node3D
 class_name MainGame
 
-var wolf_scene = preload("res://Entities/Wolf/Wolf3D/wolf3D.tscn")
 @onready var itemdrop = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 
 #func _input(event):

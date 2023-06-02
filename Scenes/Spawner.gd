@@ -1,6 +1,7 @@
 extends Node3D
 
-var item_scene = preload("res://Entities/ItemDrop/ItemDrop.tscn")
+@onready var item_scene = preload("res://Entities/ItemDrop/ItemDrop.tscn")
+
 @export var spawned_items: Array[Item]
 @export var spawned_ai: Array[PackedScene]
 @export var spawned_objects: Array[PackedScene]
@@ -39,7 +40,6 @@ func spawn_items(amount: int = 200) -> void:
 			item_drop.scale = Vector3(2.5,2.5,2.5)
 			add_child(item_drop)
 			item_drop.global_position = create_random_position(55,60)
-			
 			#print("globalpos of item: "+ str(item_drop.global_position))
 
 func create_random_position(min_range: int = 0, max_range: int = 256) -> Vector3:
