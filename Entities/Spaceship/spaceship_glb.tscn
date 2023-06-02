@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://frneucsl7hc4"]
+[gd_scene load_steps=9 format=3 uid="uid://frneucsl7hc4"]
 
 [ext_resource type="PackedScene" uid="uid://dsccm2dkxa5g6" path="res://Entities/Spaceship/Spaceship.glb" id="1_2uk3t"]
+[ext_resource type="Script" path="res://Entities/Spaceship/SpaceshipTrigger.gd" id="2_q41cp"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_llyw5"]
 domain_warp_enabled = true
@@ -19,6 +20,13 @@ metallic_texture = SubResource("NoiseTexture2D_xilh5")
 transparency = 1
 albedo_color = Color(0.796078, 1, 0.921569, 0.615686)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_rj3w3"]
+radius = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_287cu"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Spaceship" instance=ExtResource("1_2uk3t")]
 
 [node name="Base" parent="." index="0"]
@@ -27,3 +35,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g8q8j")
 [node name="Cockpit" parent="." index="1"]
 transform = Transform3D(2.38886, 0, 0, 0, 2.40565, 0, 0, 0, 2.81943, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_xlqij")
+
+[node name="Area3D" type="Area3D" parent="Cockpit" index="0"]
+monitorable = false
+script = ExtResource("2_q41cp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cockpit/Area3D" index="0"]
+shape = SubResource("SphereShape3D_rj3w3")
+
+[node name="Label" type="Label" parent="Cockpit/Area3D" index="1"]
+offset_left = 41.0
+offset_top = 84.0
+offset_right = 376.0
+offset_bottom = 136.0
+label_settings = SubResource("LabelSettings_287cu")
+autowrap_mode = 3
+
+[connection signal="body_entered" from="Cockpit/Area3D" to="Cockpit/Area3D" method="_on_body_entered"]
