@@ -23,8 +23,8 @@ ItemDrop="*res://Entities/ItemDrop/ItemDrop.gd"
 [display]
 
 window/size/initial_position_type=2
-window/per_pixel_transparency/allowed=true
 window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
 
 [editor]
 
@@ -99,8 +99,8 @@ Four={
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
-occlusion_culling/use_occlusion_culling=true
 textures/canvas_textures/default_texture_filter=0
+occlusion_culling/use_occlusion_culling=true
 
 [threading]
 

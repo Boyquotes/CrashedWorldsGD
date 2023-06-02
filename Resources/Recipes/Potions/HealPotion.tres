@@ -16,9 +16,9 @@ icon = SubResource("CompressedTexture2D_hxdxe")
 amount = 5
 stack = 16
 canBeEquiped = true
-canBeUpgraded = false
 description = "Seem to have some healing properties."
 objectScenePath = ""
+upgrades = Array[ExtResource("1_easoi")]([])
 
 [resource]
 script = ExtResource("1_easoi")

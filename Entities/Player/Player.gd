@@ -28,9 +28,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $Inventory/Bag.visible:
 			$Inventory/Bag.hide()
-			#if $Inventory/ItemList is not null
-			if $Inventory/ItemList:
-				$Inventory/ItemList.hide()
+			#Node not found: "Inventory/ItemList".
+			#$Inventory/ItemList.hide()
 		else:
 			$Inventory/Bag.show()
 

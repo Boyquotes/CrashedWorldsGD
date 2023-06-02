@@ -11,6 +11,6 @@ icon = ExtResource("1_uo1aa")
 amount = 1
 stack = 1
 canBeEquiped = true
-canBeUpgraded = false
 description = "A wood pickaxe. What else ?"
 objectScenePath = "res://Entities/Tool/Pickaxe.tscn"
+upgrades = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([])

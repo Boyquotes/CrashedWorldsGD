@@ -1,6 +1,6 @@
 extends Node3D
 
-
+var item_scene = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 @export var spawned_items: Array[Item]
 @export var spawned_ai: Array[PackedScene]
 @export var spawned_objects: Array[PackedScene]
@@ -20,7 +20,7 @@ func spawn_creatures(amount: int = 200) -> void:
 			wolf.position = create_random_position()
 			wolf.scale = Vector3(2.5,2.5,2.5)
 			add_child(wolf)
-			print("ai pos: "+ str(wolf.position))
+			#print("ai pos: "+ str(wolf.position))
 
 func spawn_objects(amount: int = 200) -> void:
 	for scene in spawned_objects:
@@ -29,18 +29,18 @@ func spawn_objects(amount: int = 200) -> void:
 			object.global_position = create_random_position()
 			object.scale = Vector3(2.5,2.5,2.5)
 			add_child(object)
-			print("globalpos: "+ str(object.global_position))
+			#print("globalpos: "+ str(object.global_position))
 
 func spawn_items(amount: int = 200) -> void:
-	var item_scene = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 	for item in spawned_items:
 		for i in range(amount):
 			var item_drop: ItemDrop = item_scene.instantiate()
 			item_drop.item = item
 			item_drop.scale = Vector3(2.5,2.5,2.5)
-			item_drop.global_position = create_random_position(50,70)
 			add_child(item_drop)
-			print("globalpos of item: "+ str(item_drop.global_position))
+			item_drop.global_position = create_random_position(55,60)
+			
+			#print("globalpos of item: "+ str(item_drop.global_position))
 
 func create_random_position(min_range: int = 0, max_range: int = 256) -> Vector3:
 	var x = randi_range(min_range, max_range)
