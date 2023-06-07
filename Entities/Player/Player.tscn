@@ -27,7 +27,7 @@ maxLife = 10
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf6lr"]
 radius = 0.19
-height = 0.5
+height = 0.415354
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agyqk"]
 atlas = ExtResource("2_eqb5d")
@@ -176,7 +176,6 @@ texture = SubResource("ViewportTexture_egohb")
 
 [node name="SubViewport" type="SubViewport" parent="Life"]
 transparent_bg = true
-msaa_2d = 3
 canvas_item_default_texture_filter = 0
 size = Vector2i(64, 64)
 render_target_update_mode = 4

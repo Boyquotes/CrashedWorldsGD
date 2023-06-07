@@ -73,7 +73,9 @@ func _physics_process(delta):
 
 	if velocity == Vector3.ZERO:
 		$AnimatedSprite3D.play("Idle")
+		$Camera3D.position.z = lerp($Camera3D.position.z, 3.75, 0.1)
 	else:
+		$Camera3D.position.z = lerp($Camera3D.position.z, 4.25, 0.1)
 		$AnimatedSprite3D.play("Run")
 
 	move_and_slide()

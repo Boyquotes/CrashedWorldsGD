@@ -159,7 +159,7 @@ colors = PackedColorArray(0.7, 0.455, 0, 1, 0.728571, 0.0961304, 0.0308007, 1, 0
 script = ExtResource("1_rpshw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.725719, 0.68799, 0, -0.68799, -0.725719, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.500807, 0.865558, 0, -0.865558, 0.500807, 0, 0, 0)
 light_color = Color(0.964706, 0.764706, 0.6, 1)
 light_energy = 0.9
 shadow_enabled = true
