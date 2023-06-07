@@ -1,13 +1,13 @@
 [gd_scene load_steps=21 format=3 uid="uid://bemusdriw3e4o"]
 
 [ext_resource type="Script" path="res://Scripts/Palette/PaletteParts.gd" id="1_1qbjg"]
-[ext_resource type="Shader" path="res://Entities/Wolf/node_2d.gdshader" id="1_lg48l"]
+[ext_resource type="Shader" path="res://Entities/Wolf/node_2d.gdshader" id="2_hxxs8"]
 [ext_resource type="Texture2D" uid="uid://c3lq7kgxd6ykl" path="res://Entities/Wolf/WolfHeadIdle.png" id="3_oqn34"]
 [ext_resource type="Texture2D" uid="uid://b1o0psioegaou" path="res://Entities/Wolf/WolfBodyIdle.png" id="4_ildu0"]
 [ext_resource type="Texture2D" uid="uid://buu8jtgw5n1hm" path="res://Entities/Wolf/WolfTailIdle.png" id="5_722bj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_476gq"]
-shader = ExtResource("1_lg48l")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twg6h"]
+shader = ExtResource("2_hxxs8")
 shader_parameter/color0 = null
 shader_parameter/color1 = null
 shader_parameter/color2 = null
@@ -33,8 +33,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhicm"]
-shader = ExtResource("1_lg48l")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t75ys"]
+shader = ExtResource("2_hxxs8")
 shader_parameter/color0 = null
 shader_parameter/color1 = null
 shader_parameter/color2 = null
@@ -81,8 +81,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8tol"]
-shader = ExtResource("1_lg48l")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0amk"]
+shader = ExtResource("2_hxxs8")
 shader_parameter/color0 = null
 shader_parameter/color1 = null
 shader_parameter/color2 = null
@@ -133,24 +133,21 @@ animations = [{
 script = ExtResource("1_1qbjg")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_476gq")
+material = SubResource("ShaderMaterial_twg6h")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_6lnj0")
 animation = &"Idle"
 frame_progress = 0.145194
 
 [node name="Tail" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_hhicm")
+material = SubResource("ShaderMaterial_t75ys")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_0dj35")
 animation = &"Idle"
 frame_progress = 0.872705
 
 [node name="Head" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_l8tol")
+material = SubResource("ShaderMaterial_m0amk")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_lvf8q")
 animation = &"Idle"

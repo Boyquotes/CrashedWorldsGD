@@ -18,7 +18,9 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ojro"]
 resource_local_to_scene = true
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = SubResource("ViewportTexture_q17x6")
 texture_filter = 0
 texture_repeat = false
@@ -49,6 +51,7 @@ shape = SubResource("BoxShape3D_57huf")
 mesh = SubResource("QuadMesh_7goh1")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
 transparent_bg = true
 canvas_cull_mask = 4293918721
 size = Vector2i(64, 64)

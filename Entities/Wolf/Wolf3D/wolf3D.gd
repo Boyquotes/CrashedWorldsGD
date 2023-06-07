@@ -42,7 +42,7 @@ func _process(_delta):
 	if not workaroundDone : 
 		var mat : StandardMaterial3D = StandardMaterial3D.new()
 		mat.albedo_texture = viewportworkaround
-		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 		$Mesh.set_surface_override_material(0, mat)
 
 		workaroundDone = true
