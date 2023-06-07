@@ -8,7 +8,7 @@ signal equipedItem
 
 @export var isEquipSlot : bool = false
 
-var itemHolding = null :
+var itemHolding: Item = null:
 	set(value):
 		itemHolding = value
 		_on_item_changed(value)
@@ -21,7 +21,7 @@ func _process(_delta):
 	else:
 		%Quantity.text = ""
 
-func _on_item_changed(item):
+func _on_item_changed(item: Item):
 	$InvSlot.show()
 	$Quantity.show()
 	if item != null:

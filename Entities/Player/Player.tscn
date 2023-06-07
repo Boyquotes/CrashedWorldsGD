@@ -26,8 +26,8 @@ life = 10
 maxLife = 10
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hf6lr"]
-radius = 0.19
-height = 0.415354
+radius = 0.16
+height = 0.419783
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agyqk"]
 atlas = ExtResource("2_eqb5d")
@@ -139,7 +139,7 @@ default_font_size = 16
 Fonts/fonts/large = ExtResource("8_oco0k")
 Fonts/fonts/normal = ExtResource("8_oco0k")
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53517, 0)
 collision_mask = 5
 script = ExtResource("1_ku8ux")
@@ -158,10 +158,9 @@ animation = &"Idle"
 frame_progress = 0.64943
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.927184, 0.374606, 0, -0.374606, 0.927184, 0, 0.8, 3.75)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.5, 3.75)
 v_offset = 0.5
-fov = 80.0
-far = 500.0
+far = 200.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
@@ -176,6 +175,7 @@ texture = SubResource("ViewportTexture_egohb")
 
 [node name="SubViewport" type="SubViewport" parent="Life"]
 transparent_bg = true
+msaa_2d = 3
 canvas_item_default_texture_filter = 0
 size = Vector2i(64, 64)
 render_target_update_mode = 4

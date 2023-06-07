@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://cko02oljhiby"]
+
+[ext_resource type="Script" path="res://UI/main_menu_and_game_over/paused/paused.gd" id="1_3v2tm"]
+[ext_resource type="Script" path="res://UI/main_menu_and_game_over/paused/options.gd" id="2_64p0f"]
+
+[node name="Paused" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3v2tm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -24.0
+offset_right = 1317.0
+offset_bottom = 750.0
+color = Color(0.156863, 0.396078, 0.384314, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = 79.0
+offset_right = 47.0
+offset_bottom = 121.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Paused"
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 139.0
+offset_right = 132.0
+offset_bottom = 173.0
+grow_horizontal = 2
+text = "Press P to resume."
+horizontal_alignment = 1
+
+[node name="PauseOptions" type="VFlowContainer" parent="." node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.5
+offset_top = -544.0
+offset_right = 86.5
+grow_horizontal = 2
+grow_vertical = 0
+shortcut_context = NodePath("Resume")
+alignment = 1
+script = ExtResource("2_64p0f")
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="PauseOptions"]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="PauseOptions"]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[node name="Quit" type="Button" parent="PauseOptions"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PauseOptions/Resume" to="." method="_resume"]
+[connection signal="pressed" from="PauseOptions/MainMenu" to="PauseOptions" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseOptions/Quit" to="PauseOptions" method="_on_quit_pressed"]

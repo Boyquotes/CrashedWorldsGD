@@ -1,7 +1,6 @@
 extends Node3D
 class_name MainGame
 
-var wolf_scene = preload("res://Entities/Wolf/Wolf3D/wolf3D.tscn")
 @onready var itemdrop = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 
 #func _input(event):
@@ -31,7 +30,7 @@ func destroyGrid(pos: Vector3i):
 	for i in blocitem:
 		var inst = itemdrop.instantiate()
 		inst.item = i
-		$ItemsDrop.add_child(inst)
+		$GridMap/Spawner.add_child(inst)
 		inst.global_position = Vector3(pos.x + 0.5, pos.y + 0.5, pos.z+0.5)
 		$GridMap.set_cell_item(pos, $GridMap.INVALID_CELL_ITEM)
 
@@ -39,5 +38,10 @@ func placeGrid(pos: Vector3i, id:int):
 	if $GridMap.get_cell_item(pos) == $GridMap.INVALID_CELL_ITEM:
 		$GridMap.set_cell_item(pos, id)
 
-
-
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("pause"):
+		call_deferred("_pause")
+		
+func _pause() -> void:
+	$Paused.pause()
+	get_tree().paused = true
