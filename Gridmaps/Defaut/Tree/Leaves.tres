@@ -8,14 +8,16 @@ colors = PackedColorArray(0, 0.199219, 0.131206, 1, 0.0654665, 0.275306, 0.14016
 noise_type = 2
 frequency = 0.0025
 fractal_type = 3
-fractal_lacunarity = 2.576
+fractal_lacunarity = 2.796
 fractal_gain = 2.437
+fractal_ping_pong_strength = 2.069
 cellular_jitter = 0.74
 cellular_return_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jl4qk"]
-width = 64
-height = 64
+resource_name = "_albedo"
+width = 126
+height = 126
 seamless = true
 seamless_blend_skirt = 1.0
 color_ramp = SubResource("Gradient_823md")
@@ -23,6 +25,8 @@ noise = SubResource("FastNoiseLite_sc3v3")
 
 [resource]
 albedo_texture = SubResource("NoiseTexture2D_jl4qk")
-uv1_scale = Vector3(0.082, 0.082, 0.082)
-uv1_triplanar = true
+metallic_specular = 0.0
+clearcoat = 0.18
+clearcoat_roughness = 1.0
+uv1_scale = Vector3(2, 2, 2)
 texture_filter = 0

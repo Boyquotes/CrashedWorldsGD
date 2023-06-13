@@ -1,9 +1,9 @@
 extends Sprite3D
 
-@export var item : Item
+@export var item : ItemHolder
 
 func _ready():
-	texture = item.icon
+	texture = item.item.icon
 
 func use():
-	item.amount -= 1
+	item.quantity -= 1

@@ -1,25 +1,21 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://bgju6am7x380y"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=7 format=3 uid="uid://bgju6am7x380y"]
 
-[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_cfkeg"]
+[ext_resource type="Resource" uid="uid://btnu1ct6ct83h" path="res://Resources/Item/Lootables/Wood.tres" id="1_xa8jh"]
 [ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="2_211my"]
+[ext_resource type="Script" path="res://Resources/ItemHolder/ItemHolder.gd" id="2_hbvxc"]
 [ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="3_i3pmd"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jgsn0"]
-load_path = "res://.godot/imported/Wood.png-57918e4eddf783f12abb7e19e1810e37.ctex"
+[sub_resource type="Resource" id="Resource_uocpt"]
+script = ExtResource("2_hbvxc")
+item = ExtResource("1_xa8jh")
+quantity = 10
 
-[sub_resource type="Resource" id="Resource_0lxtn"]
-script = ExtResource("1_cfkeg")
-itemName = "Wood"
-type = ""
-icon = SubResource("CompressedTexture2D_jgsn0")
-amount = 5
-stack = 64
-canBeEquiped = false
-description = "Wood, Indeed."
-objectScenePath = ""
-upgrades = Array[ExtResource("3_i3pmd")]([])
+[sub_resource type="Resource" id="Resource_ko2s7"]
+script = ExtResource("2_hbvxc")
+item = ExtResource("2_211my")
+quantity = 1
 
 [resource]
 script = ExtResource("3_i3pmd")
-inputItems = Array[ExtResource("1_cfkeg")]([SubResource("Resource_0lxtn")])
-outputItem = ExtResource("2_211my")
+inputItems = Array[ExtResource("2_hbvxc")]([SubResource("Resource_uocpt")])
+outputItem = SubResource("Resource_ko2s7")

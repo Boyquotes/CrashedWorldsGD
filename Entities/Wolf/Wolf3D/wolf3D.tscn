@@ -1,14 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://yib7ain7e5ai"]
+[gd_scene load_steps=18 format=3 uid="uid://yib7ain7e5ai"]
 
 [ext_resource type="Script" path="res://Entities/Wolf/Wolf3D/wolf3D.gd" id="1_lqg7c"]
 [ext_resource type="PackedScene" uid="uid://bemusdriw3e4o" path="res://Entities/Wolf/Wolf.tscn" id="1_q6onx"]
 [ext_resource type="Script" path="res://Resources/EntityStats/EntityStats.gd" id="2_3vm3p"]
+[ext_resource type="Script" path="res://Resources/Lootable/Lootable.gd" id="2_kl5ea"]
+[ext_resource type="Script" path="res://Resources/Lootable/Loot.gd" id="3_2trdj"]
+[ext_resource type="Resource" uid="uid://bh4qi0qarx8en" path="res://Resources/Item/Lootables/Berries/BlackBerry.tres" id="4_7tlqf"]
 [ext_resource type="PackedScene" uid="uid://c8muusfrhdpa6" path="res://Resources/EntityStats/EntityStats.tscn" id="4_dnx8f"]
+
+[sub_resource type="Resource" id="Resource_5b8s2"]
+script = ExtResource("3_2trdj")
+item = ExtResource("4_7tlqf")
+percentage = 1
+
+[sub_resource type="Resource" id="Resource_euv07"]
+script = ExtResource("2_kl5ea")
+loots = Array[ExtResource("3_2trdj")]([SubResource("Resource_5b8s2")])
+minNumberLoot = 0
+maxNumberLoot = 1
 
 [sub_resource type="Resource" id="Resource_o48om"]
 script = ExtResource("2_3vm3p")
 life = 5
 maxLife = 5
+lootable = SubResource("Resource_euv07")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57huf"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -85,7 +100,7 @@ shape = SubResource("BoxShape3D_odu5j")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613343, 0)
-text = "COUCOU"
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(-3, 0, 0)

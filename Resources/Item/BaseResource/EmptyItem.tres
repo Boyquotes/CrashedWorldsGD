@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dnkpgsaujbl7l"]
+
+[ext_resource type="Script" path="res://Resources/Item/BaseResource/Item.gd" id="1_aywu7"]
+
+[resource]
+script = ExtResource("1_aywu7")
+itemName = ""
+type = ""
+stack = 0
+canBeEquiped = false
+description = ""
+objectScenePath = ""
+upgrades = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([])

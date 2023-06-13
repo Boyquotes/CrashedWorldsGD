@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=7 format=3 uid="uid://b0cx85hv7sejw"]
+
+[ext_resource type="Script" path="res://Resources/Recipes/BaseResource/Recipe.gd" id="1_hmabl"]
+[ext_resource type="Resource" uid="uid://brweaxj1dm7fl" path="res://Resources/Item/Lootables/Berries/RedBerry.tres" id="1_u5454"]
+[ext_resource type="Script" path="res://Resources/ItemHolder/ItemHolder.gd" id="2_hy2pg"]
+[ext_resource type="Resource" uid="uid://cdo8luiuo4y1d" path="res://Resources/Item/Potions/HealPotion.tres" id="3_5jeb0"]
+
+[sub_resource type="Resource" id="Resource_p0cuq"]
+script = ExtResource("2_hy2pg")
+item = ExtResource("1_u5454")
+quantity = 4
+
+[sub_resource type="Resource" id="Resource_apmxl"]
+script = ExtResource("2_hy2pg")
+item = ExtResource("3_5jeb0")
+quantity = 1
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_hmabl")
+inputItems = Array[ExtResource("2_hy2pg")]([SubResource("Resource_p0cuq")])
+outputItem = SubResource("Resource_apmxl")

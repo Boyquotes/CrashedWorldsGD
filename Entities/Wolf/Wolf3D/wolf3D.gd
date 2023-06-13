@@ -11,7 +11,7 @@ enum states {IDLE, GUARD, AGGRO, ATTACK, BITE}
 
 @export var State: states:
 	set(val):
-		State = val
+		State = val	
 		_on_state_changed(val)
 	get : return State
 
@@ -79,7 +79,7 @@ func _physics_process(_delta):
 # ------------------------------------------------------------------------------ CUSTOM METHODS
 func _Idle():
 	
-	$Label3D.text = "IDLE"
+#	$Label3D.text = "IDLE"
 #	_on_timer_timeout()
 	if $Timer.is_stopped():
 		$Timer.wait_time = randf_range(1.0, 5.0)
@@ -104,7 +104,7 @@ func _Idle():
 	velocity.y = 0
 
 func _Guard():
-	$Label3D.text = "GUARD"
+#	$Label3D.text = "GUARD"
 	if Target and seePlayer:
 		var movement = (Target.global_position -  global_position).normalized() * guardSpeed
 		velocity = movement
@@ -113,7 +113,7 @@ func _Guard():
 	
 
 func _Aggro():
-	$Label3D.text = "AGGRO"
+#	$Label3D.text = "AGGRO"
 	if Target :
 		var movement = (Target.global_position -  global_position).normalized() * speed
 		velocity = movement
@@ -121,7 +121,7 @@ func _Aggro():
 		#INSERT ANIMATIONS
 
 func _Attack():
-	$Label3D.text = "ATTACK"
+#	$Label3D.text = "ATTACK"
 	velocity = Vector3.ZERO
 	
 func _Bite():#C'est drôle hein
@@ -129,6 +129,7 @@ func _Bite():#C'est drôle hein
 	pass
 
 func on_death():
+	SceneManager.dropRequest.emit(Stats.lootable.dropLoot(), global_position)
 	queue_free()
 
 func on_life_update():

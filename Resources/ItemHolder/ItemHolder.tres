@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemHolder" load_steps=2 format=3 uid="uid://ddtvl6r7prxgf"]
+
+[ext_resource type="Script" path="res://Resources/ItemHolder/ItemHolder.gd" id="1_hdb8y"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_hdb8y")
+quantity = 0

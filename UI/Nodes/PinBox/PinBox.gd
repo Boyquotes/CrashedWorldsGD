@@ -15,9 +15,9 @@ func set_recipe(recipe : Recipe):
 	for i in recipe.inputItems:
 		var inst = itembox.instantiate()
 		$Boundings/Body/Inputs.add_child(inst)
-		inst.set_item(i.icon, i.amount)
+		inst.set_item(i.item.icon, i.quantity)
 	
-	$Boundings/Body/Output/OutputBox.set_item(recipe.outputItem.icon, recipe.outputItem.amount)
+	$Boundings/Body/Output/OutputBox.set_item(recipe.outputItem.item.icon, recipe.outputItem.quantity)
 
 func _input(event):
 	if key == "" : return

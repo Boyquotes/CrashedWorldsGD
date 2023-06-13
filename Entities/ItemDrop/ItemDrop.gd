@@ -1,10 +1,12 @@
 extends RigidBody3D
 
-@export var item : Item
+@export var item : ItemHolder
 
 func _ready():
 	if item:
-		$Sprite3D.texture = item.icon
+		if item.item.itemName == null : queue_free() # empty shit
+		$Sprite3D.texture = item.item.icon
+	
 
 
 func _on_detect_body_entered(body):

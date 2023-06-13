@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Loot" load_steps=3 format=3 uid="uid://cdl4q083sk0at"]
+
+[ext_resource type="Resource" uid="uid://brweaxj1dm7fl" path="res://Resources/Item/Lootables/Berries/RedBerry.tres" id="1_8l123"]
+[ext_resource type="Script" path="res://Resources/Lootable/Loot.gd" id="1_e5ub1"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_e5ub1")
+item = ExtResource("1_8l123")
+percentage = 0

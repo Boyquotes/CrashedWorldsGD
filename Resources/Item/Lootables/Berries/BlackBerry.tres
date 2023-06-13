@@ -7,10 +7,10 @@
 resource_local_to_scene = true
 script = ExtResource("2_quqju")
 itemName = "Black Berries"
-type = 4
+type = ""
 icon = ExtResource("1_ewbqm")
-amount = 1
 stack = 16
 canBeEquiped = true
-canBeUpgraded = false
 description = "They seem deadly - maybe they are."
+objectScenePath = ""
+upgrades = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([])

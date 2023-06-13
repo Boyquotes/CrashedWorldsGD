@@ -13,11 +13,12 @@ func set_recipe(recipe : Recipe):
 	
 	current_recipe = recipe
 	for i in recipe.inputItems:
+		i = i as ItemHolder
 		var inst = itembox.instantiate()
 		$Boundings/Body/Inputs.add_child(inst)
-		inst.set_item(i.icon, i.amount)
+		inst.set_item(i.item.icon, i.quantity)
 	
-	$Boundings/Body/Output/OutputBox.set_item(recipe.outputItem.icon, recipe.outputItem.description)
+	$Boundings/Body/Output/OutputBox.set_item(recipe.outputItem.item.icon, recipe.outputItem.item.description)
 
 
 # upload recipe

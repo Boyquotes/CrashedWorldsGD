@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var item : Item
+@export var item : ItemHolder
 
 func use():
 	$AnimationPlayer.play("Dig")

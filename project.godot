@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 UseEffect="*res://Scripts/Global/UseEffect.gd"
 ItemDrop="*res://Entities/ItemDrop/ItemDrop.gd"
+SceneManager="*res://Scripts/Global/SceneManager.gd"
 
 [display]
 

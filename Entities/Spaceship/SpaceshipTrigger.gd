@@ -10,10 +10,10 @@ func _on_body_entered(body:Node3D) -> void:
 			if i.itemHolding == null:
 				continue
 			else:
-				var item: Item = i.itemHolding
+				var item: ItemHolder = i.itemHolding
 				#TODO: Check itemName = "Motherboard", quantity = 5
-				if item.itemName == "Grassy Stone Bloc":
-					itemCounter += item.amount
+				if item.item.itemName == "Grassy Stone Bloc":
+					itemCounter += item.quantity
 
 		$Label.show()
 

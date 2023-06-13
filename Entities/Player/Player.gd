@@ -38,7 +38,7 @@ func _unhandled_input(event):
 		if $Equiped.get_child_count() > 0:                     # If item is equiped
 			$Equiped.get_child(0).use()                    # use it.
 			useItem.emit($Equiped.get_child(0).item, $Camera3D)# pass the info to singleton
-			if $Equiped.get_child(0).item.amount <= 0:         # if there is no more item after that
+			if $Equiped.get_child(0).item.quantity <= 0:         # if there is no more item after that
 				$Equiped.get_child(0).queue_free()             # delete the item
 
 	if event is InputEventMouseMotion:
@@ -87,15 +87,16 @@ func equip(item):
 	if item :
 		$Equiped.show()
 		var inst
-		if item.objectScenePath:
-			inst = load(item.objectScenePath).instantiate()
+		if item.item.objectScenePath:
+			inst = load(item.item.objectScenePath).instantiate()
 			if inst.item == null:
 				inst.item = item
 		$Equiped.add_child(inst)
 
 	else:
 		$Equiped.hide()
-		$Equiped.get_child(0).queue_free()
+		if $Equip.get_child_count() > 0:
+			$Equiped.get_child(0).queue_free()
 
 # ------------------------------------------------------------------------------ SIGNALS
 

@@ -9,6 +9,8 @@ enum Block {
 	Berries
 }
 
+
+
 func _ready() -> void:
 	#randomize()
 	random_terrain()
@@ -91,6 +93,7 @@ func generateBerryBushes(percentage: float):
 	grounds.shuffle()
 	for i in range(grounds.size() * percentage):
 		set_cell_item(grounds[i] + Vector3i.UP, Block.Berries)
+
 
 func upperIsNotStoneBlock(grassCoord) -> bool:
 	var upperStoneCell = grassCoord + Vector3i.UP

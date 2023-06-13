@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://df8ekfo75nkk2"]
+[gd_scene load_steps=5 format=3 uid="uid://df8ekfo75nkk2"]
 
 [ext_resource type="Script" path="res://Entities/Tool/Pickaxe.gd" id="1_aptin"]
 [ext_resource type="Texture2D" uid="uid://wpdpfio65pl4" path="res://UI/Icons/Weapons/WoodPickaxe/WoodPickaxe.png" id="1_omgbn"]
-[ext_resource type="Resource" uid="uid://celm4ww0pyl5g" path="res://Resources/Item/Tools/WoodPickaxe/WoodPickaxe.tres" id="2_1bt4e"]
 
 [sub_resource type="Animation" id="Animation_b4q20"]
 resource_name = "Dig"
@@ -27,7 +26,6 @@ _data = {
 
 [node name="Pickaxe" type="Node3D"]
 script = ExtResource("1_aptin")
-item = ExtResource("2_1bt4e")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0, 0, 0)

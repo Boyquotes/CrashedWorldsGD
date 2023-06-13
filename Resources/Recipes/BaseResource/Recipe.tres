@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_f6alp")
-inputItems = Array[Resource("res://Resources/Item/BaseResource/Item.gd")]([])
-recipeName = ""
+inputItems = Array[Resource("res://Resources/ItemHolder/ItemHolder.gd")]([])

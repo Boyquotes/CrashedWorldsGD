@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 # ------------------------------------------------------------------------------ VARIABLES
-@export var craftRecipes : RecipeBook
+@export var recipeBook : RecipeBook
 
 @onready var inst_recipe = preload("res://UI/Nodes/RecipeNode/RecipeNode.tscn")
 
@@ -10,7 +10,7 @@ extends CanvasLayer
 
 var button_hovered = null
 var drag : bool = false
-var itemHold : Item
+var itemHold : ItemHolder
 var currentItemSlot = null
 # ------------------------------------------------------------------------------ BASIC METHODS
 
@@ -33,7 +33,7 @@ func _ready():
 	$Equipment.connect("equipedItem", get_parent().equip)
 
 	# Creation of the recipe list
-	for recipe in craftRecipes.recipes:
+	for recipe in recipeBook.recipes:
 		var ins = inst_recipe.instantiate()
 		%ItemList/MarginContainer/Boundings/Holder.add_child(ins)
 		ins.set_recipe(recipe)
@@ -83,7 +83,7 @@ func _input(event):
 # ------------------------------------------------------------------------------ CUSTOM METHODS
 
 ## Adds the item to the first empty slots. Returns true if successful.
-func add_item(item: Item) -> bool:
+func add_item(item: ItemHolder) -> bool:
 	item = item.duplicate()
 	for i in $Bag.get_children():
 
@@ -93,26 +93,25 @@ func add_item(item: Item) -> bool:
 			return true
 
 		# Slot has the same item
-		elif i.itemHolding.itemName == item.itemName:
+		elif i.itemHolding.item.itemName == item.item.itemName:
 			# if under the stack limit
-			if i.itemHolding.amount + 1 <= i.itemHolding.stack:
-				i.itemHolding.amount += 1
-				return true
+			if i.itemHolding.addAmount(): return true
 	return false
 
 ## Moves an item from a slot to another, by duplicating the first one then deleting the other.
 func move_item_to(slot: InventorySlot):
 	if slot.itemHolding:
-		if slot.itemHolding.itemName == itemHold.itemName:
-			if slot.itemHolding.amount + 1 > slot.itemHolding.stack:
+		if slot.itemHolding.item.itemName == itemHold.item.itemName:
+			if slot.itemHolding.quantity + 1 > slot.itemHolding.item.stack:
 				if !add_item(itemHold):
 					return
 			else:
-				slot.itemHolding.amount += itemHold.amount
+				slot.itemHolding.quantity += itemHold.quantity
 		else:
 			var temp = slot.itemHolding
 			slot.itemHolding = itemHold
 			button_hovered.itemHolding = temp
+			
 			if slot.name == "Equipment":
 				get_parent().equip(itemHold)
 			button_hovered = null
@@ -121,6 +120,7 @@ func move_item_to(slot: InventorySlot):
 			return
 	else:
 		slot.itemHolding = itemHold
+	
 	delete_item_at(button_hovered)
 	button_hovered = null
 	itemHold = null; currentItemSlot = null
@@ -130,22 +130,22 @@ func delete_item_at(slot: InventorySlot):
 	slot.itemHolding = null
 
 ## Find the first instance of an item to remove the needed quantity. Returns true if successful.
-func buy_item(item : Item, quantity : int, start_child : int = 0) -> bool:
+func buy_item(item : ItemHolder, quantity : int, start_child : int = 0) -> bool:
 	# We iterate to find the first instance. If enough, we're done.
 	# else, we try to find another one, using recursivity with what's left.
 	# Then, the function will collapse on the answer, that being true or false.
 	for i in range(start_child, $Bag.get_child_count()):
 		var child = $Bag.get_child(i)
 		if child.itemHolding:
-			if child.itemHolding.itemName == item.itemName:
-				if quantity <= child.itemHolding.amount:
-					child.itemHolding.amount -= quantity
-					if child.itemHolding.amount == 0 : delete_item_at(child)
+			if child.itemHolding.item.itemName == item.item.itemName:
+				if quantity <= child.itemHolding.quantity:
+					child.itemHolding.quantity -= quantity
+					if child.itemHolding.quantity == 0 : delete_item_at(child)
 					return true
 
-				if buy_item(item, quantity - child.itemHolding.amount, i + 1):
-					child.itemHolding.amount -= quantity
-					if child.itemHolding.amount <= 0 : delete_item_at(child)
+				if buy_item(item, quantity - child.itemHolding.quantity, i + 1):
+					child.itemHolding.quantity -= quantity
+					if child.itemHolding.quantity <= 0 : delete_item_at(child)
 					return true
 				else:
 					return false
@@ -155,7 +155,7 @@ func buy_item(item : Item, quantity : int, start_child : int = 0) -> bool:
 
 func do_recipe(pinbox : Pinbox):
 	for i in pinbox.current_recipe.inputItems:
-		if !buy_item(i, i.amount):
+		if !buy_item(i, i.quantity):
 			return false
 
 	add_item(pinbox.current_recipe.outputItem)
@@ -184,12 +184,12 @@ func _on_button_pressed(button):
 
 	# UPGRADE
 	else:
-		$Marker.texture = button.itemHolding.icon
+		$Marker.texture = button.itemHolding.item.icon
 		for i in %UpgradeList/MarginContainer/Boundings/Holder.get_children():
 			i.queue_free()
 
-		if button.itemHolding.upgrades != null:
-			for upgrade in button.itemHolding.upgrades:
+		if button.itemHolding.item.upgrades != null:
+			for upgrade in button.itemHolding.item.upgrades:
 				var ins = inst_recipe.instantiate()
 				%UpgradeList/MarginContainer/Boundings/Holder.add_child(ins)
 				ins.set_recipe(upgrade)
@@ -201,7 +201,7 @@ func _on_slot_mouse_entered(slot : InventorySlot):
 	if drag and itemHold:
 		if slot.itemHolding == null:
 			slot.get_node("InvSlot").show()
-			slot.update_icons(itemHold.icon)
+			slot.update_icons(itemHold.item.icon)
 			slot.self_modulate = Color.GRAY
 
 	currentItemSlot = slot

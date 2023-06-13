@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfdnvghpp5kx2"]
+[gd_scene load_steps=36 format=3 uid="uid://dfdnvghpp5kx2"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_ku8ux"]
 [ext_resource type="Texture2D" uid="uid://htc6djlq12lo" path="res://Entities/Player/PlayerIdle-sheet.png" id="2_eqb5d"]
@@ -7,10 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c8muusfrhdpa6" path="res://Resources/EntityStats/EntityStats.tscn" id="4_27sjq"]
 [ext_resource type="Script" path="res://Entities/Player/Inventory/Inventory.gd" id="4_bored"]
 [ext_resource type="PackedScene" uid="uid://28n6gh4fbhu3" path="res://Entities/Player/Inventory/InvSlot.tscn" id="5_7wd1b"]
-[ext_resource type="Resource" uid="uid://bio1d0g04eb4t" path="res://Resources/Recipes/Potions/HealPotion.tres" id="5_p65ry"]
-[ext_resource type="Resource" uid="uid://bgju6am7x380y" path="res://Resources/Recipes/Tools/WoodPickaxe.tres" id="6_4v04b"]
 [ext_resource type="Script" path="res://Resources/Recipes/RecipeBook/RecipeBook.gd" id="6_8wuxk"]
-[ext_resource type="Resource" uid="uid://daqcbyufhs6p" path="res://Resources/Recipes/Weapons/WoodSword.tres" id="7_v0b0k"]
+[ext_resource type="Resource" uid="uid://b0cx85hv7sejw" path="res://Resources/Recipes/Potions/RCP_HealPotion.tres" id="7_e4vy8"]
 [ext_resource type="FontFile" uid="uid://yxdextfie0cw" path="res://Fonts/digitalix.ttf" id="8_oco0k"]
 [ext_resource type="FontFile" uid="uid://dg7sn1woyt4ah" path="res://Fonts/visitor1.ttf" id="9_s5cnm"]
 [ext_resource type="Texture2D" uid="uid://de27udxc8j5r1" path="res://UI/Menus/Key1.png" id="10_t3vro"]
@@ -129,9 +127,10 @@ animations = [{
 [sub_resource type="ViewportTexture" id="ViewportTexture_egohb"]
 viewport_path = NodePath("Life/SubViewport")
 
-[sub_resource type="Resource" id="Resource_i2kl7"]
+[sub_resource type="Resource" id="Resource_mxm4n"]
+resource_local_to_scene = true
 script = ExtResource("6_8wuxk")
-recipes = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([ExtResource("5_p65ry"), ExtResource("6_4v04b"), ExtResource("7_v0b0k")])
+recipes = Array[Resource("res://Resources/Recipes/BaseResource/Recipe.gd")]([ExtResource("7_e4vy8")])
 
 [sub_resource type="Theme" id="Theme_adyfc"]
 default_font = ExtResource("9_s5cnm")
@@ -160,7 +159,7 @@ frame_progress = 0.64943
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.5, 3.75)
 v_offset = 0.5
-far = 200.0
+far = 8000.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.925646, 0.37839, 0, -0.37839, 0.925646, 0, 0.886337, 2.80451)
@@ -184,7 +183,7 @@ render_target_update_mode = 4
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 script = ExtResource("4_bored")
-craftRecipes = SubResource("Resource_i2kl7")
+recipeBook = SubResource("Resource_mxm4n")
 
 [node name="Bag" type="GridContainer" parent="Inventory"]
 visible = false

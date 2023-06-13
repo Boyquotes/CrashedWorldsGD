@@ -1,13 +1,13 @@
 extends Node3D
 
 @export_group("Item")
-@export var item : Item
+@export var item : ItemHolder
 
 @export_group("Custom Properties")
 @export var damage : int = 1
 
 func _ready():
-	$Sprite3D.texture = item.icon
+	$Sprite3D.texture = item.item.icon
 
 func use():
 	$AnimationPlayer.play("Attack")

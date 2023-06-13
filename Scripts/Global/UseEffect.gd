@@ -1,12 +1,13 @@
 extends Node
 
+signal destroyObject
 signal destroyGrid
 signal placeGrid
 
-func useItemType(item : Item, cam = null):
-	match item.type :
+func useItemType(item : ItemHolder, cam = null):
+	match item.item.type :
 		"Dig" : dig(cam)
-		"Bloc" : placebloc(cam, item.itemName)
+		"Bloc" : placebloc(cam, item.item.itemName)
 
 func dig(cam):
 	var intersectionAndRay = await getIntersectionAndRay(cam)
@@ -14,11 +15,19 @@ func dig(cam):
 	var ray_query = intersectionAndRay[1]
 
 	if not intersection.is_empty():
-		var pos = intersection.position
-		var normalizedDir = (ray_query.to - ray_query.from).normalized() / 1000
-		if floor(pos.y + normalizedDir.y) <= 0: return
-		var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
-		destroyGrid.emit(posI)
+		if intersection.collider.name == "GridMap":
+			var pos = intersection.position
+			var normalizedDir = (ray_query.to - ray_query.from).normalized() / 1000
+			if floor(pos.y + normalizedDir.y) <= 0: return
+			var posI = Vector3i(pos.x + normalizedDir.x, pos.y + normalizedDir.y, pos.z + normalizedDir.z)
+			destroyGrid.emit(posI)
+		else:
+			if intersection.collider.get_parent().is_in_group("Lootable"):
+				print("oui")
+				var obj = intersection.collider.get_parent()
+				if obj.has_method("loot"): # Safe check
+					destroyObject.emit(obj.loot(), intersection.position)
+			
 
 func placebloc(cam, itemName : String):
 	var id

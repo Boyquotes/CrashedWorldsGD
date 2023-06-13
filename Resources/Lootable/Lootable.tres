@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Lootable" load_steps=2 format=3 uid="uid://crxbr26kgwkqk"]
+
+[ext_resource type="Script" path="res://Resources/Lootable/Lootable.gd" id="1_wts7n"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wts7n")
+loots = Array[Resource("res://Resources/Lootable/Loot.gd")]([])
+minNumberLoot = 0
+maxNumberLoot = 1

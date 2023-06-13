@@ -2,8 +2,9 @@ extends Node3D
 
 @onready var item_scene = preload("res://Entities/ItemDrop/ItemDrop.tscn")
 
-@export var spawned_items: Array[Item]
+@export var spawned_items: Array[ItemHolder]
 @export var item_amount: int
+
 @export var spawned_ai: Array[PackedScene]
 @export var ai_amount: int
 @export var spawned_objects: Array[PackedScene]
@@ -25,14 +26,16 @@ func spawn_creatures() -> void:
 			wolf.scale = Vector3(2.5,2.5,2.5)
 			add_child(wolf)
 			#print("ai pos: "+ str(wolf.position))
+			
 
 func spawn_objects() -> void:
 	for scene in spawned_objects:
 		for i in range(object_amount):
 			var object = scene.instantiate()
-			object.global_position = create_random_position()
-			object.scale = Vector3(2.5,2.5,2.5)
 			add_child(object)
+			object.global_position = create_random_position()
+			object.scale = Vector3(1,1,1)
+			
 			#print("globalpos: "+ str(object.global_position))
 
 func spawn_items() -> void:

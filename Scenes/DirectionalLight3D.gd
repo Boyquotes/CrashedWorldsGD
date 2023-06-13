@@ -1,4 +1,3 @@
-@tool
 extends DirectionalLight3D
 
 @export var speed : float = 0.005
